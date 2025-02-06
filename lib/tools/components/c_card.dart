@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CCard extends StatelessWidget {
   final int amount;
@@ -9,9 +10,9 @@ class CCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
-      height: 100,
-      //width: 150,
+      padding: const EdgeInsets.all(5),
+      height: 80.h,
+      width: 160.w,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -32,15 +33,15 @@ class CCard extends StatelessWidget {
             title,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontSize: 15.sp,
                 color: Colors.blueGrey.shade400),
           ),
           const Spacer(),
           Text(
             amount.toAmount(),
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 20,
+              fontSize: 18.sp,
             ),
           ),
         ],

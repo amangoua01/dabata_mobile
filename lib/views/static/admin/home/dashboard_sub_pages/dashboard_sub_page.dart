@@ -27,14 +27,14 @@ class DashboardSubPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       DescriptionCard(nombre: 50, title: "Inscrit(e)"),
-                      CCard(amount: 30000000, title: "Cotisation cumulée"),
+                      CCard(amount: 3000000, title: "Cotisation cumulée"),
                     ],
                   ),
                   Gap(10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CCard(amount: 50000000, title: "Rest à cotisé"),
+                      CCard(amount: 5000000, title: "Rest à cotisé"),
                       DescriptionCard(nombre: 150, title: "Nombre cartes"),
                     ],
                   )

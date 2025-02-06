@@ -39,7 +39,7 @@ class PayerMaCotisation extends StatelessWidget {
               items: const [
                 DropdownMenuItem(
                   value: null,
-                  child: Text("01/01/2023"),
+                  child: Text("Cartes"),
                 ),
               ],
               onChanged: (null)),

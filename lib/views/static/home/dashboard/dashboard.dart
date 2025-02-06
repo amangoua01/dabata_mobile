@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,9 @@ class Dashboard extends StatelessWidget {
             title: const Text("Accueil"),
           ),
           body: Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10,
+            ).w,
             child: ListView(children: [
               const Gap(20),
               const Row(
@@ -41,8 +44,9 @@ class Dashboard extends StatelessWidget {
                     CCard(title: "Montant restant", amount: 15000),
                   ]),
               const Gap(20),
-              const Text("Mes cartes",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+              Text("Mes cartes",
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 25.sp)),
               const Gap(10),
               Column(
                 children: ctl.cartes

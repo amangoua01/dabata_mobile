@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/views/static/admin/user_info.dart';
 import 'package:flutter/material.dart';
 
 class SettingsSubPage extends StatelessWidget {
@@ -16,7 +17,7 @@ class SettingsSubPage extends StatelessWidget {
           ]),
         ),
         body: const TabBarView(children: [
-          Center(child: Text("Info")),
+          Center(child: UserInfo()),
           Center(child: Text("Cartes")),
         ]),
       ),

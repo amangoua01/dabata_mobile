@@ -2,6 +2,7 @@ import 'package:dabata_mobile/tools/components/progress_bar.dart';
 import 'package:dabata_mobile/views/static/home/user/changer_carte.dart';
 import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
 import 'package:dabata_mobile/views/static/home/user/voir_mes_cotisations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/models/carte.dart';
@@ -31,9 +32,11 @@ class UserCardInfoSubPage extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text(carte.libelle.value),
+            title: Text(carte.libelle.value,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp)),
             subtitle: Text(carte.categorie!.libelle.value),
-            trailing: Text(carte.montantJournalier.toAmount()),
+            trailing: Text(carte.montantJournalier.toAmount(),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp)),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -69,19 +72,23 @@ class UserCardInfoSubPage extends StatelessWidget {
             ],
           ),
           ListTile(
-            title: const Text("Montant journalier"),
+            title: const Text("Montant journalier",
+                style: TextStyle(fontWeight: FontWeight.bold)),
             trailing: Text(carte.montantJournalier.toAmount()),
           ),
           ListTile(
-            title: const Text("Date de debut"),
+            title: const Text("Date de debut",
+                style: TextStyle(fontWeight: FontWeight.bold)),
             trailing: Text(carte.debut.value),
           ),
           ListTile(
-            title: const Text("Date de fin"),
+            title: const Text("Date de fin",
+                style: TextStyle(fontWeight: FontWeight.bold)),
             trailing: Text(carte.fin.value),
           ),
           ListTile(
-            title: const Text("Total"),
+            title: const Text("Total",
+                style: TextStyle(fontWeight: FontWeight.bold)),
             trailing: Text(carte.montantJournalier.toAmount()),
           ),
           const Gap(10),

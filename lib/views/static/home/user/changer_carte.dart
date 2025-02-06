@@ -32,22 +32,9 @@ class ChangerCarte extends StatelessWidget {
                       category: carte.categorie!.libelle.value,
                       radio: null),
                   const Gap(20),
-                  Row(
-                    children: [
-                      const Text(
-                        "Choisissez une autre carte",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0, left: 3),
-                        child: Container(
-                          height: 3,
-                          width: 80,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
+                  const Text(
+                    "Choisissez une autre carte",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   const Gap(10),
                   Column(
