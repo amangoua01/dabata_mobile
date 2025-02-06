@@ -1,11 +1,11 @@
+import 'package:dabata_mobile/views/static/home/user/user_card_info_sub_page.dart';
+import 'package:flutter/material.dart';
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/views/static/home/card_pages/card_gains_sub_page.dart';
-import 'package:dabata_mobile/views/static/home/card_pages/card_info_sub_page.dart';
-import 'package:flutter/material.dart';
 
-class CardDetailPage extends StatelessWidget {
+class UserCardDetailPage extends StatelessWidget {
   final Carte carte;
-  const CardDetailPage(this.carte, {super.key});
+  const UserCardDetailPage(this.carte, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CardDetailPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            CardInfoSubPage(carte),
+            UserCardInfoSubPage(carte),
             CardGainsSubPage(carte),
           ],
         ),
