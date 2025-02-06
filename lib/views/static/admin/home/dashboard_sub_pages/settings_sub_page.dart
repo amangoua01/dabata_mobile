@@ -5,14 +5,20 @@ class SettingsSubPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Settings"),
-      ),
-      body: ListView(
-        children: const [
-          Text("Settings Sub Page"),
-        ],
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Settings"),
+          bottom: const TabBar(tabs: [
+            Tab(text: "Info"),
+            Tab(text: "Cartes"),
+          ]),
+        ),
+        body: const TabBarView(children: [
+          Center(child: Text("Info")),
+          Center(child: Text("Cartes")),
+        ]),
       ),
     );
   }

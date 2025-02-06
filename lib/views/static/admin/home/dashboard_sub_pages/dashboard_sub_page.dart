@@ -40,11 +40,6 @@ class DashboardSubPage extends StatelessWidget {
                   )
                 ],
               ),
-
-              /* floatingActionButton: FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.add),
-            ), */
               floatingActionButton: SpeedDial(
                 spacing: 3,
                 backgroundColor: AppColors.primary,
