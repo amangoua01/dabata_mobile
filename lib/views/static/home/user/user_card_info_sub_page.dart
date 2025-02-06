@@ -1,6 +1,4 @@
-import 'package:custom_linear_progress_indicator/custom_linear_progress_indicator.dart';
 import 'package:dabata_mobile/tools/components/progress_bar.dart';
-import 'package:dabata_mobile/views/static/auth/register_sub_page.dart';
 import 'package:dabata_mobile/views/static/home/user/changer_carte.dart';
 import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
 import 'package:dabata_mobile/views/static/home/user/voir_mes_cotisations.dart';
@@ -106,7 +104,7 @@ class UserCardInfoSubPage extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: CButton(
-                      onPressed: () => Get.to(() => const ChangerCarte()),
+                      onPressed: () => Get.to(() => ChangerCarte(carte)),
                       child: const Text("Changer de carte")),
                 ),
               ],

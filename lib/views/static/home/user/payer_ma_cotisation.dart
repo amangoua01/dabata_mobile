@@ -1,8 +1,7 @@
-import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
-import 'package:dabata_mobile/tools/widgets/inputs/c_drop_down_form_field.dart';
-import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
-import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:flutter/material.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
 
 class PayerMaCotisation extends StatelessWidget {
   const PayerMaCotisation({super.key});
@@ -38,6 +37,7 @@ class PayerMaCotisation extends StatelessWidget {
             labelText: "Montant",
           ),
           DropdownButtonFormField(
+              value: null,
               decoration: const InputDecoration(
                 isDense: true,
                 border: OutlineInputBorder(
@@ -54,6 +54,7 @@ class PayerMaCotisation extends StatelessWidget {
               onChanged: (null)),
           const Gap(10),
           CTextFormField(
+            readOnly: true,
             labelText: "Date de paiement",
             onTap: () {
               showDatePicker(
@@ -65,6 +66,7 @@ class PayerMaCotisation extends StatelessWidget {
               );
             },
           ),
+          CButton(onPressed: () {}, child: const Text("Plusieurs paiement")),
           const Gap(10),
           CButton(
             child: const Text("Valider"),
