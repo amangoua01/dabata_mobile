@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/tools/components/user_description_card.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
@@ -15,23 +16,13 @@ class PayerMaCotisation extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: ListView(children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.orange.shade100,
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-              ),
-              child: const ListTile(
-                leading: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: NetworkImage(
-                      "https://img.freepik.com/vecteurs-premium/collection-cadeaux-noel-comprenant-sac-cadeau-rouge-motif-flocon-neige-plusieurs-cadeaux-emballes-tous-fond-blanc_444390-25259.jpg",
-                    )),
-                title: Text("Haris Dabata"),
-                subtitle: Text("07 00 00 00 00"),
-              ),
-            ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+            child: UserDescriptionCard(
+                image:
+                    "https://img.freepik.com/vecteurs-premium/collection-cadeaux-noel-comprenant-sac-cadeau-rouge-motif-flocon-neige-plusieurs-cadeaux-emballes-tous-fond-blanc_444390-25259.jpg",
+                fullName: 'Hassan Dabata',
+                phoneNumber: '07 00 00 00 00'),
           ),
           const CTextFormField(
             labelText: "Montant",

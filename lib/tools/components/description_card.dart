@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:dabata_mobile/tools/extensions/types/int.dart';
 
-class CCard extends StatelessWidget {
-  final int amount;
+class DescriptionCard extends StatelessWidget {
+  final int nombre;
   final String title;
-  const CCard({super.key, required this.amount, required this.title});
+  const DescriptionCard({super.key, required this.nombre, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -13,18 +12,17 @@ class CCard extends StatelessWidget {
       height: 100,
       //width: 150,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.orange.shade100),
-        /* boxShadow: [
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.orange.shade100),
+          boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
-              blurRadius: 4,
-              offset: const Offset(0, 3), // changes position of shadow
+              blurRadius: 1,
+              offset: const Offset(0, 1), // changes position of shadow
             )
-          ] */
-      ),
+          ]),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -37,7 +35,7 @@ class CCard extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            amount.toAmount(),
+            '${nombre.toString()} Personnes',
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,

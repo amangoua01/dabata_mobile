@@ -46,15 +46,22 @@ class CardGainsSubPage extends StatelessWidget {
         ), */
         const Gap(50),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child:
-              CButton(onPressed: () {}, child: const Text("Appeler pour info")),
-        ),
-        Padding(
           padding: const EdgeInsets.all(8.0),
-          child: CButton(
-              onPressed: () => Get.to(() => const RegisterSubPage()),
-              child: const Text("Souscrire")),
+          child: Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                child: CButton(
+                    onPressed: () => Get.to(() => const RegisterSubPage()),
+                    child: const Text("Souscrire")),
+              ),
+              SizedBox(
+                  width: double.infinity,
+                  child: CButton(
+                      onPressed: () {},
+                      child: const Text("Appeler pour info"))),
+            ],
+          ),
         ),
       ],
     );

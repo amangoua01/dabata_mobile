@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/views/static/admin/home/dashboard/admin_dashboard.dart';
 import 'package:dabata_mobile/views/static/auth/register_sub_page.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter/material.dart';
@@ -47,14 +48,27 @@ class CardInfoSubPage extends StatelessWidget {
         const Gap(10),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child:
-              CButton(onPressed: () {}, child: const Text("Appeler pour info")),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CButton(
-              onPressed: () => Get.to(() => const RegisterSubPage()),
-              child: const Text("Souscrire")),
+          child: Column(
+            children: [
+              SizedBox(
+                  width: double.infinity,
+                  child: CButton(
+                      onPressed: () {},
+                      child: const Text("Appeler pour info"))),
+              SizedBox(
+                width: double.infinity,
+                child: CButton(
+                    onPressed: () => Get.to(() => const RegisterSubPage()),
+                    child: const Text("Souscrire")),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: CButton(
+                    onPressed: () => Get.offAll(() => const AdminDashboard()),
+                    child: const Text("Admin")),
+              ),
+            ],
+          ),
         ),
 
         /* ListTile(
