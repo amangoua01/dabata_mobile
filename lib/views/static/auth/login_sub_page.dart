@@ -2,7 +2,6 @@ import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_text_button.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
-import 'package:dabata_mobile/views/static/auth/register_sub_page.dart';
 import 'package:dabata_mobile/views/static/home/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -32,14 +31,8 @@ class LoginSubPage extends StatelessWidget {
           ),
           const Gap(10),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              CTextButton(
-                  child: const Text(
-                    "S'inscrire ?",
-                    style: TextStyle(color: AppColors.primary),
-                  ),
-                  onPressed: () => Get.to(() => const RegisterSubPage())),
               CTextButton(
                 onPressed: () {},
                 child: const Text(

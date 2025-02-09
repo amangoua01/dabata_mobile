@@ -1,5 +1,6 @@
 import 'package:dabata_mobile/tools/widgets/card_item.dart';
 import 'package:dabata_mobile/views/controllers/home/card_liste_page_vctl.dart';
+import 'package:dabata_mobile/views/static/auth/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,18 @@ class CardListePage extends StatelessWidget {
       init: CardListePageVctl(),
       builder: (ctl) {
         return Scaffold(
-          appBar: AppBar(title: const Text("Cartes disponibles")),
+          appBar: AppBar(
+            title: const Text("Cartes disponibles"),
+            actions: [
+              IconButton(
+                onPressed: () => Get.to(() => const AuthPage()),
+                icon: const CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.person),
+                ),
+              ),
+            ],
+          ),
           body: GridView.builder(
             padding: const EdgeInsets.all(10),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
