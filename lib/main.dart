@@ -1,10 +1,12 @@
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/constants/env.dart';
 import 'package:dabata_mobile/views/static/starting/splash_screen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ScreenUtilInit(
       designSize: const Size(360, 690),
@@ -12,6 +14,7 @@ void main() {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: false,
+          fontFamily: Env.defaultFont,
           appBarTheme: const AppBarTheme(
             elevation: 0,
             backgroundColor: AppColors.primary,

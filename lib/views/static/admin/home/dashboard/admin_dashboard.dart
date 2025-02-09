@@ -15,7 +15,10 @@ class AdminDashboard extends StatelessWidget {
             body: ctl.pages[ctl.selectedIndex],
             bottomNavigationBar: NavigationBottomBar(
               currentIndex: ctl.selectedIndex,
-              onTap: ctl.changePage,
+              onTap: (index) {
+                ctl.selectedIndex = index;
+                ctl.update();
+              },
               items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.dashboard),

@@ -1,11 +1,9 @@
 import 'package:dabata_mobile/tools/components/c_card.dart';
 import 'package:dabata_mobile/tools/components/card_suscribe.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
-import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/controllers/home/dashboard/dashboard_vctl.dart';
 import 'package:dabata_mobile/views/static/home/User/user_profile.dart';
 import 'package:dabata_mobile/views/static/home/card_pages/card_liste_page.dart';
-import 'package:dabata_mobile/views/static/home/user/user_card_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -24,7 +22,12 @@ class Dashboard extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: () => Get.to(() => const UserProfile()),
-                child: CircleAvatar(backgroundImage: NetworkImage(ctl.image)),
+                child: const CircleAvatar(
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage(
+                    "assets/icons/user2.png",
+                  ),
+                ),
               ),
             ),
             centerTitle: true,
@@ -43,14 +46,8 @@ class Dashboard extends StatelessWidget {
                 ),
                 shrinkWrap: true,
                 children: const [
-                  CCard(
-                    title: "Montant cotisé",
-                    amount: 1000000,
-                  ),
-                  CCard(
-                    title: "Montant restant",
-                    amount: 15000,
-                  ),
+                  CCard(title: "Montant cotisé", amount: 1000000),
+                  CCard(title: "Montant restant", amount: 15000),
                 ],
               ),
               const Gap(20),
@@ -71,15 +68,7 @@ class Dashboard extends StatelessWidget {
               Column(
                 children: ctl.cartes
                     .map(
-                      (e) => GestureDetector(
-                        onTap: () => Get.to(() => UserCardDetailPage(e)),
-                        child: CardSuscribe(
-                          title: e.libelle.value,
-                          amount: e.montantJournalier,
-                          image: e.image.value,
-                          category: e.categorie!.libelle.value,
-                        ),
-                      ),
+                      (e) => CardSuscribe(e),
                     )
                     .toList(),
               ),

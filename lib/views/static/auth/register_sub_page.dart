@@ -33,7 +33,7 @@ class RegisterSubPage extends StatelessWidget {
         ),
         const Gap(20),
         CButton(
-          onPressed: () => Get.offAll(() => const Dashboard()),
+          onPressed: () => Get.to(() => const Dashboard()),
           child: const Text("Valider"),
         ),
       ],

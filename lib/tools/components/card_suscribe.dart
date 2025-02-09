@@ -1,87 +1,117 @@
-import 'package:dabata_mobile/tools/extensions/types/double.dart';
+import 'package:dabata_mobile/models/carte.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
+import 'package:dabata_mobile/views/static/home/user/user_card_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class CardSuscribe extends StatelessWidget {
-  final double? amount;
-  final String title;
-  final String image;
-  final String category;
+  final Carte carte;
   const CardSuscribe(
-      {super.key,
-      required this.title,
-      required this.image,
-      required this.amount,
-      required this.category});
+    this.carte, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.h),
-      child: Container(
-          padding: const EdgeInsets.all(5).w,
+    return GestureDetector(
+      onTap: () => Get.to(() => UserCardDetailPage(carte)),
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.h),
+        child: Container(
+          height: 130,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.orange.shade50, width: 2),
           ),
           child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //mainAxisSize: MainAxisSize.max,
-              children: [
-                Container(
-                  color: Colors.amber,
-                  height: 30,
-                  width: 30,
-                  child: Center(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: double.infinity,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
                     child: Image.network(
-                      image,
+                      carte.image.value,
                       fit: BoxFit.cover,
-                      height: 100,
                     ),
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title),
-                    const Gap(10),
-                    Text(category),
-                    const Gap(10),
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Payé",
-                              style: TextStyle(color: Colors.green),
-                            ),
-                            const Gap(5),
-                            Text(amount.toAmount()),
-                          ]),
-                      const Gap(10),
-                      const Text(
-                        "/",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 30,
+              ),
+              const Gap(10),
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 11,
+                    horizontal: 5,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        carte.libelle.value,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        carte.categorie!.libelle.value,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const Gap(10),
                       Column(
-                          //crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Restant",
-                              style: TextStyle(color: Colors.red),
+                        children: [
+                          SizedBox(
+                            height: 10,
+                            width: double.infinity,
+                            child: LinearProgressIndicator(
+                              value: 0.5,
+                              borderRadius: BorderRadius.circular(10),
+                              backgroundColor: Colors.grey.shade200,
+                              valueColor: const AlwaysStoppedAnimation<Color>(
+                                AppColors.primary,
+                              ),
                             ),
-                            const Gap(5),
-                            Text(amount.toAmount()),
-                          ]),
-                    ])
-                  ],
+                          ),
+                          const Gap(5),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "1000".toAmount(),
+                                  maxLines: 1,
+                                  style: const TextStyle(
+                                    color: Colors.orange,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                "2000".toAmount(),
+                                maxLines: 1,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ])),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

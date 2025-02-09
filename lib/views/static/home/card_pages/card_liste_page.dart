@@ -20,7 +20,7 @@ class CardListePage extends StatelessWidget {
                 onPressed: () => Get.to(() => const AuthPage()),
                 icon: const CircleAvatar(
                   backgroundColor: Colors.white,
-                  child: Icon(Icons.person),
+                  backgroundImage: AssetImage("assets/icons/user2.png"),
                 ),
               ),
             ],

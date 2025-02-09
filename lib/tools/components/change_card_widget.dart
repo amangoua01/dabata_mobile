@@ -19,34 +19,36 @@ class ChangeCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(10),
-        height: 100,
-        //width: 150,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.orange.shade100),
-          borderRadius: BorderRadius.circular(10),
-          /* boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 1,
-                blurRadius: 4,
-                offset: const Offset(0, 3), // changes position of shadow
-              )
-            ] */
+      height: 100,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.orange.shade100),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(8),
+        leading: Image.network(
+          image,
+          height: 100,
+          width: 100,
+          fit: BoxFit.cover,
         ),
-        child: ListTile(
-          contentPadding: const EdgeInsets.all(8),
-          leading: Image.network(image, height: 60),
-          title: Text(
-            title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          subtitle: Text(
-            '$category / ${amount.toAmount()}',
-            style: const TextStyle(fontSize: 18),
-          ),
-          trailing: radio,
-        ));
+        title: Text(
+          title,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              category,
+              style: const TextStyle(fontSize: 18),
+            ),
+            Text("${amount.toAmount()} / jour")
+          ],
+        ),
+        trailing: radio,
+      ),
+    );
   }
 }

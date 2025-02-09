@@ -12,9 +12,4 @@ class AdminDashboardVctl extends GetxController {
     const UsersListSubPage(),
     const SettingsSubPage(),
   ];
-
-  void changePage(int index) {
-    selectedIndex = index;
-    update();
-  }
 }

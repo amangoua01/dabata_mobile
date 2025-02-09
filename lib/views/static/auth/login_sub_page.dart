@@ -1,7 +1,6 @@
-import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
-import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_text_button.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
+import 'package:dabata_mobile/views/static/admin/home/dashboard/admin_dashboard.dart';
 import 'package:dabata_mobile/views/static/home/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -27,21 +26,25 @@ class LoginSubPage extends StatelessWidget {
           const Gap(20),
           CButton(
             child: const Text("Connexion"),
-            onPressed: () => Get.offAll(() => const Dashboard()),
+            onPressed: () => Get.to(() => const Dashboard()),
+          ),
+          CButton(
+            child: const Text("Connexion admin"),
+            onPressed: () => Get.to(() => const AdminDashboard()),
           ),
           const Gap(10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CTextButton(
-                onPressed: () {},
-                child: const Text(
-                  "Mot de passe oublié?",
-                  style: TextStyle(color: AppColors.primary),
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   children: [
+          //     CTextButton(
+          //       onPressed: () {},
+          //       child: const Text(
+          //         "Mot de passe oublié?",
+          //         style: TextStyle(color: AppColors.primary),
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

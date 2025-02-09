@@ -3,9 +3,6 @@ import 'package:dabata_mobile/models/categorie.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class DashboardVctl extends GetxController {
-  var image =
-      "https://img.freepik.com/vecteurs-premium/collection-cadeaux-noel-comprenant-sac-cadeau-rouge-motif-flocon-neige-plusieurs-cadeaux-emballes-tous-fond-blanc_444390-25259.jpg";
-
   List<Carte> cartes = [
     Carte(
       id: 1,

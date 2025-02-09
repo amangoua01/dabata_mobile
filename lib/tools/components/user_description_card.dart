@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserDescriptionCard extends StatelessWidget {
   final String image;
@@ -21,11 +22,17 @@ class UserDescriptionCard extends StatelessWidget {
       ),
       child: ListTile(
         leading: CircleAvatar(
-            radius: 30,
-            backgroundImage: NetworkImage(
-              image,
-            )),
-        title: Text("Nom complet: $fullName"),
+          backgroundColor: Colors.white,
+          radius: 30,
+          backgroundImage:
+              (!image.isURL) ? AssetImage(image) : NetworkImage(image),
+        ),
+        title: Text(
+          fullName,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         subtitle: Text(phoneNumber),
       ),
     );

@@ -1,8 +1,9 @@
 import 'package:dabata_mobile/tools/components/user_description_card.dart';
-import 'package:gap/gap.dart';
-import 'package:flutter/material.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/c_drop_down_form_field.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
+import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class PayerMaCotisation extends StatelessWidget {
   const PayerMaCotisation({super.key});
@@ -11,7 +12,7 @@ class PayerMaCotisation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Payer ma cotisation"),
+        title: const Text("Paiement de cotisation"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -19,30 +20,19 @@ class PayerMaCotisation extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0),
             child: UserDescriptionCard(
-                image:
-                    "https://img.freepik.com/vecteurs-premium/collection-cadeaux-noel-comprenant-sac-cadeau-rouge-motif-flocon-neige-plusieurs-cadeaux-emballes-tous-fond-blanc_444390-25259.jpg",
-                fullName: 'Hassan Dabata',
-                phoneNumber: '07 00 00 00 00'),
+              image: "assets/icons/user.png",
+              fullName: 'Hassan Dabata',
+              phoneNumber: '07 00 00 00 00',
+            ),
+          ),
+          CDropDownFormField<String>(
+            labelText: "Carte",
+            items: (p0, p1) => [""],
+            compareFn: (a, b) => true,
           ),
           const CTextFormField(
             labelText: "Montant",
           ),
-          DropdownButtonFormField(
-              value: null,
-              decoration: const InputDecoration(
-                isDense: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  borderSide: BorderSide(color: Colors.orange, width: 2),
-                ),
-              ),
-              items: const [
-                DropdownMenuItem(
-                  value: null,
-                  child: Text("Cartes"),
-                ),
-              ],
-              onChanged: (null)),
           const Gap(10),
           CTextFormField(
             readOnly: true,
@@ -57,9 +47,9 @@ class PayerMaCotisation extends StatelessWidget {
               );
             },
           ),
-          CButton(onPressed: () {}, child: const Text("Plusieurs paiement")),
           const Gap(10),
           CButton(
+            height: 50,
             child: const Text("Valider"),
             onPressed: () {},
           )

@@ -1,11 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class CCard extends StatelessWidget {
   final int amount;
   final String title;
-  const CCard({super.key, required this.amount, required this.title});
+  final String? unite;
+  const CCard({
+    super.key,
+    required this.amount,
+    required this.title,
+    this.unite,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,28 +25,34 @@ class CCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.orange.shade100),
-        /* boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 4,
-              offset: const Offset(0, 3), // changes position of shadow
-            )
-          ] */
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15.sp,
-                color: Colors.blueGrey.shade400),
+          Expanded(
+            child: Row(
+              children: [
+                Image.asset(
+                  "assets/icons/argent.png",
+                  width: 20,
+                  color: AppColors.primary,
+                ),
+                const Gap(10),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.blueGrey.shade400,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
           Text(
-            amount.toAmount(),
+            amount.toAmount(devise: unite),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18.sp,
