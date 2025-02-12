@@ -1,4 +1,3 @@
-import 'package:dabata_mobile/models/categorie.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/tools/widgets/card_item.dart';
@@ -14,8 +13,6 @@ class CardListePage extends StatelessWidget {
     return GetBuilder(
       init: CardListePageVctl(),
       builder: (ctl) {
-        final categories = ctl.uniqueCategories;
-
         return Scaffold(
           appBar: AppBar(
             title: const Text("Cartes disponibles"),
@@ -31,8 +28,10 @@ class CardListePage extends StatelessWidget {
           ),
           body: CustomTabBar(
             controller: ctl.controller,
-            tabs: categories.map((cat) => Tab(text: cat.libelle)).toList(),
-            children: categories.map((categorie) {
+            tabs: ctl.uniqueCategories
+                .map((cat) => Tab(text: cat.libelle))
+                .toList(),
+            children: ctl.uniqueCategories.map((categorie) {
               final cartesCategorie = ctl.cartes
                   .where((carte) => carte.categorie?.id == categorie.id)
                   .toList();
@@ -56,48 +55,4 @@ class CardListePage extends StatelessWidget {
       },
     );
   }
-  /* Widget build(BuildContext context) {
-    return GetBuilder(
-      init: CardListePageVctl(),
-      builder: (ctl) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text("Cartes disponibles"),
-            actions: [
-              IconButton(
-                onPressed: () => Get.to(() => const AuthPage()),
-                icon: const CircleAvatar(
-                  backgroundColor: Colors.white,
-                  backgroundImage: AssetImage("assets/icons/user2.png"),
-                ),
-              ),
-            ],
-          ),
-          body: CustomTabBar(
-            controller: ctl.controller,
-            tabs:
-                ctl.cartes.map((e) => Tab(text: e.categorie!.libelle)).toList(),
-            children: [
-              //CardItem(e)
-              ...ctl.cartes.map(
-                (e) => GridView.builder(
-                  padding: const EdgeInsets.all(10),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                    childAspectRatio: .7,
-                  ),
-                  itemCount: 1,
-                  itemBuilder: (context, index) {
-                    return CardItem(e);
-                  },
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  } */
 }
