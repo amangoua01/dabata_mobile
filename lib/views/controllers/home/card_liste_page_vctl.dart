@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 class CardListePageVctl extends GetxController
     with GetSingleTickerProviderStateMixin {
-  var selectedCategory = Rxn<int>();
   late final TabController controller;
 
   List<Carte> cartes = [
@@ -49,12 +48,34 @@ class CardListePageVctl extends GetxController
       montantJournalier: 100,
       categorie: Categorie(id: 4, libelle: "Categorie 4"),
     ),
+    Carte(
+      id: 5,
+      libelle: "Carte 5",
+      image:
+          "https://bloguelesnackbar.com/wp-content/uploads/2021/01/idee-cadeau-St-Valentin-Le-Snack-Bar.jpg",
+      debut: "2024-01-01",
+      fin: "2024-12-31",
+      montantJournalier: 300,
+      categorie: Categorie(id: 4, libelle: "Categorie 4"),
+    ),
   ];
+
+  // Méthode pour obtenir les catégories uniques
+  List<Categorie> get uniqueCategories {
+    final Map<int, Categorie> categoriesMap = {};
+    for (var carte in cartes) {
+      if (carte.categorie != null) {
+        categoriesMap[carte.categorie!.id!] = carte.categorie!;
+      }
+    }
+    return categoriesMap.values.toList();
+  }
 
   @override
   void onInit() {
     super.onInit();
-    controller = TabController(length: cartes.length, vsync: this);
+    // Initialiser le controller avec le nombre de catégories uniques
+    controller = TabController(length: uniqueCategories.length, vsync: this);
   }
 
   @override
