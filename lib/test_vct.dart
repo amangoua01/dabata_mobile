@@ -1,13 +1,10 @@
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/models/categorie.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_ticket_provider_mixin.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-class CardListePageVctl extends GetxController
-    with GetSingleTickerProviderStateMixin {
-  var selectedCategory = Rxn<int>();
-  late final TabController controller;
-
+class TestVct extends GetxController with GetSingleTickerProviderStateMixin {
   List<Carte> cartes = [
     Carte(
       id: 1,
@@ -50,16 +47,18 @@ class CardListePageVctl extends GetxController
       categorie: Categorie(id: 4, libelle: "Categorie 4"),
     ),
   ];
+  late final TabController controller;
 
   @override
   void onInit() {
     super.onInit();
-    controller = TabController(length: cartes.length, vsync: this);
+    // Initialiser le TabController avec une durée de vie égale au nombre d'onglets
+    controller = TabController(length: 3, vsync: this);
   }
 
   @override
   void onClose() {
-    controller.dispose();
+    controller.dispose(); // N'oubliez pas de libérer le controller
     super.onClose();
   }
 }

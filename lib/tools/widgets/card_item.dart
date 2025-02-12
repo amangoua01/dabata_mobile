@@ -24,7 +24,7 @@ class CardItem extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              flex: 5,
+              flex: 4,
               child: Container(
                 decoration: BoxDecoration(
                   // color: Colors.amber.withOpacity(.1),

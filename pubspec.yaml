@@ -40,16 +40,19 @@ dependencies:
   intl: ^0.20.2
   gap: ^3.0.1
   lottie: ^3.2.0
+  shimmer: ^3.0.0
   date_format: ^2.0.9
+  google_fonts: ^6.2.1
+  tab_container: ^3.5.3
   table_calendar: ^3.2.0
   auto_size_text: ^3.0.0
   dropdown_search: ^6.0.2
   shared_preferences: ^2.5.1
   flutter_screenutil: ^5.9.3
+  salomon_bottom_bar: ^3.3.2
   flutter_speed_dial: ^7.0.0
   custom_linear_progress_indicator: ^0.0.4
-  shimmer: ^3.0.0
-  google_fonts: ^6.2.1
+
 
 
 dev_dependencies:

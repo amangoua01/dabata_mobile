@@ -45,6 +45,7 @@ class CButton extends StatelessWidget {
       color: color,
       height: height ?? 40,
       minWidth: minWidth,
+      // ignore: deprecated_member_use
       disabledColor: disabledColor ?? AppColors.backColor.withOpacity(0.5),
       disabledTextColor: disabledTextColor,
       shape: shape ??

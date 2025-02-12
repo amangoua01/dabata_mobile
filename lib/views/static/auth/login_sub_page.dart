@@ -1,7 +1,7 @@
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
 import 'package:dabata_mobile/views/static/admin/home/dashboard/admin_dashboard.dart';
-import 'package:dabata_mobile/views/static/home/dashboard/dashboard.dart';
+import 'package:dabata_mobile/views/static/home/dashboard/home.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -26,7 +26,7 @@ class LoginSubPage extends StatelessWidget {
           const Gap(20),
           CButton(
             child: const Text("Connexion"),
-            onPressed: () => Get.to(() => const Dashboard()),
+            onPressed: () => Get.to(() => const Home()),
           ),
           CButton(
             child: const Text("Connexion admin"),
