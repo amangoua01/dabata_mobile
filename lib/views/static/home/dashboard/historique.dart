@@ -20,32 +20,19 @@ class Historique extends StatelessWidget {
                 title: 'Carte 1',
                 categorie: "Categorie 1",
                 dateTime: DateTime.now(),
-              )
-                  .animate()
-                  .fadeIn()
-                  .scale()
-                  .move(delay: 200.ms, duration: 600.ms),
+              ),
               HistoricPaymentCard(
                 amount: 15000,
                 title: 'Carte 2',
                 categorie: "Categorie 2",
                 dateTime: DateTime.now(),
-              )
-                  .animate()
-                  .fadeIn()
-                  .scale()
-                  .move(delay: 300.ms, duration: 600.ms),
-              //.blurXY(),
+              ),
               HistoricPaymentCard(
                 amount: 20000,
                 title: 'Carte 3',
                 categorie: "Categorie 3",
                 dateTime: DateTime.now(),
-              )
-                  .animate()
-                  .fadeIn()
-                  .scale()
-                  .move(delay: 400.ms, duration: 600.ms),
+              ),
             ],
           )),
     );
