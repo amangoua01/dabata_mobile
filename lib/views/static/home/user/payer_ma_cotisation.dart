@@ -12,7 +12,7 @@ class PayerMaCotisation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Paiement de cotisation"),
+        title: const Text("Faire un paiement"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),

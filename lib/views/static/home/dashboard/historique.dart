@@ -1,5 +1,6 @@
 import 'package:dabata_mobile/tools/components/historic_payment_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class Historique extends StatelessWidget {
   const Historique({super.key});
@@ -16,19 +17,35 @@ class Historique extends StatelessWidget {
             children: [
               HistoricPaymentCard(
                 amount: 10000,
-                date: "01/01/2023",
+                title: 'Carte 1',
+                categorie: "Categorie 1",
                 dateTime: DateTime.now(),
-              ),
+              )
+                  .animate()
+                  .fadeIn()
+                  .scale()
+                  .move(delay: 200.ms, duration: 600.ms),
               HistoricPaymentCard(
                 amount: 15000,
-                date: "01/01/2023",
+                title: 'Carte 2',
+                categorie: "Categorie 2",
                 dateTime: DateTime.now(),
-              ),
+              )
+                  .animate()
+                  .fadeIn()
+                  .scale()
+                  .move(delay: 300.ms, duration: 600.ms),
+              //.blurXY(),
               HistoricPaymentCard(
                 amount: 20000,
-                date: "01/01/2023",
+                title: 'Carte 3',
+                categorie: "Categorie 3",
                 dateTime: DateTime.now(),
-              ),
+              )
+                  .animate()
+                  .fadeIn()
+                  .scale()
+                  .move(delay: 400.ms, duration: 600.ms),
             ],
           )),
     );

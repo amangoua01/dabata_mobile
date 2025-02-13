@@ -23,9 +23,9 @@ class CardSuscribe extends StatelessWidget {
         child: Container(
           height: 130,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.grey.shade200,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.orange.shade50, width: 2),
+            border: Border.all(color: Colors.white, width: 1),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

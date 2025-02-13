@@ -68,10 +68,7 @@ class DashboardSubPage extends StatelessWidget {
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
                 label: "Ajouter une carte",
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
+                child: Image.asset("assets/icons/add_card.png", height: 30),
                 onTap: () => Get.to(() => const EditionCarteSouscriptionPage()),
               ),
               SpeedDialChild(
@@ -88,10 +85,7 @@ class DashboardSubPage extends StatelessWidget {
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
                 label: "Ajouter un paiement",
-                child: const Icon(
-                  Icons.person,
-                  color: Colors.black,
-                ),
+                child: Image.asset("assets/icons/payer.png", height: 30),
                 onTap: () => Get.to(() => const PayerMaCotisation()),
               ),
             ],

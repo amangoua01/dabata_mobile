@@ -40,7 +40,7 @@ class CustomTabBar extends StatelessWidget {
         },
         tabs: tabs,
         colors: colors,
-        color: const Color.fromARGB(255, 238, 238, 238),
+        color: Colors.grey.shade200,
         children: children,
       ),
     );

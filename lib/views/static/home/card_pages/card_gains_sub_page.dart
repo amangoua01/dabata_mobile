@@ -9,7 +9,20 @@ class CardGainsSubPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: const ["2 poulets", "1 sac de riz", "1 bouteille de gaz B12"]
+      children: const [
+        {
+          "type": "poulets de chair",
+          "nombre": 1,
+        },
+        {
+          "type": "riz cassé sans brisure de 50kg",
+          "nombre": 1,
+        },
+        {
+          "type": "gaz butane B12",
+          "nombre": 1,
+        }
+      ]
           .map(
             (e) => ListTile(
               leading: CircleAvatar(
@@ -19,23 +32,24 @@ class CardGainsSubPage extends StatelessWidget {
                   height: 30,
                 ),
               ),
-              title: Text(e),
+              title: Text(e["type"].toString()),
+              trailing: Container(
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: Colors.green.shade200,
+                  shape: BoxShape.circle,
+                ),
+                child: Text(
+                  e["nombre"].toString(),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
             ),
           )
           .toList(),
-      // ListTile(
-      //   leading: Icon(Icons.wallet_giftcard_sharp),
-      //   title: Text("2 poulets"),
-      // ),
-      // ListTile(
-      //   leading: Icon(Icons.wallet_giftcard_sharp),
-      //   title: Text("1 sac de riz"),
-      // ),
-      // ListTile(
-      //   leading: Icon(Icons.wallet_giftcard_sharp),
-      //   title: Text("1 bouteille de gaz B12"),
-      // ),
-      // ],
     );
   }
 }

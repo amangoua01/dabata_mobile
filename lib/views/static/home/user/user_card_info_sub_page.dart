@@ -15,7 +15,7 @@ import 'package:get/get.dart';
 
 class UserCardInfoSubPage extends StatelessWidget {
   final Carte carte;
-  const    UserCardInfoSubPage(this.carte, {super.key});
+  const UserCardInfoSubPage(this.carte, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +91,7 @@ class UserCardInfoSubPage extends StatelessWidget {
                           width: 30,
                         ),
                         const Gap(10),
-                        const Text("Voir mes cotisations"),
+                        const Text("Voir mes paiements"),
                       ],
                     ),
                   ),
@@ -230,13 +230,13 @@ class UserCardInfoSubPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
               children: [
-                SizedBox(
+                /*  SizedBox(
                   width: double.infinity,
                   child: CButton(
                     onPressed: () => Get.to(() => const PayerMaCotisation()),
-                    child: const Text("Payer ma cotisation"),
+                    child: const Text("Faire un paiement"),
                   ),
-                ),
+                ), */
                 SizedBox(
                   width: double.infinity,
                   child: CButton(

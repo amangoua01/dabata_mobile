@@ -46,7 +46,9 @@ dependencies:
   tab_container: ^3.5.3
   table_calendar: ^3.2.0
   auto_size_text: ^3.0.0
+  flutter_animate: ^4.5.2
   dropdown_search: ^6.0.2
+  #animated_text_lerp: ^2.0.0
   shared_preferences: ^2.5.1
   flutter_screenutil: ^5.9.3
   flutter_speed_dial: ^7.0.0

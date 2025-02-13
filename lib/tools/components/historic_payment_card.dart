@@ -4,17 +4,17 @@ import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 
 class HistoricPaymentCard extends StatelessWidget {
-  final String date;
-  //final String image;
+  final String title;
   final double amount;
+  final String categorie;
   final DateTime? dateTime;
 
   const HistoricPaymentCard({
     super.key,
     this.dateTime,
-    required this.date,
-    //required this.image,
+    required this.title,
     required this.amount,
+    required this.categorie,
   });
 
   @override
@@ -35,18 +35,22 @@ class HistoricPaymentCard extends StatelessWidget {
           ),
         ),
         title: Text(
-          amount.toString().toAmount(),
+          title,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: Text(
-          "Payer le $date",
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(categorie),
+            Text(
+              dateTime!.toFrenchDateTime,
+              //categorie,
+            ),
+          ],
         ),
         trailing: Text(
-          dateTime!.toFrenchDate,
-          //"Il y a 3 jours",
-          style: const TextStyle(
-            fontSize: 10,
-          ),
+          amount.toString().toAmount(),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ),
       ),
     );
