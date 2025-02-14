@@ -1,18 +1,19 @@
-import 'package:dabata_mobile/tools/constants/app_colors.dart';
-import 'package:dabata_mobile/tools/extensions/types/int.dart';
+import 'package:gap/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
 
 class CCard extends StatelessWidget {
   final int amount;
   final String title;
   final String? unite;
+
   const CCard({
     super.key,
-    required this.amount,
-    required this.title,
     this.unite,
+    required this.title,
+    required this.amount,
   });
 
   @override

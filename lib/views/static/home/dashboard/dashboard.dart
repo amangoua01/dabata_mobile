@@ -76,7 +76,7 @@ class Dashboard extends StatelessWidget {
                       ],
                     ),
                     const Gap(20),
-                    const Row(children: [
+                    /* const Row(children: [
                       Text(
                         "Mes cartes",
                         style: TextStyle(
@@ -90,7 +90,7 @@ class Dashboard extends StatelessWidget {
                           duration: 700.ms,
                           delay: 700.ms,
                           curve: Curves.easeInOutQuart,
-                        ),
+                        ), */
                     const Gap(10),
                     Column(
                       children: [

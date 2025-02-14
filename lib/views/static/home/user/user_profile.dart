@@ -1,10 +1,10 @@
-import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
-import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
-import 'package:dabata_mobile/views/static/home/user/update_user_password.dart';
-import 'package:dabata_mobile/views/static/home/user/update_user_profile.dart';
-import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
+import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
+import 'package:dabata_mobile/views/static/home/user/update_user_profile.dart';
+import 'package:dabata_mobile/views/static/home/user/update_user_password.dart';
 
 class UserProfile extends StatelessWidget {
   final bool isUserView;
