@@ -91,7 +91,7 @@ class Dashboard extends StatelessWidget {
                           delay: 700.ms,
                           curve: Curves.easeInOutQuart,
                         ), */
-                    const Gap(10),
+                    const Gap(5),
                     Column(
                       children: [
                         ...ctl.cartes.map(
