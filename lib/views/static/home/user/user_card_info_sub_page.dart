@@ -6,7 +6,6 @@ import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/views/static/home/user/changer_carte.dart';
-import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
 import 'package:dabata_mobile/views/static/home/user/voir_mes_cotisations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
