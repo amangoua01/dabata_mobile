@@ -1,13 +1,11 @@
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/models/categorie.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CardListePageVctl extends GetxController
-    with GetSingleTickerProviderStateMixin {
-  late final TabController controller;
+class CardListePageVctl extends GetxController {
+  int? selectedCategorieId;
 
-  List<Carte> cartes = [
+  final List<Carte> _loadedCartes = [
     Carte(
       id: 1,
       libelle: "Carte 1",
@@ -58,12 +56,32 @@ class CardListePageVctl extends GetxController
       montantJournalier: 300,
       categorie: Categorie(id: 4, libelle: "Categorie 4"),
     ),
+    Carte(
+      id: 6,
+      libelle: "Carte 6",
+      image:
+          "https://bloguelesnackbar.com/wp-content/uploads/2021/01/idee-cadeau-St-Valentin-Le-Snack-Bar.jpg",
+      debut: "2024-01-01",
+      fin: "2024-12-31",
+      montantJournalier: 400,
+      categorie: Categorie(id: 5, libelle: "Categorie 5"),
+    ),
+    Carte(
+      id: 6,
+      libelle: "Carte 6",
+      image:
+          "https://bloguelesnackbar.com/wp-content/uploads/2021/01/idee-cadeau-St-Valentin-Le-Snack-Bar.jpg",
+      debut: "2024-01-01",
+      fin: "2024-12-31",
+      montantJournalier: 400,
+      categorie: Categorie(id: 5, libelle: "Categorie 6"),
+    ),
   ];
 
   // Méthode pour obtenir les catégories uniques
   List<Categorie> get uniqueCategories {
     final Map<int, Categorie> categoriesMap = {};
-    for (var carte in cartes) {
+    for (var carte in _loadedCartes) {
       if (carte.categorie != null) {
         categoriesMap[carte.categorie!.id!] = carte.categorie!;
       }
@@ -71,16 +89,13 @@ class CardListePageVctl extends GetxController
     return categoriesMap.values.toList();
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-    // Initialiser le controller avec le nombre de catégories uniques
-    controller = TabController(length: uniqueCategories.length, vsync: this);
-  }
+  List<Carte> get cartes => _loadedCartes
+      .where((e) => e.categorie?.id == selectedCategorieId)
+      .toList();
 
   @override
-  void onClose() {
-    controller.dispose();
-    super.onClose();
+  void onInit() {
+    selectedCategorieId = uniqueCategories.first.id;
+    super.onInit();
   }
 }

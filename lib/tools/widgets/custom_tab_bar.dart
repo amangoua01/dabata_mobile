@@ -17,32 +17,30 @@ class CustomTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: TabContainer(
-        tabExtent: 60,
-        controller: controller,
-        borderRadius: const BorderRadius.all(Radius.circular(0.0)),
-        tabBorderRadius: const BorderRadius.all(Radius.circular(20.0)),
-        tabEdge: TabEdge.top,
-        curve: Curves.easeIn,
-        transitionBuilder: (child, animation) {
-          animation = CurvedAnimation(curve: Curves.easeIn, parent: animation);
-          return SlideTransition(
-            position: Tween(
-              begin: const Offset(0.2, 0.0),
-              end: const Offset(0.0, 0.0),
-            ).animate(animation),
-            child: FadeTransition(
-              opacity: animation,
-              child: child,
-            ),
-          );
-        },
-        tabs: tabs,
-        colors: colors,
-        color: Colors.grey.shade200,
-        children: children,
-      ),
+    return TabContainer(
+      tabExtent: 60,
+      controller: controller,
+      borderRadius: const BorderRadius.all(Radius.circular(0.0)),
+      tabBorderRadius: const BorderRadius.all(Radius.circular(20.0)),
+      tabEdge: TabEdge.top,
+      curve: Curves.easeIn,
+      transitionBuilder: (child, animation) {
+        animation = CurvedAnimation(curve: Curves.easeIn, parent: animation);
+        return SlideTransition(
+          position: Tween(
+            begin: const Offset(0.2, 0.0),
+            end: const Offset(0.0, 0.0),
+          ).animate(animation),
+          child: FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+        );
+      },
+      tabs: tabs,
+      colors: colors,
+      color: Colors.grey.shade200,
+      children: children,
     );
   }
 }
