@@ -1,14 +1,14 @@
-import 'package:dabata_mobile/tools/components/c_card.dart';
-import 'package:dabata_mobile/tools/components/card_suscribe.dart';
-import 'package:dabata_mobile/tools/constants/app_colors.dart';
-import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
-import 'package:dabata_mobile/views/controllers/home/dashboard/dashboard_vctl.dart';
-import 'package:dabata_mobile/views/static/home/User/user_profile.dart';
-import 'package:dabata_mobile/views/static/home/card_pages/card_liste_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:dabata_mobile/tools/components/c_card.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
+import 'package:dabata_mobile/tools/components/card_suscribe.dart';
+import 'package:dabata_mobile/views/static/home/User/user_profile.dart';
+import 'package:dabata_mobile/views/static/home/card_pages/card_liste_page.dart';
+import 'package:dabata_mobile/views/controllers/home/dashboard/dashboard_vctl.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -38,7 +38,7 @@ class Dashboard extends StatelessWidget {
             body: CustomTabBar(
               tabs: const [
                 Tab(text: "En cours"),
-                Tab(text: "Soldés"),
+                Tab(text: "Soldées"),
                 Tab(text: "Toutes"),
               ],
               controller: ctl.controller,

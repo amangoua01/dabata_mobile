@@ -67,7 +67,7 @@ class CardSuscribe extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      Text(
+                      /*  Text(
                         carte.categorie!.libelle.value,
                         style: const TextStyle(
                           fontWeight: FontWeight.normal,
@@ -75,20 +75,11 @@ class CardSuscribe extends StatelessWidget {
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        "total à payer: ${2000.toAmount()}",
-                        maxLines: 1,
-                        style: const TextStyle(
-                          color: Colors.orange,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      // const Gap(10),
-                      /* Column(
+                      ), */
+
+                      Column(
                         children: [
-                          /*  SizedBox(
+                          SizedBox(
                             height: 10,
                             width: double.infinity,
                             child: LinearProgressIndicator(
@@ -99,9 +90,9 @@ class CardSuscribe extends StatelessWidget {
                                 AppColors.primary,
                               ),
                             ),
-                          ), */
-                          const Gap(5),
-                          Row(
+                          ),
+                          //const Gap(5),
+                          /* const Row(
                             children: [
                               /*  Expanded(
                                 child: /* Text(
@@ -114,15 +105,23 @@ class CardSuscribe extends StatelessWidget {
                                   ),
                                 ), */
                               ), */
-                              Text(
+                              /*  Text(
                                 "2000".toAmount(),
                                 maxLines: 1,
-                              ),
+                              ), */
                             ],
-                          ),
+                          ), */
                         ],
                       ),
-                     */
+                      Text(
+                        "total à payer: ${2000.toAmount()}",
+                        maxLines: 1,
+                        style: const TextStyle(
+                          color: Colors.orange,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
                 ),

@@ -4,6 +4,7 @@ import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/static/home/card_pages/card_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,7 @@ class CardItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.to(() => CardDetailPage(carte)),
       child: Container(
-        padding: const EdgeInsets.all(10),
+        //padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -72,10 +73,22 @@ class CardItem extends StatelessWidget {
                   ),
                   const Gap(5),
                   Text(
-                    "${carte.debut.toFrenchDate} - ${carte.fin.toFrenchDate}",
+                    'Du ${carte.debut.toFrenchDate}',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(color: Colors.grey, fontSize: 12),
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 10.sp,
+                    ),
+                  ),
+                  Text(
+                    'Au ${carte.fin.toFrenchDate}',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 10.sp,
+                    ),
                   ),
                 ],
               ),

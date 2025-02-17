@@ -21,6 +21,10 @@ extension StringExt on String? {
       ? Functions.getStringDate(toDateTime(), withTime: true)
       : "";
 
+  String get toFrenchDateTimeSmallFormat => (this != null)
+      ? Functions.getStringDateSmallFormat(toDateTime(), withTime: false)
+      : "";
+
   String get toTime => (this != null) ? Functions.getTime(toDateTime()) : "";
 
   String get toFrenchDate =>

@@ -37,16 +37,33 @@ class Functions {
                 : [dd, divider, mm, divider, yyyy]);
   }
 
-  static String getStringDate(DateTime? date,
-      {bool fullMonth = false,
-      bool withTime = false,
-      String separator = " à "}) {
+  static String getStringDate(
+    DateTime? date, {
+    bool fullMonth = false,
+    bool withTime = false,
+    String separator = " à ",
+  }) {
     var mode = fullMonth ? "full" : "lite";
     if (date != null) {
       var day =
           date.day.toString().length < 2 ? "0${date.day}" : date.day.toString();
       var year = date.year.toString();
       return "$day ${_getMonthLib(date)[mode]!} $year${(withTime) ? separator + getTime(date) : ""}";
+    }
+    return "";
+  }
+
+  static String getStringDateSmallFormat(
+    DateTime? date, {
+    bool fullMonth = false,
+    bool withTime = false,
+    String separator = " à ",
+  }) {
+    var mode = fullMonth ? "full" : "lite";
+    if (date != null) {
+      var day =
+          date.day.toString().length < 2 ? "0${date.day}" : date.day.toString();
+      return "$day ${_getMonthLib(date)[mode]!}";
     }
     return "";
   }

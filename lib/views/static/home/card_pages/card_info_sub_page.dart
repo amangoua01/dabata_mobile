@@ -46,6 +46,18 @@ class CardInfoSubPage extends StatelessWidget {
           trailing: Text(carte.montantJournalier.toAmount()),
         ),
         const Gap(10),
+        const Padding(
+          padding: EdgeInsets.all(8),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Icon(
+              Icons.info,
+              color: Colors.amber,
+            ),
+            Text('NB: Aucun montant versé n\'est remboursable')
+          ]),
+        ),
+        const Gap(10),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(

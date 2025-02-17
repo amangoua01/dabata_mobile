@@ -1,5 +1,5 @@
-import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/widgets/card_item.dart';
+import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
 import 'package:dabata_mobile/views/controllers/home/card_liste_page_vctl.dart';
 import 'package:dabata_mobile/views/static/auth/auth_page.dart';
 import 'package:flutter/material.dart';
@@ -27,45 +27,35 @@ class CardListePage extends StatelessWidget {
                   ),
                 ),
               ],
-              bottom: TabBar(
-                isScrollable: true,
-                tabs: ctl.uniqueCategories
-                    .map((cat) => Tab(text: cat.libelle))
-                    .toList(),
-                labelStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primary,
-                ),
-                unselectedLabelStyle: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  color: Colors.grey.shade600,
-                ),
-                indicatorWeight: 0,
-                padding: const EdgeInsets.all(2),
-                indicator: const BoxDecoration(
-                  color: Colors.white54,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(10),
-                  ),
-                ),
-                onTap: (i) {
-                  ctl.selectedCategorieId = ctl.uniqueCategories[i].id;
-                  ctl.update();
-                },
-              ),
             ),
-            body: GridView.builder(
-              padding: const EdgeInsets.all(10),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: .7,
-              ),
-              itemCount: ctl.cartes.length,
-              itemBuilder: (context, index) {
-                return CardItem(ctl.cartes[index]);
-              },
+            body: CustomTabBar(
+              controller: ctl.controller,
+              tabs: ctl.uniqueCategories
+                  .map((cat) => Tab(text: cat.libelle))
+                  .toList(),
+              children: ctl.uniqueCategories
+                  .map((category) => GridView.builder(
+                        padding: const EdgeInsets.all(10),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: .7,
+                        ),
+                        itemCount: ctl.loadedCartes
+                            .where(
+                                (carte) => carte.categorie?.id == category.id)
+                            .length,
+                        itemBuilder: (context, index) {
+                          final filteredCartes = ctl.loadedCartes
+                              .where(
+                                  (carte) => carte.categorie?.id == category.id)
+                              .toList();
+                          return CardItem(filteredCartes[index]);
+                        },
+                      ))
+                  .toList(),
             ),
           ),
         );
