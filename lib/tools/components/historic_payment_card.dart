@@ -21,43 +21,65 @@ class HistoricPaymentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
       child: Container(
-        decoration: BoxDecoration(
+        /*  decoration: BoxDecoration(
           color: Colors.grey.shade200,
           borderRadius: BorderRadius.circular(10),
-        ),
+        ), */
         child: ListTile(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          contentPadding: const EdgeInsets.all(10),
-          leading: CircleAvatar(
-            radius: 25,
-            backgroundColor: Colors.white,
-            child: Image.asset(
-              'assets/icons/payer.png',
-              color: AppColors.primary.shade300,
-              height: 35,
+          contentPadding: const EdgeInsets.all(0),
+          leading: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              border: Border.all(
+                color: Colors.grey.shade300,
+                width: 1,
+              ),
+            ),
+            child: CircleAvatar(
+              radius: 25,
+              backgroundColor: Colors.white,
+              child: Image.asset(
+                'assets/icons/payer.png',
+                color: AppColors.primary.shade300,
+                height: 35,
+              ),
             ),
           ),
           title: Text(
             title,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          subtitle: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(categorie),
+              //Text(categorie),
               Text(
                 dateTime!.toFrenchDateTime,
-                //categorie,
               ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.green.shade100,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                margin: const EdgeInsets.only(left: 10),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 2),
+                  child: Text('Payé', style: TextStyle(color: Colors.green)),
+                ),
+              )
             ],
           ),
           trailing: Text(
             amount.toString().toAmount(),
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey.shade400),
           ),
         ).animate().scale().move(
               //delay: 900.ms,

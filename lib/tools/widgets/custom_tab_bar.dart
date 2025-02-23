@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tab_container/tab_container.dart';
 
 class CustomTabBar extends StatelessWidget {
-  final List<Color>? colors;
+  final Color? color;
   final List<Widget> tabs;
+  final List<Color>? colors;
   final List<Widget>? children;
   final TabController controller;
 
@@ -13,16 +14,19 @@ class CustomTabBar extends StatelessWidget {
     this.children,
     required this.tabs,
     required this.controller,
+    this.color,
   });
 
   @override
   Widget build(BuildContext context) {
     return TabContainer(
+      color: color,
+      colors: colors,
       tabExtent: 60,
+      tabEdge: TabEdge.top,
       controller: controller,
       borderRadius: const BorderRadius.all(Radius.circular(0.0)),
       tabBorderRadius: const BorderRadius.all(Radius.circular(20.0)),
-      tabEdge: TabEdge.top,
       curve: Curves.easeIn,
       transitionBuilder: (child, animation) {
         animation = CurvedAnimation(curve: Curves.easeIn, parent: animation);
@@ -38,8 +42,6 @@ class CustomTabBar extends StatelessWidget {
         );
       },
       tabs: tabs,
-      colors: colors,
-      color: Colors.grey.shade200,
       children: children,
     );
   }

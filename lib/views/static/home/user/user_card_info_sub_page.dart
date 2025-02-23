@@ -175,7 +175,7 @@ class UserCardInfoSubPage extends StatelessWidget {
                 fontSize: 17,
               ),
             ),
-            subtitle: const Text("Cliquer pour modifier la date"),
+            //subtitle: const Text("Cliquer pour modifier la date"),
             trailing: Text(
               "2025-01-01".toFrenchDate,
               style: const TextStyle(
@@ -197,7 +197,7 @@ class UserCardInfoSubPage extends StatelessWidget {
                 fontSize: 17,
               ),
             ),
-            subtitle: const Text("Cliquer pour modifier le lieu"),
+            //subtitle: const Text("Cliquer pour modifier le lieu"),
             trailing: const Text(
               "Angré pétro ivoire",
               style: TextStyle(
@@ -225,7 +225,7 @@ class UserCardInfoSubPage extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          Padding(
+          /* Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
               children: [
@@ -245,7 +245,7 @@ class UserCardInfoSubPage extends StatelessWidget {
                 ),
               ],
             ),
-          ),
+          ), */
         ],
       ),
     );

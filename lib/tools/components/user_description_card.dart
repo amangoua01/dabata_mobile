@@ -16,13 +16,13 @@ class UserDescriptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.orange.shade100,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      decoration: const BoxDecoration(
+        //color: Colors.orange.shade100,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.orange.shade50,
           radius: 30,
           backgroundImage:
               (!image.isURL) ? AssetImage(image) : NetworkImage(image),

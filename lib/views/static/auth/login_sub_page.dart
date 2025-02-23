@@ -13,39 +13,42 @@ class LoginSubPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          Lottie.asset("assets/lotties/epargner.json", height: 250),
-          const CTextFormField(
-            labelText: "Nom d'utilisateur",
-          ),
-          const CTextFormField(
-            labelText: "Mot de passe",
-          ),
-          const Gap(20),
-          CButton(
-            child: const Text("Connexion"),
-            onPressed: () => Get.to(() => const Home()),
-          ),
-          CButton(
-            child: const Text("Connexion admin"),
-            onPressed: () => Get.to(() => const AdminDashboard()),
-          ),
-          const Gap(10),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.end,
-          //   children: [
-          //     CTextButton(
-          //       onPressed: () {},
-          //       child: const Text(
-          //         "Mot de passe oublié?",
-          //         style: TextStyle(color: AppColors.primary),
-          //       ),
-          //     ),
-          //   ],
-          // ),
-        ],
+      body: Container(
+        color: Colors.white,
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            Lottie.asset("assets/lotties/epargner.json", height: 250),
+            const CTextFormField(
+              labelText: "Nom d'utilisateur",
+            ),
+            const CTextFormField(
+              labelText: "Mot de passe",
+            ),
+            const Gap(20),
+            CButton(
+              child: const Text("Connexion"),
+              onPressed: () => Get.to(() => const Home()),
+            ),
+            CButton(
+              child: const Text("Connexion admin"),
+              onPressed: () => Get.to(() => const AdminDashboard()),
+            ),
+            const Gap(10),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   children: [
+            //     CTextButton(
+            //       onPressed: () {},
+            //       child: const Text(
+            //         "Mot de passe oublié?",
+            //         style: TextStyle(color: AppColors.primary),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+          ],
+        ),
       ),
     );
   }

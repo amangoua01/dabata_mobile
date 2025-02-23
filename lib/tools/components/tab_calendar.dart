@@ -11,7 +11,10 @@ class TabCalendar extends StatelessWidget {
     return GetBuilder<TableCalendarVctl>(
         init: TableCalendarVctl(),
         builder: (ctl) {
+          print("current locale ${Localizations.localeOf(context).toString()}");
+
           return TableCalendar(
+              //locale: Localizations.localeOf(context).languageCode,
               focusedDay: ctl.focusedDay,
               firstDay: DateTime.utc(2010, 10, 16),
               lastDay: DateTime.utc(2030, 3, 14),

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 class CardListePageVctl extends GetxController
     with GetSingleTickerProviderStateMixin {
-  //int? selectedCategorieId;
   late final TabController controller;
 
   final List<Carte> loadedCartes = [

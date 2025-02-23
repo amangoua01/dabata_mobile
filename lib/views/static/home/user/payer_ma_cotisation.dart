@@ -17,14 +17,15 @@ class PayerMaCotisation extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: ListView(children: [
-          const Padding(
+          const Gap(30),
+          /* const Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0),
             child: UserDescriptionCard(
               image: "assets/icons/user.png",
               fullName: 'Hassan Dabata',
               phoneNumber: '07 00 00 00 00',
             ),
-          ),
+          ), */
           CDropDownFormField<String>(
             labelText: "Carte",
             items: (p0, p1) => [""],

@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:dabata_mobile/tools/components/c_card.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
+import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/components/card_suscribe.dart';
 import 'package:dabata_mobile/views/static/home/User/user_profile.dart';
 import 'package:dabata_mobile/views/static/home/card_pages/card_liste_page.dart';
@@ -20,22 +21,37 @@ class Dashboard extends StatelessWidget {
       builder: (ctl) {
         return Scaffold(
             appBar: AppBar(
-              leading: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () => Get.to(() => const UserProfile()),
-                  child: const CircleAvatar(
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage(
-                      "assets/icons/user2.png",
+                leading: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () => Get.to(() => const UserProfile()),
+                    child: const Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        backgroundImage: AssetImage(
+                          "assets/icons/user2.png",
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              centerTitle: true,
-              title: const Text("Accueil"),
-            ),
+                centerTitle: true,
+                title: const Text("Accueil"),
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1.0),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.notifications,
+                        size: 30,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                ]),
             body: CustomTabBar(
+              color: AppColors.tertiary,
               tabs: const [
                 Tab(text: "En cours"),
                 Tab(text: "Soldées"),
@@ -95,7 +111,10 @@ class Dashboard extends StatelessWidget {
                     Column(
                       children: [
                         ...ctl.cartes.map(
-                          (e) => CardSuscribe(e),
+                          (e) => CardSuscribe(
+                            e,
+                            value: e.montantJournalier!.value / 73000 * 100,
+                          ),
                         )
                         //.toList()
                       ]

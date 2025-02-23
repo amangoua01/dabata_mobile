@@ -51,7 +51,7 @@ class CardItem extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const Gap(4),
+                  /* const Gap(4),
                   Text(
                     carte.categorie!.libelle.value,
                     maxLines: 1,
@@ -60,7 +60,7 @@ class CardItem extends StatelessWidget {
                       color: Colors.blue,
                       fontSize: 12,
                     ),
-                  ),
+                  ), */
                   const Gap(3),
                   Text(
                     "${carte.montantJournalier.toAmount()} / jour",

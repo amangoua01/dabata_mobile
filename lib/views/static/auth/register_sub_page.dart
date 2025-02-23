@@ -4,6 +4,7 @@ import 'package:dabata_mobile/views/static/home/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class RegisterSubPage extends StatelessWidget {
   const RegisterSubPage({super.key});
@@ -13,6 +14,8 @@ class RegisterSubPage extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
+        Lottie.asset("assets/lotties/register.json", height: 200),
+        //const Gap(20),
         const CTextFormField(
           labelText: "Nom",
         ),

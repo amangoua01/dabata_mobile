@@ -1,17 +1,19 @@
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:dabata_mobile/models/carte.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/static/home/user/user_card_detail_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 
 class CardSuscribe extends StatelessWidget {
   final Carte carte;
+  final double value;
   const CardSuscribe(
     this.carte, {
+    this.value = 0.9,
     super.key,
   });
 
@@ -20,7 +22,7 @@ class CardSuscribe extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.to(() => UserCardDetailPage(carte)),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.h),
+        padding: EdgeInsets.symmetric(vertical: 3.h),
         child: SizedBox(
           height: 100,
           /* decoration: BoxDecoration(
@@ -62,7 +64,7 @@ class CardSuscribe extends StatelessWidget {
                         carte.libelle.value,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20.sp,
+                          fontSize: 15.sp,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -76,21 +78,33 @@ class CardSuscribe extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ), */
-
+                      Gap(5.h),
                       Column(
                         children: [
                           SizedBox(
                             height: 10,
                             width: double.infinity,
                             child: LinearProgressIndicator(
-                              value: 0.5,
+                              value: value,
                               borderRadius: BorderRadius.circular(10),
                               backgroundColor: Colors.grey.shade200,
-                              valueColor: const AlwaysStoppedAnimation<Color>(
-                                AppColors.primary,
-                              ),
+                              valueColor: value <= 0.4
+                                  ? const AlwaysStoppedAnimation<Color>(
+                                      Colors.red)
+                                  : value <= 0.6
+                                      ? const AlwaysStoppedAnimation<Color>(
+                                          Colors.orange)
+                                      : value <= 0.8
+                                          ? const AlwaysStoppedAnimation<Color>(
+                                              Colors.yellow)
+                                          : value <= 1.0
+                                              ? const AlwaysStoppedAnimation<
+                                                  Color>(Colors.green)
+                                              : const AlwaysStoppedAnimation<
+                                                  Color>(Colors.white),
                             ),
                           ),
+
                           //const Gap(5),
                           /* const Row(
                             children: [
@@ -113,12 +127,13 @@ class CardSuscribe extends StatelessWidget {
                           ), */
                         ],
                       ),
+                      Gap(5.h),
                       Text(
                         "total à payer: ${2000.toAmount()}",
                         maxLines: 1,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.orange,
-                          fontSize: 15,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -126,13 +141,9 @@ class CardSuscribe extends StatelessWidget {
                   ),
                 ),
               ),
-              Gap(5.w),
-              Container(
-                height: 100.h,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  borderRadius: BorderRadius.circular(10),
-                ),
+              Gap(10.w),
+              SizedBox(
+                //height: 100.h,
                 child: Icon(
                   Icons.info,
                   size: 25,

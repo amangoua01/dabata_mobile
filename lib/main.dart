@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     ScreenUtilInit(
       designSize: const Size(360, 690),
       child: GetMaterialApp(
+        //locale: const Locale('fr', 'FR'),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: false,
