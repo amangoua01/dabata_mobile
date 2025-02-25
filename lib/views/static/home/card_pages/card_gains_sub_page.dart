@@ -32,9 +32,14 @@ class CardGainsSubPage extends StatelessWidget {
                   height: 30,
                 ),
               ),
-              title: Text(e["type"].toString()),
+              title: Text(
+                e["type"].toString(),
+                style: const TextStyle(
+                  fontSize: 15,
+                ),
+              ),
               trailing: Container(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: Colors.green.shade200,
                   shape: BoxShape.circle,
@@ -43,7 +48,7 @@ class CardGainsSubPage extends StatelessWidget {
                   e["nombre"].toString(),
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 15,
+                    fontSize: 12,
                   ),
                 ),
               ),
