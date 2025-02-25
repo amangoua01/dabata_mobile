@@ -1,4 +1,5 @@
 import 'package:dabata_mobile/tools/components/field_border.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CTextField extends StatelessWidget {
@@ -27,15 +28,17 @@ class CTextField extends StatelessWidget {
   final bool? enabled;
   final TextStyle? labelStyle;
   final String? counterText;
+  final EdgeInsetsGeometry contentPadding;
 
   const CTextField(
       {this.hintStyle,
       this.fillColor,
       this.filled = false,
+      this.contentPadding = const EdgeInsets.all(10),
       this.labelText,
       this.onTap,
       this.keyboardType,
-      this.labelStyle,
+      this.labelStyle = const TextStyle(color: AppColors.primary),
       this.border,
       this.suffix,
       this.textCapitalization = TextCapitalization.none,
@@ -67,7 +70,9 @@ class CTextField extends StatelessWidget {
       keyboardType: keyboardType,
       onChanged: onChanged,
       enabled: enabled,
+      cursorColor: Colors.black,
       decoration: InputDecoration(
+        contentPadding: contentPadding,
         labelStyle: labelStyle,
         hintStyle: hintStyle,
         filled: filled,
@@ -83,6 +88,7 @@ class CTextField extends StatelessWidget {
         border: border ?? FieldBorder.enabled,
         errorBorder: errorBorder ?? FieldBorder.error,
         disabledBorder: disabledBorder ?? FieldBorder.disabled,
+        focusedBorder: border ?? FieldBorder.focused,
       ),
     );
   }

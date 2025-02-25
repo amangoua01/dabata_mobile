@@ -17,7 +17,6 @@ class CardItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.to(() => CardDetailPage(carte)),
       child: Container(
-        //padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -28,10 +27,11 @@ class CardItem extends StatelessWidget {
               flex: 4,
               child: Container(
                 decoration: BoxDecoration(
-                  // color: Colors.amber.withOpacity(.1),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Center(
+                child: SizedBox(
+                  height: double.infinity,
+                  width: double.infinity,
                   child: Image.network(
                     carte.image.value,
                     fit: BoxFit.cover,
@@ -42,55 +42,59 @@ class CardItem extends StatelessWidget {
             const Gap(10),
             Expanded(
               flex: 4,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    carte.libelle.value,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  /* const Gap(4),
-                  Text(
-                    carte.categorie!.libelle.value,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 12,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      carte.libelle.value,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ), */
-                  const Gap(3),
-                  Text(
-                    "${carte.montantJournalier.toAmount()} / jour",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.bold,
+                    /* const Gap(4),
+                    Text(
+                      carte.categorie!.libelle.value,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        fontSize: 12,
+                      ),
+                    ), */
+                    const Gap(3),
+                    Text(
+                      "${carte.montantJournalier.toAmount()} / jour",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const Gap(5),
-                  Text(
-                    'Du ${carte.debut.toFrenchDate}',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10.sp,
+                    const Gap(5),
+                    Text(
+                      'Du ${carte.debut.toFrenchDate}',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 10.sp,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Au ${carte.fin.toFrenchDate}',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10.sp,
+                    Text(
+                      'Au ${carte.fin.toFrenchDate}',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 10.sp,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

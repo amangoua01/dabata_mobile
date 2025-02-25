@@ -8,6 +8,13 @@ abstract class FieldBorder {
       color: AppColors.enableBorderTextFieldColor,
     ),
   );
+  static final focused = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(12),
+    borderSide: const BorderSide(
+      color: AppColors.enableBorderTextFieldColor,
+      width: 2,
+    ),
+  );
 
   static final error = OutlineInputBorder(
     borderRadius: BorderRadius.circular(12),

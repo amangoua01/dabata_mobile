@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:dabata_mobile/tools/constants/env.dart';
-import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
 import 'package:dabata_mobile/tools/widgets/bottom_version_bar.dart';
+import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
 import 'package:dabata_mobile/views/static/auth/login_sub_page.dart';
 import 'package:dabata_mobile/views/static/auth/register_sub_page.dart';
+import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

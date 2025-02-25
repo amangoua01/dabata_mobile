@@ -1,4 +1,3 @@
-import 'package:dabata_mobile/tools/components/user_description_card.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_drop_down_form_field.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';

@@ -12,7 +12,6 @@ void main() async {
     ScreenUtilInit(
       designSize: const Size(360, 690),
       child: GetMaterialApp(
-        //locale: const Locale('fr', 'FR'),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: false,
@@ -24,7 +23,7 @@ void main() async {
             centerTitle: true,
             titleTextStyle: TextStyle(
               color: Colors.white,
-              fontSize: 22,
+              fontSize: 16,
             ),
           ),
           tabBarTheme: const TabBarTheme(

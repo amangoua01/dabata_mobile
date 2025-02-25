@@ -5,7 +5,6 @@ import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
-import 'package:dabata_mobile/views/static/home/user/changer_carte.dart';
 import 'package:dabata_mobile/views/static/home/user/voir_mes_cotisations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,7 +34,7 @@ class UserCardInfoSubPage extends StatelessWidget {
               carte.libelle.value,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20.sp,
+                fontSize: 17.sp,
               ),
             ),
             subtitle: Text(carte.categorie!.libelle.value),
@@ -43,7 +42,7 @@ class UserCardInfoSubPage extends StatelessWidget {
               carte.montantJournalier.toAmount(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20.sp,
+                fontSize: 14.sp,
               ),
             ),
           ),
@@ -102,13 +101,13 @@ class UserCardInfoSubPage extends StatelessWidget {
           ListTile(
             leading: Image.asset(
               "assets/icons/cadeau.png",
-              width: 25,
+              width: 23,
             ),
             title: const Text(
               "Montant journalier",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 17,
+                fontSize: 13,
               ),
             ),
             trailing: Text(
@@ -123,14 +122,14 @@ class UserCardInfoSubPage extends StatelessWidget {
           ListTile(
             leading: Image.asset(
               "assets/icons/calendar.png",
-              width: 25,
+              width: 23,
             ),
             horizontalTitleGap: 0,
             title: const Text(
               "Date de debut",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 17,
+                fontSize: 13,
               ),
             ),
             trailing: Text(
@@ -144,13 +143,13 @@ class UserCardInfoSubPage extends StatelessWidget {
           ListTile(
             leading: Image.asset(
               "assets/icons/calendar.png",
-              width: 25,
+              width: 23,
             ),
             title: const Text(
               "Date de fin",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 17,
+                fontSize: 13,
               ),
             ),
             horizontalTitleGap: 0,
@@ -165,14 +164,14 @@ class UserCardInfoSubPage extends StatelessWidget {
           ListTile(
             leading: Image.asset(
               "assets/icons/calendar.png",
-              width: 25,
+              width: 23,
             ),
             horizontalTitleGap: 0,
             title: const Text(
               "Date de livraison",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 17,
+                fontSize: 13,
               ),
             ),
             //subtitle: const Text("Cliquer pour modifier la date"),
@@ -187,14 +186,14 @@ class UserCardInfoSubPage extends StatelessWidget {
           ListTile(
             leading: Image.asset(
               "assets/icons/map.png",
-              width: 25,
+              width: 23,
             ),
             horizontalTitleGap: 0,
             title: const Text(
               "Lieu de livraison",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 17,
+                fontSize: 13,
               ),
             ),
             //subtitle: const Text("Cliquer pour modifier le lieu"),
@@ -213,7 +212,7 @@ class UserCardInfoSubPage extends StatelessWidget {
               "Total",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 17,
+                fontSize: 13,
               ),
             ),
             trailing: Text(
@@ -225,27 +224,6 @@ class UserCardInfoSubPage extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          /* Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Column(
-              children: [
-                /*  SizedBox(
-                  width: double.infinity,
-                  child: CButton(
-                    onPressed: () => Get.to(() => const PayerMaCotisation()),
-                    child: const Text("Faire un paiement"),
-                  ),
-                ), */
-                SizedBox(
-                  width: double.infinity,
-                  child: CButton(
-                    onPressed: () => Get.to(() => ChangerCarte(carte)),
-                    child: const Text("Changer de carte"),
-                  ),
-                ),
-              ],
-            ),
-          ), */
         ],
       ),
     );

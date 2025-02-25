@@ -1,4 +1,5 @@
 import 'package:dabata_mobile/tools/components/field_border.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -53,6 +54,7 @@ class CTextFormField extends StatelessWidget {
     this.enabled,
     this.hintText,
     this.maxLines,
+    this.labelStyle = const TextStyle(color: AppColors.primary),
     this.suffix,
     this.prefix,
     this.minLines,
@@ -60,17 +62,16 @@ class CTextFormField extends StatelessWidget {
     this.validator,
     this.maxLength,
     this.controller,
-    this.labelStyle,
     this.counterText = "",
     this.obscureText = false,
     this.requireText = "Ce champ est obligatoire",
     this.keyboardType,
-    this.contentPadding,
+    this.contentPadding = const EdgeInsets.all(8),
     this.autofocus = false,
     this.readOnly = false,
     this.textAlign = TextAlign.start,
     this.obscuringCharacter = '•',
-    this.style,
+    this.style = const TextStyle(fontSize: 13),
     this.fillColor = Colors.white,
     this.filled = true,
     super.key,
@@ -92,6 +93,7 @@ class CTextFormField extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: keyboardType,
         maxLength: maxLength,
+        cursorColor: Colors.black,
         minLines: minLines,
         enabled: enabled,
         readOnly: readOnly,
@@ -124,6 +126,7 @@ class CTextFormField extends StatelessWidget {
           enabledBorder: border ?? FieldBorder.enabled,
           errorBorder: errorBorder ?? FieldBorder.error,
           disabledBorder: disabledBorder ?? FieldBorder.disabled,
+          focusedBorder: border ?? FieldBorder.focused,
           fillColor: fillColor,
           filled: filled,
           labelStyle: labelStyle,

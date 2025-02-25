@@ -15,25 +15,24 @@ class UserDescriptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        //color: Colors.orange.shade100,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+    return ListTile(
+      dense: true,
+      leading: CircleAvatar(
+        backgroundColor: Colors.orange.shade50,
+        radius: 20,
+        backgroundImage:
+            (!image.isURL) ? AssetImage(image) : NetworkImage(image),
       ),
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.orange.shade50,
-          radius: 30,
-          backgroundImage:
-              (!image.isURL) ? AssetImage(image) : NetworkImage(image),
+      title: Text(
+        fullName,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
         ),
-        title: Text(
-          fullName,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        subtitle: Text(phoneNumber),
+      ),
+      subtitle: Text(phoneNumber),
+      trailing: const Icon(
+        Icons.arrow_forward_ios,
+        size: 15,
       ),
     );
   }

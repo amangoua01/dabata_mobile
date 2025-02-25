@@ -1,8 +1,8 @@
-import 'package:gap/gap.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class CCard extends StatelessWidget {
   final int amount;
@@ -46,7 +46,7 @@ class CCard extends StatelessWidget {
                     title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: 15,
                       color: Colors.blueGrey.shade400,
                     ),
                   ),
@@ -54,11 +54,14 @@ class CCard extends StatelessWidget {
               ],
             ),
           ),
-          Text(
-            amount.toAmount(devise: unite),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
+          Padding(
+            padding: const EdgeInsets.only(left: 5, bottom: 7, right: 5),
+            child: Text(
+              amount.toAmount(devise: unite),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16.sp,
+              ),
             ),
           ),
         ],

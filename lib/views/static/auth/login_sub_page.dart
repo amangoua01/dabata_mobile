@@ -16,7 +16,7 @@ class LoginSubPage extends StatelessWidget {
       body: Container(
         color: Colors.white,
         child: ListView(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           children: [
             Lottie.asset("assets/lotties/epargner.json", height: 250),
             const CTextFormField(

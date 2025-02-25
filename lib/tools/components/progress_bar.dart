@@ -1,5 +1,4 @@
 import 'package:custom_linear_progress_indicator/custom_linear_progress_indicator.dart';
-import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ProgressBar extends StatelessWidget {

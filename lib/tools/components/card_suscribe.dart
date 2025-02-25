@@ -1,12 +1,12 @@
-import 'package:gap/gap.dart';
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:dabata_mobile/models/carte.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/static/home/user/user_card_detail_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class CardSuscribe extends StatelessWidget {
   final Carte carte;
@@ -25,11 +25,6 @@ class CardSuscribe extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 3.h),
         child: SizedBox(
           height: 100,
-          /* decoration: BoxDecoration(
-            color: Colors.grey.shade200,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.white, width: 1),
-          ), */
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -38,7 +33,6 @@ class CardSuscribe extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   child: SizedBox(
                     height: 100.h,
-                    //height: double.infinity,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
@@ -64,25 +58,16 @@ class CardSuscribe extends StatelessWidget {
                         carte.libelle.value,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 15.sp,
+                          fontSize: 13.sp,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      /*  Text(
-                        carte.categorie!.libelle.value,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 18,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ), */
                       Gap(5.h),
                       Column(
                         children: [
                           SizedBox(
-                            height: 10,
+                            height: 7,
                             width: double.infinity,
                             child: LinearProgressIndicator(
                               value: value,
@@ -104,27 +89,6 @@ class CardSuscribe extends StatelessWidget {
                                                   Color>(Colors.white),
                             ),
                           ),
-
-                          //const Gap(5),
-                          /* const Row(
-                            children: [
-                              /*  Expanded(
-                                child: /* Text(
-                                  "1000".toAmount(),
-                                  maxLines: 1,
-                                  style: const TextStyle(
-                                    color: Colors.orange,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ), */
-                              ), */
-                              /*  Text(
-                                "2000".toAmount(),
-                                maxLines: 1,
-                              ), */
-                            ],
-                          ), */
                         ],
                       ),
                       Gap(5.h),

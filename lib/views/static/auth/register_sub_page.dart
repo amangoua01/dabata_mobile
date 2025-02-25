@@ -12,7 +12,7 @@ class RegisterSubPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
       children: [
         Lottie.asset("assets/lotties/register.json", height: 200),
         //const Gap(20),

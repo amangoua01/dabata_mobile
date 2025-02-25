@@ -15,10 +15,14 @@ class CardInfoSubPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: const EdgeInsets.only(bottom: 50),
       children: [
         Container(
-          color: Colors.white,
-          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(7),
+          ),
+          margin: const EdgeInsets.all(5),
           child: Image.network(
             carte.image.value,
             height: 200,
@@ -30,32 +34,34 @@ class CardInfoSubPage extends StatelessWidget {
           trailing: Text(carte.montantJournalier.toAmount()),
         ),
         ListTile(
+          leading: Image.asset("assets/icons/montant.png", width: 25),
           title: const Text("Montant journalier"),
           trailing: Text(carte.montantJournalier.toAmount()),
         ),
         ListTile(
+          leading: Image.asset("assets/icons/calendar.png", height: 25),
           title: const Text("Date de debut"),
           trailing: Text(carte.debut.value),
         ),
         ListTile(
+          leading: Image.asset("assets/icons/calendar.png", height: 25),
           title: const Text("Date de fin"),
           trailing: Text(carte.fin.value),
         ),
         ListTile(
+          leading: Image.asset("assets/icons/facture.png", width: 25),
           title: const Text("Total"),
           trailing: Text(carte.montantJournalier.toAmount()),
         ),
         const Gap(10),
-        const Padding(
-          padding: EdgeInsets.all(8),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Icon(
-              Icons.info,
-              color: Colors.amber,
-            ),
-            Text('NB: Aucun montant versé n\'est remboursable')
-          ]),
+        const ListTile(
+          horizontalTitleGap: 0,
+          dense: true,
+          leading: Icon(
+            Icons.info,
+            color: Colors.amber,
+          ),
+          title: Text("NB: Aucun montant versé n'est remboursable"),
         ),
         const Gap(10),
         Padding(
