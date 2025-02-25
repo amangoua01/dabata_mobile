@@ -1,17 +1,20 @@
 import 'package:dabata_mobile/tools/components/historic_payment_card.dart';
+import 'package:dabata_mobile/views/controllers/home/dashboard/historic_sub_page_vctl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
-class Historique extends StatelessWidget {
-  const Historique({super.key});
+class HistoriqueSubPage extends StatelessWidget {
+  const HistoriqueSubPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
+    return GetBuilder<HistoricSubPageVctl>(
+      init: HistoricSubPageVctl(),
+      builder: (ctl) {
+        return Scaffold(
           appBar: AppBar(
-            title: const Text("Historique"),
+            title: const Text("Historique des paiements"),
           ),
           body: ListView(
             children: [
@@ -46,7 +49,9 @@ class Historique extends StatelessWidget {
                 dateTime: DateTime.now(),
               ),
             ],
-          )),
+          ),
+        );
+      },
     );
   }
 }

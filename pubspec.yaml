@@ -53,6 +53,7 @@ dependencies:
   shared_preferences: ^2.5.1
   flutter_screenutil: ^5.9.3
   flutter_speed_dial: ^7.0.0
+
   custom_linear_progress_indicator: ^0.0.4
 
 
