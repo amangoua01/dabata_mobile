@@ -1,8 +1,6 @@
 import 'package:dabata_mobile/tools/components/user_description_card.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_field.dart';
 import 'package:dabata_mobile/views/static/admin/home/edtion_user_page.dart';
-import 'package:dabata_mobile/views/static/home/User/user_profile.dart';
-import 'package:dabata_mobile/views/static/home/user/user_card_detail_page.dart';
 import 'package:dabata_mobile/views/static/home/user/details_user/user_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
