@@ -75,7 +75,7 @@ class HistoricPaymentCard extends StatelessWidget {
             ],
           ),
           trailing: Text(
-            amount.toString().toAmount(),
+            '$amount F',
             style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,

@@ -39,7 +39,7 @@ class UserCardInfoSubPage extends StatelessWidget {
             ),
             subtitle: Text(carte.categorie!.libelle.value),
             trailing: Text(
-              carte.montantJournalier.toAmount(),
+              '${carte.montantJournalier} F',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14.sp,
@@ -51,20 +51,20 @@ class UserCardInfoSubPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Payé : ${100000.toAmount()}",
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                const Text(
+                  "Payé : ${100000}F",
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const Gap(8),
                 ProgressBar(value: carte.montantJournalier.value / 73000 * 100),
                 const Gap(10),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "Reste : ${100000.toAmount()}",
+                      "Reste : ${100000}F",
                       textAlign: TextAlign.end,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 )
@@ -111,7 +111,7 @@ class UserCardInfoSubPage extends StatelessWidget {
               ),
             ),
             trailing: Text(
-              carte.montantJournalier.toAmount(),
+              '${carte.montantJournalier} F',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,
@@ -216,7 +216,7 @@ class UserCardInfoSubPage extends StatelessWidget {
               ),
             ),
             trailing: Text(
-              carte.montantJournalier.toAmount(),
+              '${carte.montantJournalier} F',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,

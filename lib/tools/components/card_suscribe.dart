@@ -13,7 +13,7 @@ class CardSuscribe extends StatelessWidget {
   final double value;
   const CardSuscribe(
     this.carte, {
-    this.value = 0.9,
+    this.value = 0,
     super.key,
   });
 
@@ -31,13 +31,19 @@ class CardSuscribe extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(5),
-                  child: SizedBox(
-                    height: 100.h,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.grey.shade300,
+                        width: 0.8,
+                      ),
+                    ),
+                    height: 90.h,
+                    child: CircleAvatar(
+                      radius: 50.r,
+                      backgroundImage: NetworkImage(
                         carte.image.value,
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -59,6 +65,17 @@ class CardSuscribe extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 13.sp,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Gap(5.h),
+                      Text(
+                        carte.categorie!.libelle.value,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
+                          color: Colors.grey.shade600,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -92,14 +109,22 @@ class CardSuscribe extends StatelessWidget {
                         ],
                       ),
                       Gap(5.h),
-                      Text(
-                        "total à payer: ${2000.toAmount()}",
-                        maxLines: 1,
-                        style: TextStyle(
-                          color: Colors.orange,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${carte.montantJournalier} F",
+                          ),
+                          Text(
+                            "reste: ${2000 - carte.montantJournalier!} F",
+                            maxLines: 1,
+                            style: TextStyle(
+                              color: Colors.orange,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

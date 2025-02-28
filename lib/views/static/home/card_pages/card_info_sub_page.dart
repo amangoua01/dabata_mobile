@@ -31,12 +31,12 @@ class CardInfoSubPage extends StatelessWidget {
         ListTile(
           title: Text(carte.libelle.value),
           subtitle: Text(carte.categorie!.libelle.value),
-          trailing: Text(carte.montantJournalier.toAmount()),
+          trailing: Text('${carte.montantJournalier} F'),
         ),
         ListTile(
           leading: Image.asset("assets/icons/montant.png", width: 25),
           title: const Text("Montant journalier"),
-          trailing: Text(carte.montantJournalier.toAmount()),
+          trailing: Text('${carte.montantJournalier} F'),
         ),
         ListTile(
           leading: Image.asset("assets/icons/calendar.png", height: 25),
@@ -51,7 +51,7 @@ class CardInfoSubPage extends StatelessWidget {
         ListTile(
           leading: Image.asset("assets/icons/facture.png", width: 25),
           title: const Text("Total"),
-          trailing: Text(carte.montantJournalier.toAmount()),
+          trailing: Text('${carte.montantJournalier} F'),
         ),
         const Gap(10),
         const ListTile(

@@ -44,7 +44,7 @@ class ChangeCardWidget extends StatelessWidget {
               category,
               style: const TextStyle(fontSize: 18),
             ),
-            Text("${amount.toAmount()} / jour")
+            Text("$amount F / jour")
           ],
         ),
         trailing: radio,

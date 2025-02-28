@@ -20,21 +20,28 @@ class CardItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.grey.shade200, width: 1.5),
         ),
         child: Column(
           children: [
             Expanded(
-              flex: 4,
+              flex: 5,
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: SizedBox(
-                  height: double.infinity,
-                  width: double.infinity,
-                  child: Image.network(
-                    carte.image.value,
-                    fit: BoxFit.cover,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: double.infinity,
+                    width: double.infinity,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        carte.image.value,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -66,7 +73,7 @@ class CardItem extends StatelessWidget {
                     ), */
                     const Gap(3),
                     Text(
-                      "${carte.montantJournalier.toAmount()} / jour",
+                      "${carte.montantJournalier} F / jour",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
