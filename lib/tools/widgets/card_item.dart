@@ -1,6 +1,5 @@
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
-import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/static/home/card_pages/card_detail_page.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,6 @@
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/datetime.dart';
 import 'package:flutter/material.dart';
-import 'package:dabata_mobile/tools/constants/app_colors.dart';
-import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class HistoricPaymentCard extends StatelessWidget {

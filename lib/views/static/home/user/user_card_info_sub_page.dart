@@ -2,7 +2,6 @@ import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/tools/components/progress_bar.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
-import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/views/static/home/user/voir_mes_cotisations.dart';

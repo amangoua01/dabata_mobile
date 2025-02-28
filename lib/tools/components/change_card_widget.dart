@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:dabata_mobile/tools/extensions/types/double.dart';
 
 class ChangeCardWidget extends StatelessWidget {
   final String title;
