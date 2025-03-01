@@ -2,6 +2,7 @@ import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/tools/components/progress_bar.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/views/static/home/user/voir_mes_cotisations.dart';
@@ -38,7 +39,7 @@ class UserCardInfoSubPage extends StatelessWidget {
             ),
             subtitle: Text(carte.categorie!.libelle.value),
             trailing: Text(
-              '${carte.montantJournalier} F',
+              carte.montantJournalier.toAmount(devise: "F"),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14.sp,
@@ -50,20 +51,20 @@ class UserCardInfoSubPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Payé : ${100000}F",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Text(
+                  "Payé : ${100000.toAmount(devise: "F")}",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const Gap(8),
-                ProgressBar(value: carte.montantJournalier.value / 73000 * 100),
+                ProgressBar(value: carte.tauxCotisation),
                 const Gap(10),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "Reste : ${100000}F",
+                      "Reste : ${100000.toAmount(devise: "F")}",
                       textAlign: TextAlign.end,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 )
@@ -110,7 +111,7 @@ class UserCardInfoSubPage extends StatelessWidget {
               ),
             ),
             trailing: Text(
-              '${carte.montantJournalier} F',
+              carte.montantJournalier.toAmount(devise: "F"),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,
@@ -215,7 +216,7 @@ class UserCardInfoSubPage extends StatelessWidget {
               ),
             ),
             trailing: Text(
-              '${carte.montantJournalier} F',
+              carte.montantJournalier.toAmount(devise: "F"),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,

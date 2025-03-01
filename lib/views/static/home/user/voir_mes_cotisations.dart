@@ -10,7 +10,9 @@ class VoirMesCotisations extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Voir mes cotisations"),
       ),
-      body: const Center(child: TabCalendar()),
+      body: const Center(
+        child: TabCalendar(),
+      ),
     );
   }
 }

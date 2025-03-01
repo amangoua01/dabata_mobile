@@ -19,12 +19,11 @@ class HistoriqueSubPage extends StatelessWidget {
           body: ListView(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(top: 15, left: 10),
                 child: Text(
                   "Mes dernières opérations",
-                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 20.sp,
+                    fontSize: 15.sp,
                     color: Colors.grey.shade600,
                     fontWeight: FontWeight.bold,
                   ),

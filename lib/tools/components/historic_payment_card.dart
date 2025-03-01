@@ -1,5 +1,6 @@
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/datetime.dart';
+import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -22,10 +23,6 @@ class HistoricPaymentCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
       child: Container(
-        /*  decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(10),
-        ), */
         child: ListTile(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -49,16 +46,33 @@ class HistoricPaymentCard extends StatelessWidget {
               ),
             ),
           ),
-          title: Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+          title: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+              Text(
+                amount.toAmount(devise: "F"),
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
+              ),
+            ],
           ),
           subtitle: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              //Text(categorie),
               Text(
                 dateTime!.toFrenchDateTime,
+                style: const TextStyle(fontSize: 12),
               ),
               Container(
                 decoration: BoxDecoration(
@@ -68,17 +82,16 @@ class HistoricPaymentCard extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 10),
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2),
-                  child: Text('Payé', style: TextStyle(color: Colors.green)),
+                  child: Text(
+                    'Payé',
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 12,
+                    ),
+                  ),
                 ),
               )
             ],
-          ),
-          trailing: Text(
-            '$amount F',
-            style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey.shade400),
           ),
         ).animate().scale().move(
               //delay: 900.ms,

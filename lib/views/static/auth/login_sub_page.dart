@@ -20,14 +20,23 @@ class LoginSubPage extends StatelessWidget {
           children: [
             Lottie.asset("assets/lotties/epargner.json", height: 250),
             const CTextFormField(
+              prefixIcon: Icon(Icons.person),
               labelText: "Nom d'utilisateur",
             ),
             const CTextFormField(
+              prefixIcon: Icon(Icons.lock),
               labelText: "Mot de passe",
             ),
             const Gap(20),
             CButton(
-              child: const Text("Connexion"),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.login),
+                  Gap(5),
+                  Text("Connexion"),
+                ],
+              ),
               onPressed: () => Get.to(() => const Home()),
             ),
             CButton(

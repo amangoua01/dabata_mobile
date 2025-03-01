@@ -14,7 +14,8 @@ class DashboardVctl extends GetxController
           "https://img.freepik.com/psd-gratuit/conception-boite-cadeau-coloree-anniversaire_23-2150318126.jpg",
       debut: "2025-01-01",
       fin: "2023-12-31",
-      montantJournalier: 200,
+      montantJournalier: 2000,
+      montantTotal: 2000,
       categorie: Categorie(id: 1, libelle: "Categorie 1"),
     ),
     Carte(
@@ -24,7 +25,8 @@ class DashboardVctl extends GetxController
           "https://img.freepik.com/vecteurs-premium/collection-cadeaux-noel-comprenant-sac-cadeau-rouge-motif-flocon-neige-plusieurs-cadeaux-emballes-tous-fond-blanc_444390-25259.jpg",
       debut: "2023-01-01",
       fin: "2023-12-31",
-      montantJournalier: 50,
+      montantJournalier: 800,
+      montantTotal: 2000,
       categorie: Categorie(id: 2, libelle: "Categorie 2"),
     ),
     Carte(
@@ -35,6 +37,7 @@ class DashboardVctl extends GetxController
       debut: "2023-01-01",
       fin: "2023-12-31",
       montantJournalier: 150,
+      montantTotal: 2000,
       categorie: Categorie(id: 3, libelle: "Categorie 3"),
     ),
     Carte(
@@ -44,7 +47,8 @@ class DashboardVctl extends GetxController
           "https://bloguelesnackbar.com/wp-content/uploads/2021/01/idee-cadeau-St-Valentin-Le-Snack-Bar.jpg",
       debut: "2023-01-01",
       fin: "2023-12-31",
-      montantJournalier: 100,
+      montantJournalier: 1650,
+      montantTotal: 2000,
       categorie: Categorie(id: 4, libelle: "Categorie 4"),
     ),
   ];

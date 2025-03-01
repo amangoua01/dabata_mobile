@@ -1,7 +1,6 @@
 import 'package:dabata_mobile/tools/components/c_card.dart';
 import 'package:dabata_mobile/tools/components/card_suscribe.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
-import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
 import 'package:dabata_mobile/views/controllers/home/dashboard/dashboard_vctl.dart';
 import 'package:dabata_mobile/views/static/home/User/user_profile.dart';
@@ -39,6 +38,10 @@ class Dashboard extends StatelessWidget {
               centerTitle: true,
               title: const Text("Accueil"),
               actions: [
+                // IconButton(
+                //   onPressed: () {},
+                //   icon: const Icon(Icons.list),
+                // ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 1.0),
                   child: IconButton(
@@ -76,16 +79,18 @@ class Dashboard extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
                         const CCard(
-                          title: "Montant cotisé",
+                          title: "Montant restant",
                           amount: 1000000,
+                          unite: "F",
                         ).animate().flipH(
                               delay: 500.ms,
                               duration: 500.ms,
                               curve: Curves.easeInOut,
                             ),
                         const CCard(
-                          title: "Montant restant",
+                          title: "Montant total",
                           amount: 15000,
+                          unite: "F",
                         ).animate().flip(
                               delay: 600.ms,
                               duration: 600.ms,
@@ -97,10 +102,7 @@ class Dashboard extends StatelessWidget {
                     Column(
                       children: [
                         ...ctl.cartes.map(
-                          (e) => CardSuscribe(
-                            e,
-                            value: e.montantJournalier!.value / 73000 * 100,
-                          ),
+                          (e) => CardSuscribe(e, value: e.tauxCotisation),
                         )
                       ]
                           .animate(interval: 500.ms)

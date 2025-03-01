@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:flutter/material.dart';
 
 class ChangeCardWidget extends StatelessWidget {
@@ -43,7 +44,7 @@ class ChangeCardWidget extends StatelessWidget {
               category,
               style: const TextStyle(fontSize: 18),
             ),
-            Text("$amount F / jour")
+            Text("${amount.toAmount(devise: "F")} / jour")
           ],
         ),
         trailing: radio,

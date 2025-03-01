@@ -7,11 +7,17 @@ import 'package:gap/gap.dart';
 class CCard extends StatelessWidget {
   final int amount;
   final String title;
+  final String image;
   final String? unite;
+  final Color? color;
+  final Color backgroundColor;
 
   const CCard({
     super.key,
+    this.backgroundColor = Colors.white,
+    this.color = AppColors.primary,
     this.unite,
+    this.image = "assets/icons/argent.png",
     required this.title,
     required this.amount,
   });
@@ -25,7 +31,7 @@ class CCard extends StatelessWidget {
       height: 80.h,
       width: 160.w,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.grey.shade100),
       ),
@@ -36,9 +42,9 @@ class CCard extends StatelessWidget {
             child: Row(
               children: [
                 Image.asset(
-                  "assets/icons/argent.png",
+                  image,
                   width: 20,
-                  color: AppColors.primary,
+                  color: color,
                 ),
                 const Gap(10),
                 Expanded(

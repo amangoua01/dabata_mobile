@@ -59,11 +59,35 @@ class UserInfo extends StatelessWidget {
             ),
             const Gap(30),
             CButton(
-                onPressed: () async {}, child: const Text("Fermer le compte")),
+              onPressed: () async {},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/icons/close.png",
+                    height: 20,
+                    color: Colors.white,
+                  ),
+                  const Gap(5),
+                  const Text("Fermer le compte"),
+                ],
+              ),
+            ),
             Gap(10.h),
             CButton(
                 onPressed: () {},
-                child: const Text("Faire un paiement de cotisation")),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "assets/icons/payer2.png",
+                      height: 20,
+                      color: Colors.white,
+                    ),
+                    const Gap(5),
+                    const Text("Faire un paiement de cotisation"),
+                  ],
+                )),
           ],
         ),
       ),

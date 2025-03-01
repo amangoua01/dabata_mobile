@@ -2,6 +2,7 @@ import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:lottie/lottie.dart';
 
 class UpdateUserProfile extends StatelessWidget {
   const UpdateUserProfile({super.key});
@@ -20,6 +21,10 @@ class UpdateUserProfile extends StatelessWidget {
           ),
           child: ListView(
             children: [
+              Lottie.asset(
+                "assets/lotties/profile.json",
+                height: 150,
+              ),
               const CTextFormField(
                 labelText: "Nom",
               ),

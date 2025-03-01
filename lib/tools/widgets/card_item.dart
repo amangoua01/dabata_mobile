@@ -1,5 +1,6 @@
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/static/home/card_pages/card_detail_page.dart';
 import 'package:flutter/material.dart';
@@ -60,19 +61,9 @@ class CardItem extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    /* const Gap(4),
-                    Text(
-                      carte.categorie!.libelle.value,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Colors.blue,
-                        fontSize: 12,
-                      ),
-                    ), */
                     const Gap(3),
                     Text(
-                      "${carte.montantJournalier} F / jour",
+                      "${carte.montantJournalier.toAmount(devise: "F")} / jour",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(

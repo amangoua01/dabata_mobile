@@ -1,5 +1,6 @@
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/static/home/user/user_card_detail_page.dart';
 import 'package:flutter/material.dart';
@@ -38,9 +39,8 @@ class CardSuscribe extends StatelessWidget {
                         width: 0.8,
                       ),
                     ),
-                    height: 90.h,
+                    height: 60.h,
                     child: CircleAvatar(
-                      radius: 50.r,
                       backgroundImage: NetworkImage(
                         carte.image.value,
                       ),
@@ -63,7 +63,7 @@ class CardSuscribe extends StatelessWidget {
                         carte.libelle.value,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 13.sp,
+                          fontSize: 11.sp,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -89,39 +89,64 @@ class CardSuscribe extends StatelessWidget {
                               value: value,
                               borderRadius: BorderRadius.circular(10),
                               backgroundColor: Colors.grey.shade200,
-                              valueColor: value <= 0.4
+                              valueColor: value <= 0.33
                                   ? const AlwaysStoppedAnimation<Color>(
                                       Colors.red)
-                                  : value <= 0.6
+                                  : value <= 0.66
                                       ? const AlwaysStoppedAnimation<Color>(
                                           Colors.orange)
-                                      : value <= 0.8
-                                          ? const AlwaysStoppedAnimation<Color>(
-                                              Colors.yellow)
-                                          : value <= 1.0
-                                              ? const AlwaysStoppedAnimation<
-                                                  Color>(Colors.green)
-                                              : const AlwaysStoppedAnimation<
-                                                  Color>(Colors.white),
+                                      : const AlwaysStoppedAnimation<Color>(
+                                          Colors.green),
                             ),
                           ),
                         ],
                       ),
                       Gap(5.h),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "${carte.montantJournalier} F",
-                          ),
-                          Text(
-                            "reste: ${2000 - carte.montantJournalier!} F",
-                            maxLines: 1,
-                            style: TextStyle(
-                              color: Colors.orange,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.bold,
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  "assets/icons/porte_monaie.gif",
+                                  width: 15,
+                                ),
+                                const Gap(5),
+                                Text(
+                                  carte.montantJournalier.toAmount(devise: "F"),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: value <= 0.33
+                                        ? Colors.red
+                                        : value <= 0.66
+                                            ? Colors.orange
+                                            : Colors.green,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                (carte.montantTotal.value)
+                                    .toAmount(devise: "F"),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Gap(5),
+                              Image.asset(
+                                "assets/icons/emballage.png",
+                                width: 15,
+                              ),
+                            ],
                           ),
                         ],
                       ),

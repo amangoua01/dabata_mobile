@@ -1,4 +1,5 @@
 import 'package:dabata_mobile/models/categorie.dart';
+import 'package:dabata_mobile/tools/extensions/types/double.dart';
 
 class Carte {
   int? id;
@@ -6,7 +7,7 @@ class Carte {
   String? image;
   String? debut;
   String? fin;
-  double? montantJournalier;
+  double? montantJournalier, montantTotal;
   Categorie? categorie;
 
   Carte({
@@ -17,6 +18,7 @@ class Carte {
     this.fin,
     this.montantJournalier,
     this.categorie,
+    this.montantTotal,
   });
 
   Carte.fromJson(Map<String, dynamic> json) {
@@ -43,5 +45,13 @@ class Carte {
       data['categorie'] = categorie!.toJson();
     }
     return data;
+  }
+
+  double get tauxCotisation {
+    if (montantTotal.value > 0) {
+      return (montantJournalier!.value / montantTotal.value);
+    } else {
+      return 0;
+    }
   }
 }

@@ -14,13 +14,11 @@ class ProgressBar extends StatelessWidget {
       borderWidth: 1,
       borderColor: Colors.grey,
       backgroundColor: Colors.grey.shade200,
-      colorLinearProgress: value <= 0.4
+      colorLinearProgress: value <= 0.33
           ? Colors.red
-          : value <= 0.6
+          : value <= 0.66
               ? Colors.orange
-              : value <= 0.8
-                  ? Colors.green
-                  : Colors.white,
+              : Colors.green,
       animationDuration: 1000,
       borderRadius: 3,
       progressAnimationCurve: Curves.bounceInOut,
