@@ -7,6 +7,7 @@ import 'package:dabata_mobile/views/static/admin/categories/edition_categorie_pa
 import 'package:dabata_mobile/views/static/admin/home/edtion_user_page.dart';
 import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
 import 'package:dabata_mobile/views/static/home/user/user_profile.dart';
+import 'package:dabata_mobile/views/static/notifications/list_notif_page.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -41,8 +42,9 @@ class DashboardSubPage extends StatelessWidget {
             title: const Text("Admin Dashboard"),
             actions: [
               IconButton(
-                  icon: const Icon(Icons.notifications, size: 30),
-                  onPressed: () {})
+                icon: const Icon(Icons.notifications, size: 30),
+                onPressed: () => Get.to(() => const ListNotifPage()),
+              )
             ],
           ),
           body: ListView(
@@ -91,10 +93,20 @@ class DashboardSubPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const Gap(20),
+              const Gap(10),
               Container(
-                padding: const EdgeInsets.only(right: 20, left: 20),
-                height: 200,
+                padding: const EdgeInsets.only(
+                  right: 20,
+                  left: 20,
+                  bottom: 10,
+                  top: 10,
+                ),
+                margin: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                height: 250,
                 child: Row(
                   children: [
                     Expanded(
@@ -126,6 +138,7 @@ class DashboardSubPage extends StatelessWidget {
                         curve: Curves.linear, // Optional
                       ),
                     ),
+                    const Gap(20),
                     const Expanded(
                       flex: 2,
                       child: Column(
