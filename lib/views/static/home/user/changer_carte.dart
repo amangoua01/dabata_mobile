@@ -1,6 +1,7 @@
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/tools/components/change_card_widget.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/views/controllers/home/user/changer_carte_vctl.dart';
@@ -36,9 +37,9 @@ class ChangerCarte extends StatelessWidget {
               children: [
                 const Gap(20),
                 ChangeCardWidget(
-                    image: carte.image.value,
+                    //image: carte.image.value,
                     title: carte.libelle.value,
-                    amount: carte.montantJournalier!,
+                    amount: carte.montantJournalier!.toDouble(),
                     category: carte.categorie!.libelle.value,
                     radio: null),
                 const Gap(20),
@@ -53,9 +54,9 @@ class ChangerCarte extends StatelessWidget {
                         (e) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: ChangeCardWidget(
-                            image: e.image.value,
+                            //image: e.image.value,
                             title: e.libelle.value,
-                            amount: e.montantJournalier!,
+                            amount: e.montantJournalier!.toDouble(),
                             category: e.categorie!.libelle.value,
                             radio: Radio(
                               activeColor: AppColors.backColor,

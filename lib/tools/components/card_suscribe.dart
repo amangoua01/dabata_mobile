@@ -1,6 +1,7 @@
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/static/home/user/user_card_detail_page.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class CardSuscribe extends StatelessWidget {
                     ),
                     height: 60.h,
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage(
+                      backgroundImage: AssetImage(
                         carte.image.value,
                       ),
                     ),
@@ -113,7 +114,8 @@ class CardSuscribe extends StatelessWidget {
                                 ),
                                 const Gap(5),
                                 Text(
-                                  carte.montantJournalier.toAmount(devise: "F"),
+                                  carte.montantJournalier!
+                                      .toAmount(devise: "F"),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(

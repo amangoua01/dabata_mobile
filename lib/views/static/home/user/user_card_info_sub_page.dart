@@ -1,15 +1,15 @@
+import 'package:get/get.dart';
+import 'package:gap/gap.dart';
+import 'package:flutter/material.dart';
 import 'package:dabata_mobile/models/carte.dart';
-import 'package:dabata_mobile/tools/components/progress_bar.dart';
-import 'package:dabata_mobile/tools/constants/app_colors.dart';
-import 'package:dabata_mobile/tools/extensions/types/double.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/components/progress_bar.dart';
+import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/views/static/home/user/voir_mes_cotisations.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 
 class UserCardInfoSubPage extends StatelessWidget {
   final Carte carte;
@@ -23,10 +23,10 @@ class UserCardInfoSubPage extends StatelessWidget {
           Container(
             color: Colors.white,
             padding: const EdgeInsets.all(10),
-            child: Image.network(
+            /* child: Image.network(
               carte.image.value,
               height: 200,
-            ),
+            ), */
           ),
           ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 10),

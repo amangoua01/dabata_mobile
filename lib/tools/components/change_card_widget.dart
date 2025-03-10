@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ChangeCardWidget extends StatelessWidget {
   final String title;
   final Widget? radio;
-  final String image;
+  //final String image;
   final double amount;
   final String category;
 
@@ -12,7 +12,7 @@ class ChangeCardWidget extends StatelessWidget {
       {super.key,
       this.radio,
       required this.title,
-      required this.image,
+      //required this.image,
       required this.amount,
       required this.category});
 
@@ -27,12 +27,12 @@ class ChangeCardWidget extends StatelessWidget {
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.all(8),
-        leading: Image.network(
-          image,
+        /*  leading: Image.network(
+          //image,
           height: 100,
           width: 100,
           fit: BoxFit.cover,
-        ),
+        ), */
         title: Text(
           title,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

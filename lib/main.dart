@@ -1,5 +1,6 @@
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/constants/env.dart';
+import 'package:dabata_mobile/tools/constants/web_const.dart';
 import 'package:dabata_mobile/views/static/starting/splash_screen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  WebConst.jwt = "";
 
   runApp(
     ScreenUtilInit(

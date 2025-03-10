@@ -1,13 +1,16 @@
-import 'package:dabata_mobile/models/carte.dart';
-import 'package:dabata_mobile/models/categorie.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:dabata_mobile/models/categorie.dart';
+import 'package:dabata_mobile/api/carte_api_ctl.dart';
+//import 'package:dabata_mobile/api/categorie_api_clt.dart';
 
-class CardListePageVctl extends GetxController
+/* class CardListePageVctl extends GetxController
     with GetSingleTickerProviderStateMixin {
-  late final TabController controller;
+  late TabController controller;
+  List<Carte> card = [];
+  List<Categorie> categories = [];
 
-  final List<Carte> loadedCartes = [
+  /* final List<Carte> loadedCartes = [
     Carte(
       id: 1,
       libelle: "Carte 1",
@@ -78,12 +81,94 @@ class CardListePageVctl extends GetxController
       montantJournalier: 400,
       categorie: Categorie(id: 3, libelle: "Categorie 3"),
     ),
-  ];
+  ]; */
+
+  void getAllCard() async {
+    //print("getAllCard");
+    var res = await CarteApiCtl.getCartes();
+    if (res.status) {
+      //print("cartes ${res.data!.map((e) => e.toJson())}");
+      card = res.data!;
+      update();
+    }
+  }
+
+  void getAllCategorie() async {
+    var res = await CategorieApiClt.getAllCategories();
+    if (res.status) {
+      print("categories ${res.data!.map((e) => e.toJson())}");
+      categories = res.data!;
+      update();
+    }
+  }
 
   // Méthode pour obtenir les catégories uniques
   List<Categorie> get uniqueCategories {
     final Map<int, Categorie> categoriesMap = {};
-    for (var carte in loadedCartes) {
+    for (var carte in card) {
+      if (carte.categorie != null) {
+        categoriesMap[carte.categorie!.id!] = carte.categorie!;
+        print("carte.categorie!.id ${carte.categorie!.id}");
+      }
+    }
+    return categoriesMap.values.toList();
+  }
+
+  /* 
+  List<Carte> get cartes => card
+      .where((e) => e.categorie?.id == loadedCartes.first.categorie?.id)
+      .toList(); */
+
+  @override
+  void onReady() {
+    super.onReady();
+
+    getAllCard();
+    getAllCategorie();
+    controller = TabController(length: uniqueCategories.length, vsync: this);
+  }
+} */
+class CardListePageVctl extends GetxController
+    with GetSingleTickerProviderStateMixin {
+  late TabController controller;
+  List card = [];
+  List categories = [];
+  bool isLoading = true;
+
+  void _initTabController() {
+    final categoriesCount = uniqueCategories.length;
+    if (categoriesCount == 0) {
+      debugPrint("Aucune catégorie trouvée");
+      return;
+    }
+    controller = TabController(
+      length: categoriesCount,
+      vsync: this,
+    );
+    //isLoading = false;
+  }
+
+  Future<void> getAllCard() async {
+    var res = await CarteApiCtl.getCartes();
+    if (res.status) {
+      print("cartes ${res.data!.map((e) => e.toJson())}");
+      card = res.data!;
+      isLoading = false;
+    }
+  }
+
+  /* Future<void> getAllCategorie() async {
+    var res = await CategorieApiClt.getAllCategories();
+    if (res.status) {
+      categories = res.data!;
+      isLoading = false;
+    }
+  } */
+
+  // Méthode pour obtenir les catégories uniques
+  List<Categorie> get uniqueCategories {
+    final Map<int, Categorie> categoriesMap = {};
+    for (var carte in card) {
       if (carte.categorie != null) {
         categoriesMap[carte.categorie!.id!] = carte.categorie!;
       }
@@ -91,13 +176,13 @@ class CardListePageVctl extends GetxController
     return categoriesMap.values.toList();
   }
 
-  List<Carte> get cartes => loadedCartes
-      .where((e) => e.categorie?.id == loadedCartes.first.categorie?.id)
-      .toList();
-
   @override
-  void onInit() {
-    controller = TabController(length: uniqueCategories.length, vsync: this);
-    super.onInit();
+  void onReady() {
+    super.onReady();
+
+    getAllCard().then((_) {
+      _initTabController();
+      update();
+    });
   }
 }

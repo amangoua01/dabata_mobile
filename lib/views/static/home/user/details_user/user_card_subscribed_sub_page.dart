@@ -1,5 +1,6 @@
 import 'package:dabata_mobile/tools/components/card_suscribe.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/views/controllers/home/user/user_card_subscribed_vctl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
