@@ -1,9 +1,8 @@
+import 'package:dabata_mobile/api/user_api_ctl.dart';
 import 'package:dabata_mobile/views/static/auth/register_sub_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/models/users.dart';
-import 'package:dabata_mobile/api/register_api_ctl.dart';
-import 'package:dabata_mobile/views/static/admin/home/dashboard/admin_dashboard.dart';
 
 class RegisterVctl extends GetxController {
   var nom = TextEditingController();
@@ -21,7 +20,7 @@ class RegisterVctl extends GetxController {
   }
 
   Future<void> submit() async {
-    var res = await RegisterApiCtl.register(
+    var res = await UserApiCtl.register(
       User(
         nom: nom.text,
         email: email.text,

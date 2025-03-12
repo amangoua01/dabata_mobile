@@ -20,23 +20,23 @@ class HistoricSubPage extends StatelessWidget {
             ),
           ),
         ),
-        HistoricPaymentCard(
+        const HistoricPaymentCard(
           amount: 10000,
           title: 'Carte 1',
           categorie: "Categorie 1",
-          dateTime: DateTime.now(),
+          //dateTime: DateTime.now(),
         ),
-        HistoricPaymentCard(
+        const HistoricPaymentCard(
           amount: 15000,
           title: 'Carte 2',
           categorie: "Categorie 2",
-          dateTime: DateTime.now(),
+          //dateTime: DateTime.now(),
         ),
-        HistoricPaymentCard(
+        const HistoricPaymentCard(
           amount: 20000,
           title: 'Carte 3',
           categorie: "Categorie 3",
-          dateTime: DateTime.now(),
+          //dateTime: DateTime.now(),
         ),
       ],
     );

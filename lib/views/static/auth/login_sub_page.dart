@@ -53,7 +53,7 @@ class LoginSubPage extends StatelessWidget {
                       //Get.to(() => const Home());
                     }),
 
-                CButton(
+                /* CButton(
                     child: const Text("Connexion admin"),
                     onPressed: () {
                       var user = User(
@@ -63,7 +63,7 @@ class LoginSubPage extends StatelessWidget {
 
                       ctl.submit(user);
                       //Get.to(() => const AdminDashboard());
-                    }),
+                    }), */
                 const Gap(10),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.end,

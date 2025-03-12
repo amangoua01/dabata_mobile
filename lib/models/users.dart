@@ -46,10 +46,10 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    //data['id'] = id;
     //data['uuId'] = uuId;
     //data['sexe'] = sexe;
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['nom'] = nom;
     data['email'] = email;
     data['prenom'] = prenom;
@@ -57,6 +57,7 @@ class User {
     data['fullname'] = fullname;
     data['telephone'] = telephone;
     data['lieuResidence'] = lieuResidence;
+    data['roles'] = roles.map((item) => item.toJson()).toList();
     return data;
   }
 

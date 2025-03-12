@@ -1,21 +1,22 @@
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/datetime.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class HistoricPaymentCard extends StatelessWidget {
-  final String title;
-  final double amount;
-  final String categorie;
-  final DateTime? dateTime;
+  final String? title;
+  final double? amount;
+  final String? categorie;
+  final String? dateTime;
 
   const HistoricPaymentCard({
     super.key,
     this.dateTime,
-    required this.title,
+    this.title,
     required this.amount,
-    required this.categorie,
+    this.categorie,
   });
 
   @override
@@ -50,7 +51,7 @@ class HistoricPaymentCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  title,
+                  title ?? '',
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 14,

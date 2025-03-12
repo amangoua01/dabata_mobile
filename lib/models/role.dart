@@ -6,4 +6,10 @@ class Roles {
   Roles.fromJson(String data) {
     libelle = data;
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['libelle'] = libelle;
+    return data;
+  }
 }

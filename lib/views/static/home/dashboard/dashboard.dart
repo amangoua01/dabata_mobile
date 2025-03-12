@@ -1,3 +1,5 @@
+import 'package:dabata_mobile/models/carte.dart';
+import 'package:dabata_mobile/models/users.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +21,15 @@ class Dashboard extends StatelessWidget {
     return GetBuilder<DashboardVctl>(
       init: DashboardVctl(),
       builder: (ctl) {
+        var user = Get.find<User>();
+        //print("user dashboard ${user.toJson()}");
+
         return Scaffold(
           appBar: AppBar(
               leading: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
-                  onTap: () => Get.to(() => const UserProfile()),
+                  onTap: () => Get.to(() => UserProfile(user: user)),
                   child: const Padding(
                     padding: EdgeInsets.all(5.0),
                     child: CircleAvatar(
@@ -102,9 +107,12 @@ class Dashboard extends StatelessWidget {
                     const Gap(5),
                     Column(
                       children: [
-                        ...ctl.cartes.map(
-                          (e) => CardSuscribe(e, value: e.tauxCotisation),
-                        )
+                        ...ctl.souscriptions.map(
+                          (e) => CardSuscribe(
+                            e.carte!,
+                            value: e.carte!.tauxCotisation,
+                          ),
+                        ),
                       ]
                           .animate(interval: 500.ms)
                           .slideX(delay: NumDurationExtensions(1).seconds)

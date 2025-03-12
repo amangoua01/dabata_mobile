@@ -27,26 +27,15 @@ class HistoriqueSubPage extends StatelessWidget {
                     color: Colors.grey.shade600,
                     fontWeight: FontWeight.bold,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-              HistoricPaymentCard(
-                amount: 10000,
-                title: 'Carte 1',
-                categorie: "Categorie 1",
-                dateTime: DateTime.now(),
-              ),
-              HistoricPaymentCard(
-                amount: 15000,
-                title: 'Carte 2',
-                categorie: "Categorie 2",
-                dateTime: DateTime.now(),
-              ),
-              HistoricPaymentCard(
-                amount: 20000,
-                title: 'Carte 3',
-                categorie: "Categorie 3",
-                dateTime: DateTime.now(),
-              ),
+              ...ctl.paiements.map((p) => HistoricPaymentCard(
+                    amount: p.montant,
+                    //title: p.carte.libelle,
+                    //categorie: p.categorie.libelle,
+                    dateTime: p.datePaiement,
+                  )),
             ],
           ),
         );

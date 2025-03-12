@@ -1,18 +1,19 @@
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:dabata_mobile/tools/components/c_card.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/widgets/indicator.dart';
 import 'package:dabata_mobile/views/controllers/admin/dashboard_sub_page_vctl.dart';
-import 'package:dabata_mobile/views/static/admin/carte_souscription/edition_carte_souscription_page.dart';
 import 'package:dabata_mobile/views/static/admin/categories/edition_categorie_page.dart';
 import 'package:dabata_mobile/views/static/admin/home/edtion_user_page.dart';
 import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
 import 'package:dabata_mobile/views/static/home/user/user_profile.dart';
-import 'package:dabata_mobile/views/static/notifications/list_notif_page.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:dabata_mobile/models/users.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:gap/gap.dart';
-import 'package:get/get.dart';
+import 'package:dabata_mobile/views/static/notifications/list_notif_page.dart';
+import 'package:dabata_mobile/views/static/admin/carte_souscription/edition_carte_souscription_page.dart';
 
 class DashboardSubPage extends StatelessWidget {
   const DashboardSubPage({super.key});
@@ -22,12 +23,14 @@ class DashboardSubPage extends StatelessWidget {
     return GetBuilder<DashboardSubPageVctl>(
       init: DashboardSubPageVctl(),
       builder: (ctl) {
+        var user = Get.find<User>();
+
         return Scaffold(
           appBar: AppBar(
             leading: Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
-                onTap: () => Get.to(() => const UserProfile()),
+                onTap: () => Get.to(() => UserProfile(user: user)),
                 child: const Padding(
                   padding: EdgeInsets.all(5.0),
                   child: CircleAvatar(
