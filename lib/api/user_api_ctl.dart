@@ -38,11 +38,11 @@ abstract class UserApiCtl {
         options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {
-        print("user logged ${res.data['data']}");
+        //print("user logged ${res.data['data']}");
         WebConst.jwt = res.data['token'];
-        print("hascode 2: ${WebConst.jwt.hashCode}");
+        //print("hascode 2: ${WebConst.jwt.hashCode}");
         // Get.put<String>(res.data["token"], tag: "jwt");
-        print("Token utilisé pour la requête: ${WebConst.jwt}");
+        //print("Token utilisé pour la requête: ${WebConst.jwt}");
         return DataResponse.success(data: User.fromJson(res.data['data']));
       } else {
         return DataResponse.error(

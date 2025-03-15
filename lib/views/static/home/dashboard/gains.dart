@@ -10,6 +10,7 @@ class Gains extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Gains"),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

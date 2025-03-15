@@ -12,14 +12,17 @@ class SplashScreenPage extends StatelessWidget {
     return GetBuilder(
         init: SplashScreenPageVctl(),
         builder: (ctl) {
-          return const Scaffold(
+          return Scaffold(
             backgroundColor: AppColors.primary,
-            bottomNavigationBar: BottomVersionBar(),
+            bottomNavigationBar: const BottomVersionBar(),
             body: SizedBox(
               width: double.infinity,
               height: double.infinity,
               child: Center(
-                child: Text("LOGO"),
+                child: Image.asset(
+                  'assets/images/Logo_Dabata.png',
+                  width: 200,
+                ),
               ),
             ),
           );

@@ -1,8 +1,8 @@
-import 'package:dabata_mobile/tools/components/historic_payment_card.dart';
-import 'package:dabata_mobile/views/controllers/home/dashboard/historic_sub_page_vctl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:dabata_mobile/tools/components/historic_payment_card.dart';
+import 'package:dabata_mobile/views/controllers/home/dashboard/historic_sub_page_vctl.dart';
 
 class HistoriqueSubPage extends StatelessWidget {
   const HistoriqueSubPage({super.key});
@@ -14,6 +14,7 @@ class HistoriqueSubPage extends StatelessWidget {
       builder: (ctl) {
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             title: const Text("Historique des paiements"),
           ),
           body: ListView(
@@ -32,7 +33,8 @@ class HistoriqueSubPage extends StatelessWidget {
               ),
               ...ctl.paiements.map((p) => HistoricPaymentCard(
                     amount: p.montant,
-                    //title: p.carte.libelle,
+                    title:
+                        'Mode de paiement : ${p.modePaiement?.libelle ?? 'n/a'}',
                     //categorie: p.categorie.libelle,
                     dateTime: p.datePaiement,
                   )),
