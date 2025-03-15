@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 class UserDescriptionCard extends StatelessWidget {
   final String image;
   final String fullName;
+  //final  void Function()? onTap;
+
   final String phoneNumber;
 
   const UserDescriptionCard({

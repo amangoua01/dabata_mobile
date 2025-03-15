@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:dio/dio.dart';
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/constants/const.dart';
@@ -35,14 +36,12 @@ abstract class UserApiCtl {
           "email": user.email,
           "password": user.password,
         },
-        options: Options(headers: WebConst.authHeaders),
+        options: Options(headers: WebConst.headers),
       );
       if (res.statusCode == 200) {
         //print("user logged ${res.data['data']}");
         WebConst.jwt = res.data['token'];
-        //print("hascode 2: ${WebConst.jwt.hashCode}");
-        // Get.put<String>(res.data["token"], tag: "jwt");
-        //print("Token utilisé pour la requête: ${WebConst.jwt}");
+        Cache.setString("jwt", res.data['token']);
         return DataResponse.success(data: User.fromJson(res.data['data']));
       } else {
         return DataResponse.error(
@@ -53,6 +52,27 @@ abstract class UserApiCtl {
     }
   }
 
+  static Future<DataResponse<List<User>>> getAllUser() async {
+    try {
+      var res = await WebConst.client.get(
+        '${Const.baseUrl}/api/users',
+        options: Options(
+          headers: WebConst.authHeaders,
+        ),
+      );
+      if (res.statusCode == 200) {
+        print("users ${res.data}");
+        return DataResponse.success(
+            data: (res.data as List).map((e) => User.fromJson(e)).toList());
+      } else {
+        return DataResponse.error(systemError: res.data);
+      }
+    } on DioException catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    } catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
   /* static Future<DataResponse<User>> getUser() async {
     try {
       var res = await WebConst.client.get(

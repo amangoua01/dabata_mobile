@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 
-abstract class WebConst {
+/* abstract class WebConst {
   static String get jwt => Get.find(tag: "jwt");
   static set jwt(String value) {
     try {
@@ -32,5 +31,27 @@ abstract class WebConst {
   static Map<String, String> get authMultipartHeaders => multipartHeaders
     ..addAll({
       "Authorization": "Bearer $jwt",
+    });
+} */
+abstract class WebConst {
+  static String _jwt = "";
+
+  static String get jwt => _jwt;
+
+  static set jwt(String value) {
+    _jwt = value;
+  }
+
+  // Le reste du code reste identique
+  static final client = Dio();
+
+  static Map<String, String> get headers => {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      };
+
+  static Map<String, String> get authHeaders => headers
+    ..addAll({
+      "Authorization": "Bearer $_jwt",
     });
 }

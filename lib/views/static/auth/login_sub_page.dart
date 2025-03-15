@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/models/users.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/views/controllers/auth/login_vctl.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
@@ -34,36 +35,29 @@ class LoginSubPage extends StatelessWidget {
                   labelText: "Mot de passe",
                 ),
                 const Gap(20),
-                CButton(
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.login),
-                        Gap(5),
-                        Text("Connexion"),
-                      ],
-                    ),
-                    onPressed: () {
-                      var user = User(
-                        email: ctl.emailController.text,
-                        password: ctl.passwordController.text,
-                      );
+                ctl.isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                        color: AppColors.primary,
+                      ))
+                    : CButton(
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.login),
+                            Gap(5),
+                            Text("Connexion"),
+                          ],
+                        ),
+                        onPressed: () {
+                          var user = User(
+                            email: ctl.emailController.text,
+                            password: ctl.passwordController.text,
+                          );
 
-                      ctl.submit(user);
-                      //Get.to(() => const Home());
-                    }),
+                          ctl.submit(user);
+                        }),
 
-                /* CButton(
-                    child: const Text("Connexion admin"),
-                    onPressed: () {
-                      var user = User(
-                        email: ctl.emailController.text,
-                        password: ctl.passwordController.text,
-                      );
-
-                      ctl.submit(user);
-                      //Get.to(() => const AdminDashboard());
-                    }), */
                 const Gap(10),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.end,

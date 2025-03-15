@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/tools/constants/env.dart';
@@ -9,7 +10,13 @@ import 'package:dabata_mobile/views/static/starting/splash_screen_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  WebConst.jwt = "";
+
+  //WebConst.jwt = "";
+
+  String? storedJwt = await Cache.getString("jwt");
+  if (storedJwt != null) {
+    WebConst.jwt = storedJwt;
+  }
 
   runApp(
     ScreenUtilInit(

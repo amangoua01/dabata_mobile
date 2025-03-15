@@ -39,8 +39,14 @@ class User {
     telephone = json['telephone'];
     lieuResidence = json['lieuResidence'];
     if (json['roles'] != null) {
-      for (var role in (json['roles'] as Map).entries) {
-        roles.add(Roles.fromJson(role.value));
+      if (json['roles'] is List) {
+        for (var role in json['roles']) {
+          roles.add(Roles.fromJson(role));
+        }
+      } else if (json['roles'] is Map) {
+        for (var role in (json['roles'] as Map).entries) {
+          roles.add(Roles.fromJson(role.value));
+        }
       }
     }
   }
@@ -60,6 +66,4 @@ class User {
     data['roles'] = roles.map((item) => item.toJson()).toList();
     return data;
   }
-
-  //String get fullName => "$nom $prenom";
 }

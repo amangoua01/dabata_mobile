@@ -7,19 +7,26 @@ import 'package:dabata_mobile/views/static/admin/home/dashboard/admin_dashboard.
 
 class LoginVctl extends GetxController {
   final formKey = GlobalKey<FormState>();
-  var emailController = TextEditingController(text: 'yve@gmail.com');
+
   var passwordController = TextEditingController(text: '12345678');
+  var emailController = TextEditingController(text: 'yve@gmail.com');
+
   var getUserConnected = User();
+
   bool isAdmin = false;
+  bool isLoading = false;
 
   void submit(User user) async {
+    isLoading = true;
+    update();
+
     var res = await UserApiCtl.login(user);
     if (res.status) {
-      //print('ressssssssssssss ${res.data!.roles.map((e) => e.toJson())}');
-      //print('getUserConnected ${getUserConnected.toJson()}');
-      //print("userConnectedId ${userConnected.toJson()}");
+      isLoading = false;
       getUserConnected = res.data!;
       var userConnected = Get.put(getUserConnected, permanent: true);
+
+      update();
 
       for (var role in res.data!.roles) {
         print('ROLESS ${role.libelle}');
