@@ -1,10 +1,13 @@
+import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class UserInfo extends StatelessWidget {
-  const UserInfo({super.key});
+  final User user;
+
+  const UserInfo(this.user, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +28,9 @@ class UserInfo extends StatelessWidget {
                   color: Colors.grey.shade200,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text("Nom complet: Haris Dabata"),
+                child: ListTile(
+                  leading: const Icon(Icons.person),
+                  title: Text("Nom complet: ${user.fullname}"),
                 ),
               ),
             ),

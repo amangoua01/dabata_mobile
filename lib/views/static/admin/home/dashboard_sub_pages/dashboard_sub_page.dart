@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:dabata_mobile/tools/components/c_card.dart';
@@ -62,32 +63,33 @@ class DashboardSubPage extends StatelessWidget {
                   crossAxisSpacing: 10,
                   childAspectRatio: 1.9,
                 ),
-                children: const [
+                children: [
                   CCard(
                     image: "assets/icons/user2.png",
-                    amount: 50,
+                    amount: ctl.usersCount,
                     title: "Inscrit(e)",
                     unite: "Pers.",
                   ),
                   CCard(
-                    amount: 5000000,
+                    amount: ctl.totalAmount.toInt(),
                     title: "Montant totale",
-                  ),
-                  CCard(
-                    amount: 2000000,
-                    title: "Montant cotisé",
-                  ),
-                  CCard(
-                    amount: 3000000,
-                    title: "Montant restant",
-                  ),
-                  CCard(
-                    amount: 5000000,
-                    image: "assets/icons/souscription.png",
-                    title: "Nb. souscriptions",
                     unite: "F",
                   ),
                   CCard(
+                    amount: ctl.totalAmountBuyed.toInt(),
+                    title: "Montant cotisé",
+                  ),
+                  CCard(
+                    amount: ctl.totalAmountRest.toInt(),
+                    title: "Montant restant",
+                  ),
+                  ...ctl.catStatData.map((e) => CCard(
+                        amount: e.nombreSouscriptions ?? 0,
+                        image: "assets/icons/souscription.png",
+                        title: 'Nb. souscriptions ${e.categorieLibelle.value}',
+                        unite: " ",
+                      )),
+                  const CCard(
                     amount: 50000,
                     color: null,
                     image: "assets/icons/carte2.gif",
@@ -116,56 +118,64 @@ class DashboardSubPage extends StatelessWidget {
                       flex: 4,
                       child: PieChart(
                         PieChartData(
-                          sections: [
-                            PieChartSectionData(
-                              color: AppColors.primary,
-                              value: 50,
-                              title: "50% - 30 cartes",
+                          sectionsSpace: 2,
+                          centerSpaceRadius: 40,
+                          sections: ctl.pieChartDataByCategory.map((data) {
+                            // Générer une couleur basée sur l'index pour différencier les catégories
+                            Color color = AppColors.primary;
+                            if (data['category'] == 'Marché') {
+                              color = AppColors.primary;
+                            } else if (data['category'] == 'Mixte') {
+                              color = AppColors.primary.shade300;
+                            } else {
+                              color = AppColors.primary.shade100;
+                            }
+
+                            return PieChartSectionData(
+                              color: color,
+                              value: data['total'].toDouble(),
+                              title:
+                                  "${data['percentage'].toStringAsFixed(1)}%",
                               radius: 50,
-                            ),
-                            PieChartSectionData(
-                              color: AppColors.primary.shade100,
-                              value: 50,
-                              title: "50% - 20 cartes",
-                              radius: 50,
-                            ),
-                            PieChartSectionData(
-                              color: AppColors.primary.shade100,
-                              value: 50,
-                              title: "30% - 10 cartes",
-                              radius: 50,
-                            ),
-                          ],
+                              titleStyle: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            );
+                          }).toList(),
                         ),
-                        duration: const Duration(milliseconds: 150), // Optional
-                        curve: Curves.linear, // Optional
+                        duration: const Duration(milliseconds: 150),
+                        curve: Curves.linear,
                       ),
                     ),
                     const Gap(20),
-                    const Expanded(
-                      flex: 2,
+                    Expanded(
+                      flex: 3,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Indicator(
-                            color: Colors.amber,
-                            text: "Test",
-                            isSquare: true,
-                          ),
-                          Indicator(
-                            color: Colors.amber,
-                            text: "Test",
-                            isSquare: true,
-                          ),
-                          Indicator(
-                            color: Colors.amber,
-                            text: "Test",
-                            isSquare: true,
-                          ),
-                          Indicator(
-                            color: Colors.amber,
-                            text: "Test",
-                            isSquare: true,
-                          ),
+                          ...ctl.pieChartDataByCategory.map((data) {
+                            Color color = AppColors.primary;
+                            if (data['category'] == 'Marché') {
+                              color = AppColors.primary;
+                            } else if (data['category'] == 'Mixte') {
+                              color = AppColors.primary.shade300;
+                            } else {
+                              color = AppColors.primary.shade100;
+                            }
+
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Indicator(
+                                color: color,
+                                text: "${data['category']} (${data['total']})",
+                                isSquare: true,
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     )

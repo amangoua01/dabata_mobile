@@ -34,7 +34,7 @@ class User {
     uuId = json['uuId'];
     email = json['email'];
     prenom = json['prenom'];
-    fullname = json['fullname'];
+    fullname = json['fullName'];
     password = json['password'];
     telephone = json['telephone'];
     lieuResidence = json['lieuResidence'];

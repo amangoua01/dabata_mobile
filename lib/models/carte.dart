@@ -181,11 +181,11 @@ class Carte {
 
     switch (categorie!.libelle) {
       case 'Marché':
-        return "assets/images/marche.jpeg";
+        return "assets/images/marche-removebg.png";
       case 'Mixte':
-        return "assets/images/mixte.jpeg";
+        return "assets/images/mixte-removebg.png";
       default:
-        return "assets/images/marche.jpeg";
+        return "assets/images/marche-removebg.png";
     }
   }
 }

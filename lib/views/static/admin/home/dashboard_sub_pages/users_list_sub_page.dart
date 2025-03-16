@@ -1,9 +1,12 @@
 import 'package:dabata_mobile/tools/components/user_description_card.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_field.dart';
 import 'package:dabata_mobile/views/controllers/admin/user_list_sub_page_vctl.dart';
 import 'package:dabata_mobile/views/static/admin/home/edtion_user_page.dart';
 import 'package:dabata_mobile/views/static/home/user/details_user/user_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +17,7 @@ class UsersListSubPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<UserListSubPageVctl>(
       init: UserListSubPageVctl(),
-      builder: (_) {
+      builder: (ctl) {
         return Scaffold(
           appBar: AppBar(
             title: const Text("Liste des utilisateurs"),
@@ -29,22 +32,27 @@ class UsersListSubPage extends StatelessWidget {
                 ),
                 const Gap(10),
                 Expanded(
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => const Gap(10),
-                    itemCount: 10,
-                    itemBuilder: (context, index) => GestureDetector(
-                      onTap: () => Get.to(
-                        () => const UserDetailPage(),
-                        //const UserProfile(isUserView: false),
-                      ),
-                      child: const UserDescriptionCard(
-                        image: "assets/icons/user2.png",
-                        fullName: 'Hassan Dabata',
-                        phoneNumber: '07 000 000 00',
-                      ),
-                    ),
-                  ),
-                ),
+                    child: ListView(children: [
+                  ...ctl.users.map((e) => UserDescriptionCard(
+                        leading: CircleAvatar(
+                          radius: 25,
+                          backgroundColor: AppColors.primary.shade100,
+                          backgroundImage:
+                              const AssetImage("assets/icons/user2.png"),
+                        ), //Image.asset("assets/icons/user2.png"),
+                        title: Text(
+                          '${e.fullname.value} ',
+                        ),
+                        subtitle: Text(e.telephone ?? '',
+                            style: const TextStyle(
+                              fontSize: 12,
+                            )),
+                        trailing: const Icon(Icons.arrow_forward_ios),
+                        onTap: () => Get.to(
+                          () => UserDetailPage(e),
+                        ),
+                      ))
+                ])),
               ],
             ),
           ),

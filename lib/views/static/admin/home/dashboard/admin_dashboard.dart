@@ -29,6 +29,10 @@ class AdminDashboard extends StatelessWidget {
                   label: 'Utilisateurs',
                 ),
                 BottomNavigationBarItem(
+                  icon: Icon(Icons.card_giftcard),
+                  label: 'Articles',
+                ),
+                BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
                   label: 'Paramètres',
                 ),

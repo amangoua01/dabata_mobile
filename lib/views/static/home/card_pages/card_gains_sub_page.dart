@@ -14,11 +14,22 @@ class CardGainsSubPage extends StatelessWidget {
       children: [
         ...carte.articles!.map(
           (e) => ListTile(
-            leading: CircleAvatar(
-              backgroundColor: AppColors.primary.shade100,
-              child: Image.asset(
-                carte.image.value,
-                height: 30,
+            leading: Container(
+              decoration: BoxDecoration(
+                //color: AppColors.primary.shade100,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: AppColors.primary.shade100,
+                  width: 2,
+                ),
+              ),
+              child: CircleAvatar(
+                backgroundColor: AppColors.primary.shade100,
+                child: Image.asset(
+                  carte.image.value,
+                  //height: 30,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             title: Text(
@@ -49,6 +60,7 @@ class CardGainsSubPage extends StatelessWidget {
             child: Image.asset(
               "assets/icons/cadeau.png",
               height: 30,
+              fit: BoxFit.cover,
             ),
           ),
           title: const Text(

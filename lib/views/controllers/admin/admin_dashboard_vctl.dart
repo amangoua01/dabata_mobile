@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/views/static/admin/home/dashboard_sub_pages/articles_sub_page.dart';
 import 'package:dabata_mobile/views/static/admin/home/dashboard_sub_pages/dashboard_sub_page.dart';
 import 'package:dabata_mobile/views/static/admin/home/dashboard_sub_pages/settings_sub_page.dart';
 import 'package:dabata_mobile/views/static/admin/home/dashboard_sub_pages/users_list_sub_page.dart';
@@ -10,6 +11,7 @@ class AdminDashboardVctl extends GetxController {
   List<Widget> pages = [
     const DashboardSubPage(),
     const UsersListSubPage(),
+    const ArticlesSubPage(),
     const SettingsSubPage(),
   ];
 }
