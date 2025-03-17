@@ -71,24 +71,20 @@ class DashboardSubPage extends StatelessWidget {
                     unite: "Pers.",
                   ),
                   CCard(
-                    amount: ctl.totalAmount.toInt(),
-                    title: "Montant totale",
                     unite: "F",
+                    title: "Montant totale",
+                    amount: ctl.totalAmount.toInt(),
                   ),
                   CCard(
-                    amount: ctl.totalAmountBuyed.toInt(),
+                    unite: "F",
                     title: "Montant cotisé",
+                    amount: ctl.totalAmountBuyed.toInt(),
                   ),
                   CCard(
-                    amount: ctl.totalAmountRest.toInt(),
+                    unite: "F",
                     title: "Montant restant",
+                    amount: ctl.totalAmountRest.toInt(),
                   ),
-                  ...ctl.catStatData.map((e) => CCard(
-                        amount: e.nombreSouscriptions ?? 0,
-                        image: "assets/icons/souscription.png",
-                        title: 'Nb. souscriptions ${e.categorieLibelle.value}',
-                        unite: " ",
-                      )),
                   const CCard(
                     amount: 50000,
                     color: null,
@@ -96,6 +92,12 @@ class DashboardSubPage extends StatelessWidget {
                     title: "Nb. cartes",
                     unite: "",
                   ),
+                  ...ctl.catStatData.map((e) => CCard(
+                        amount: e.nombreSouscriptions ?? 0,
+                        image: "assets/icons/souscription.png",
+                        title: 'Nb. souscriptions ${e.categorieLibelle.value}',
+                        unite: " ",
+                      )),
                 ],
               ),
               const Gap(10),

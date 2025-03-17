@@ -1,4 +1,5 @@
 import 'package:dabata_mobile/tools/components/navigation_bottom_bar.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/views/controllers/admin/admin_dashboard_vctl.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -19,22 +20,30 @@ class AdminDashboard extends StatelessWidget {
                 ctl.selectedIndex = index;
                 ctl.update();
               },
-              items: const [
-                BottomNavigationBarItem(
+              items: [
+                const BottomNavigationBarItem(
                   icon: Icon(Icons.dashboard),
-                  label: 'Dashboard',
+                  label: '',
                 ),
-                BottomNavigationBarItem(
+                const BottomNavigationBarItem(
                   icon: Icon(Icons.people),
-                  label: 'Utilisateurs',
+                  label: '',
                 ),
-                BottomNavigationBarItem(
+                const BottomNavigationBarItem(
                   icon: Icon(Icons.card_giftcard),
-                  label: 'Articles',
+                  label: '',
                 ),
                 BottomNavigationBarItem(
+                  icon: Image.asset("assets/icons/payer.png",
+                      height: 30,
+                      color: ctl.selectedIndex == 3
+                          ? AppColors.primary
+                          : Colors.grey.shade500),
+                  label: '',
+                ),
+                const BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
-                  label: 'Paramètres',
+                  label: '',
                 ),
               ],
             ),

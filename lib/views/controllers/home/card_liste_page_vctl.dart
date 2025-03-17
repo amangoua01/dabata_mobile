@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/models/categorie.dart';
@@ -133,7 +134,21 @@ class CardListePageVctl extends GetxController
   late TabController controller;
   List card = [];
   List categories = [];
+  var userToken = "";
   bool isLoading = true;
+
+  Future<void> fetchUserToken() async {
+    try {
+      var jwt = await Cache.getString('jwt');
+      //print('User token: $jwt');
+      userToken = jwt!;
+      update();
+      print("userToken $userToken");
+      // Vous pouvez maintenant utiliser userToken ici
+    } catch (e) {
+      print('Erreur lors de la récupération du token: $e');
+    }
+  }
 
   void _initTabController() {
     final categoriesCount = uniqueCategories.length;
@@ -151,7 +166,7 @@ class CardListePageVctl extends GetxController
   Future<void> getAllCard() async {
     var res = await CarteApiCtl.getCartes();
     if (res.status) {
-      print("cartes ${res.data!.map((e) => e.toJson())}");
+      //print("cartes ${res.data!.map((e) => e.toJson())}");
       card = res.data!;
       isLoading = false;
     }
@@ -184,5 +199,6 @@ class CardListePageVctl extends GetxController
       _initTabController();
       update();
     });
+    fetchUserToken();
   }
 }

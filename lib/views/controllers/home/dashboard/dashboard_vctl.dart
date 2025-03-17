@@ -1,6 +1,7 @@
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/models/souscription.dart';
 import 'package:dabata_mobile/models/users.dart';
+import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:dabata_mobile/tools/constants/etat_souscription.dart';
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/api/souscription_api_ctl.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 class DashboardVctl extends GetxController
     with GetSingleTickerProviderStateMixin {
   var user = Get.find<User>();
+  var userToken = '';
 
   List<Carte> cartes = [];
   List<Souscription> souscriptions = [];
@@ -43,6 +45,19 @@ class DashboardVctl extends GetxController
     update();
   }
 
+  Future<void> fetchUserToken() async {
+    try {
+      var jwt = await Cache.getString('jwt');
+      //print('User token: $jwt');
+      userToken = jwt!;
+      update();
+      print("userToken $userToken");
+      // Vous pouvez maintenant utiliser userToken ici
+    } catch (e) {
+      print('Erreur lors de la récupération du token: $e');
+    }
+  }
+
   late final TabController controller;
 
   @override
@@ -61,5 +76,7 @@ class DashboardVctl extends GetxController
   void onReady() {
     super.onReady();
     getUserAllSubscriptionCard();
+    fetchUserToken();
+    //print('User ${user.toJson()}');
   }
 }

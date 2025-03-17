@@ -7,11 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CardListePage extends StatelessWidget {
-  const CardListePage({super.key});
+  const CardListePage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
+    return GetBuilder<CardListePageVctl>(
       init: CardListePageVctl(),
       builder: (ctl) {
         return Scaffold(
@@ -19,14 +21,15 @@ class CardListePage extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Cartes disponibles"),
             actions: [
-              IconButton(
-                onPressed: () => Get.to(() => const AuthPage()),
-                icon: const CircleAvatar(
-                  radius: 14,
-                  backgroundColor: Colors.white,
-                  backgroundImage: AssetImage("assets/icons/user2.png"),
+              if (ctl.userToken == '')
+                IconButton(
+                  onPressed: () => Get.to(() => const AuthPage()),
+                  icon: const CircleAvatar(
+                    radius: 14,
+                    backgroundColor: Colors.white,
+                    backgroundImage: AssetImage("assets/icons/user2.png"),
+                  ),
                 ),
-              ),
             ],
           ),
           body: ctl.isLoading

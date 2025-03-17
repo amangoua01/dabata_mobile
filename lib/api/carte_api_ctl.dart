@@ -12,7 +12,7 @@ abstract class CarteApiCtl {
         options: Options(headers: WebConst.headers),
       );
       if (res.statusCode == 200) {
-        print('cartes ${res.data!}');
+        //print('cartes ${res.data!}');
         return DataResponse.success(
             data: (res.data as List).map((e) => Carte.fromJson(e)).toList());
       }

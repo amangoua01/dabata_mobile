@@ -60,7 +60,7 @@ class User {
     data['email'] = email;
     data['prenom'] = prenom;
     data['password'] = password;
-    data['fullname'] = fullname;
+    data['fullName'] = fullname;
     data['telephone'] = telephone;
     data['lieuResidence'] = lieuResidence;
     data['roles'] = roles.map((item) => item.toJson()).toList();

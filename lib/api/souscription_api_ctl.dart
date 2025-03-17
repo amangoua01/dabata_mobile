@@ -69,4 +69,29 @@ abstract class SouscriptionApiCtl {
       return DataResponse.error(systemError: e, systemtraceError: st);
     }
   }
+
+  static Future<DataResponse> cardSuscribe(int id) async {
+    try {
+      var res = await WebConst.client.post(
+        '${Const.baseUrl}/api/souscriptions',
+        data: {
+          "etat": 1,
+          "carte": "/api/cartes/$id",
+          "dateLivraison": DateTime.now().toString(),
+        },
+        options: Options(
+          headers: WebConst.authHeaders,
+        ),
+      );
+      if (res.statusCode == 200) {
+        return DataResponse.success(data: Souscription.fromJson(res.data));
+      } else {
+        return DataResponse.error(systemError: res.data);
+      }
+    } on DioException catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    } catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
 }

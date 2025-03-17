@@ -1,4 +1,5 @@
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
+import 'package:dabata_mobile/tools/widgets/placeholder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
@@ -54,35 +55,39 @@ class CardGainsSubPage extends StatelessWidget {
             ),
           ),
         ),
-        ListTile(
-          leading: CircleAvatar(
-            backgroundColor: AppColors.primary.shade100,
-            child: Image.asset(
-              "assets/icons/cadeau.png",
-              height: 30,
-              fit: BoxFit.cover,
-            ),
-          ),
-          title: const Text(
-            "Montant rendu",
-            style: TextStyle(
-              fontSize: 15,
-            ),
-          ),
-          trailing: Container(
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.green.shade200,
-              borderRadius: BorderRadius.circular(10),
-              //shape: BoxShape.circle,
-            ),
-            child: Text(
-              carte.montantRendu!.toAmount(
-                devise: "F",
+        PlaceHolderWidget(
+          condition: carte.montantRendu! > 0,
+          placeholder: const SizedBox(),
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: AppColors.primary.shade100,
+              child: Image.asset(
+                "assets/icons/cadeau.png",
+                height: 30,
+                fit: BoxFit.cover,
               ),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
+            ),
+            title: const Text(
+              "Montant rendu",
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            ),
+            trailing: Container(
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.green.shade200,
+                borderRadius: BorderRadius.circular(10),
+                //shape: BoxShape.circle,
+              ),
+              child: Text(
+                carte.montantRendu!.toAmount(
+                  devise: "F",
+                ),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
               ),
             ),
           ),
