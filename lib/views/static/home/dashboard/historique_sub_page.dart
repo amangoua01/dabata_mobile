@@ -32,11 +32,12 @@ class HistoriqueSubPage extends StatelessWidget {
                 ),
               ),
               ...ctl.paiements.map((p) => HistoricPaymentCard(
-                    amount: p.montant,
+                    amount: p.montant ?? 0,
                     title:
                         'Mode de paiement : ${p.modePaiement?.libelle ?? 'n/a'}',
                     //categorie: p.categorie.libelle,
-                    dateTime: p.datePaiement,
+                    dateTime:
+                        p.datePaiement?.toString() ?? DateTime.now().toString(),
                   )),
             ],
           ),

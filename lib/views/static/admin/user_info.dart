@@ -18,9 +18,11 @@ class UserInfo extends StatelessWidget {
           children: [
             const Gap(30),
             Container(
-                height: 100.h,
-                decoration: BoxDecoration(
-                    color: Colors.grey.shade200, shape: BoxShape.circle)),
+              height: 100.h,
+              decoration: BoxDecoration(
+                  color: Colors.grey.shade200, shape: BoxShape.circle),
+              child: const Icon(Icons.person, size: 50),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Container(

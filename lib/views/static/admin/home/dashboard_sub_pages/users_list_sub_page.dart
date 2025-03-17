@@ -26,33 +26,38 @@ class UsersListSubPage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                const CTextField(
-                  hintText: "Rechercher un utilisateur",
-                  suffixIcon: Icon(Icons.search),
-                ),
+                CTextField(
+                    hintText: "Rechercher un utilisateur",
+                    suffixIcon: const Icon(Icons.search),
+                    onChanged: (value) => ctl.onSearchUser(value)),
                 const Gap(10),
                 Expanded(
-                    child: ListView(children: [
-                  ...ctl.users.map((e) => UserDescriptionCard(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: AppColors.primary.shade100,
-                          backgroundImage:
-                              const AssetImage("assets/icons/user2.png"),
-                        ), //Image.asset("assets/icons/user2.png"),
-                        title: Text(
-                          '${e.fullname.value} ',
-                        ),
-                        subtitle: Text(e.telephone ?? '',
-                            style: const TextStyle(
-                              fontSize: 12,
-                            )),
-                        trailing: const Icon(Icons.arrow_forward_ios),
-                        onTap: () => Get.to(
-                          () => UserDetailPage(e),
-                        ),
-                      ))
-                ])),
+                    child: ctl.isLoading
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                            color: AppColors.primary,
+                          ))
+                        : ListView(children: [
+                            ...ctl.users.map((e) => UserDescriptionCard(
+                                  leading: CircleAvatar(
+                                    radius: 25,
+                                    backgroundColor: AppColors.primary.shade100,
+                                    backgroundImage: const AssetImage(
+                                        "assets/icons/user2.png"),
+                                  ), //Image.asset("assets/icons/user2.png"),
+                                  title: Text(
+                                    '${e.fullname.value} ',
+                                  ),
+                                  subtitle: Text(e.telephone ?? '',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      )),
+                                  trailing: const Icon(Icons.arrow_forward_ios),
+                                  onTap: () => Get.to(
+                                    () => UserDetailPage(e),
+                                  ),
+                                ))
+                          ])),
               ],
             ),
           ),

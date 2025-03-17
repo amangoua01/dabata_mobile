@@ -1,6 +1,6 @@
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/views/static/admin/user_info.dart';
-import 'package:dabata_mobile/views/static/home/user/details_user/historic_sub_page.dart';
+import 'package:dabata_mobile/views/static/home/user/details_user/user_historic_sub_page.dart';
 import 'package:dabata_mobile/views/static/home/user/details_user/user_card_subscribed_sub_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
@@ -33,8 +33,8 @@ class UserDetailPage extends StatelessWidget {
             ],
             children: [
               UserInfo(user),
-              const UserCardSubscribedSubPage(),
-              const HistoricSubPage(),
+              UserCardSubscribedSubPage(user),
+              UserHistoricSubPage(user),
             ],
           ),
         );

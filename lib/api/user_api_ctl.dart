@@ -61,7 +61,7 @@ abstract class UserApiCtl {
         ),
       );
       if (res.statusCode == 200) {
-        print("users ${res.data}");
+        //print("users ${res.data}");
         return DataResponse.success(
             data: (res.data as List).map((e) => User.fromJson(e)).toList());
       } else {
