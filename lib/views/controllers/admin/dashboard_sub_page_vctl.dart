@@ -101,7 +101,7 @@ class DashboardSubPageVctl extends GetxController {
     return total > 0 ? (categoryTotal / total * 100) : 0;
   }
 
-  // Obtenir les données pour le diagramme circulaire par catégorie
+// Obtenir les données pour le diagramme circulaire par catégorie
   List<Map<String, dynamic>> get pieChartDataByCategory {
     List<Map<String, dynamic>> result = [];
     Map<String, int> totalsByCategory = {};
@@ -113,13 +113,22 @@ class DashboardSubPageVctl extends GetxController {
           (totalsByCategory[category] ?? 0) + (carte.nombreSouscriptions ?? 0);
     }
 
+    // Ajouter la catégorie Gadget si elle n'existe pas
+    if (!totalsByCategory.containsKey("Gadget")) {
+      totalsByCategory["Gadget"] = 0;
+    }
+
+    // Calculer le total de toutes les souscriptions pour les pourcentages
+    int totalSouscriptions =
+        totalsByCategory.values.fold(0, (sum, total) => sum + total);
+
     // Convertir en format pour le diagramme
     totalsByCategory.forEach((category, total) {
-      result.add({
-        'category': category,
-        'total': total,
-        'percentage': getCategorySouscriptionsPercentage(category)
-      });
+      double percentage =
+          totalSouscriptions > 0 ? (total / totalSouscriptions * 100) : 0;
+
+      result.add(
+          {'category': category, 'total': total, 'percentage': percentage});
     });
 
     return result;

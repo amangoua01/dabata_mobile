@@ -29,18 +29,18 @@ class EnCoursPage extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  const CCard(
+                  CCard(
                     title: "Montant restant",
-                    amount: 1000000,
+                    amount: ctl.totalAmountRest.toInt(),
                     unite: "F",
                   ).animate().flipH(
                         delay: 500.ms,
                         duration: 500.ms,
                         curve: Curves.easeInOut,
                       ),
-                  const CCard(
+                  CCard(
                     title: "Montant total",
-                    amount: 15000,
+                    amount: ctl.totalAmount.toInt(),
                     unite: "F",
                   ).animate().flip(
                         delay: 600.ms,

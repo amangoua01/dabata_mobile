@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../../tools/constants/app_colors.dart';
+
 class UserHistoricSubPage extends StatelessWidget {
   final User user;
 
@@ -15,30 +17,35 @@ class UserHistoricSubPage extends StatelessWidget {
     return GetBuilder<UserHistoricSubPageVctl>(
       init: UserHistoricSubPageVctl(user: user),
       builder: (ctl) {
-        return ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 15, left: 10),
-              child: Text(
-                "Mes dernières opérations",
-                style: TextStyle(
-                  fontSize: 15.sp,
-                  color: Colors.grey.shade600,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            ...ctl.paiements.map((p) => HistoricPaymentCard(
-                  amount: p.montant ?? 0,
-                  title:
-                      'Mode de paiement : ${p.modePaiement?.libelle ?? 'n/a'}',
-                  //categorie: p.categorie.libelle,
-                  dateTime:
-                      p.datePaiement?.toString() ?? DateTime.now().toString(),
-                )),
-          ],
-        );
+        return ctl.isLoading
+            ? const Center(
+                child: CircularProgressIndicator(
+                color: AppColors.primary,
+              ))
+            : ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15, left: 10),
+                    child: Text(
+                      "Mes dernières opérations",
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        color: Colors.grey.shade600,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  ...ctl.paiements.map((p) => HistoricPaymentCard(
+                        amount: p.montant ?? 0,
+                        title:
+                            'Mode de paiement : ${p.modePaiement?.libelle ?? 'n/a'}',
+                        //categorie: p.categorie.libelle,
+                        dateTime: p.datePaiement?.toString() ??
+                            DateTime.now().toString(),
+                      )),
+                ],
+              );
       },
     );
   }

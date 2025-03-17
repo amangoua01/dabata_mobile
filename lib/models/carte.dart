@@ -168,7 +168,7 @@ class Carte {
 
   double get tauxCotisation {
     if (montantTotal != null && montantTotal! > 0) {
-      return montantJournalier! / montantTotal!;
+      return montantJournalier! / montantTotal! * 100;
     } else {
       return 0;
     }

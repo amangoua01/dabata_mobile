@@ -9,7 +9,8 @@ class LoginVctl extends GetxController {
   final formKey = GlobalKey<FormState>();
 
   var passwordController = TextEditingController(text: '12345678');
-  var emailController = TextEditingController(text: 'yve@gmail.com');
+  var emailController =
+      TextEditingController(text: 'pelletier.isaac@dbmail.com');
 
   var getUserConnected = User();
 

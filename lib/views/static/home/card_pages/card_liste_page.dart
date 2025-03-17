@@ -1,5 +1,6 @@
 import 'package:dabata_mobile/tools/widgets/card_item.dart';
 import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
+import 'package:dabata_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:dabata_mobile/views/controllers/home/card_liste_page_vctl.dart';
 import 'package:dabata_mobile/views/static/auth/auth_page.dart';
 import 'package:dabata_mobile/views/static/home/card_pages/card_list_page_shimmer.dart';
@@ -42,27 +43,35 @@ class CardListePage extends StatelessWidget {
                       .toList(),
                   children: ctl.uniqueCategories
                       .map(
-                        (category) => GridView.builder(
-                          padding: const EdgeInsets.all(10),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 10,
-                            childAspectRatio: .7,
-                          ),
-                          itemCount: ctl.card
-                              .where(
-                                  (carte) => carte.categorie?.id == category.id)
-                              .length,
-                          itemBuilder: (context, index) {
-                            final filteredCartes = ctl.card
+                        (category) => ctl.card
                                 .where((carte) =>
                                     carte.categorie?.id == category.id)
-                                .toList();
-                            return CardItem(filteredCartes[index]);
-                          },
-                        ),
+                                .isEmpty
+                            ? const WrapperBodyListView(
+                                loading: false,
+                                children: [],
+                              )
+                            : GridView.builder(
+                                padding: const EdgeInsets.all(10),
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 10,
+                                  crossAxisSpacing: 10,
+                                  childAspectRatio: .7,
+                                ),
+                                itemCount: ctl.card
+                                    .where((carte) =>
+                                        carte.categorie?.id == category.id)
+                                    .length,
+                                itemBuilder: (context, index) {
+                                  final filteredCartes = ctl.card
+                                      .where((carte) =>
+                                          carte.categorie?.id == category.id)
+                                      .toList();
+                                  return CardItem(filteredCartes[index]);
+                                },
+                              ),
                       )
                       .toList(),
                 ),

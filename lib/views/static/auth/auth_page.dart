@@ -16,7 +16,10 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BottomVersionBar(),
+      bottomNavigationBar: Image.asset(
+        'assets/images/Logo_Dabata.png',
+        height: 60,
+      ), //const BottomVersionBar(),
       appBar: AppBar(
         title: const Text(Env.appName),
       ),

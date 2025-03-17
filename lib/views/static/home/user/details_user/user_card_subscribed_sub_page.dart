@@ -1,4 +1,5 @@
 import 'package:dabata_mobile/tools/components/card_suscribe.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/views/controllers/home/user/user_card_subscribed_vctl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -18,23 +19,24 @@ class UserCardSubscribedSubPage extends StatelessWidget {
       init: UserCardSubscribedVctl(user: user),
       builder: (ctl) {
         return ctl.isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : ListView(children: [
-                Gap(20.h),
-                Column(
-                  children: [
-                    ...ctl.allcardGetted.map(
-                      (e) => CardSuscribe(
-                        e,
-                        value: e.tauxCotisation,
-                      ),
+            ? const Center(
+                child: CircularProgressIndicator(
+                color: AppColors.primary,
+              ))
+            : ListView(
+                children: [
+                  Gap(20.h),
+                  ...ctl.allcardGetted.map(
+                    (e) => CardSuscribe(
+                      e,
+                      value: e.tauxCotisation,
                     ),
-                  ]
-                      .animate(interval: 500.ms)
-                      .slideX(delay: NumDurationExtensions(1).seconds)
-                      .fade(),
-                )
-              ]);
+                  ),
+                ]
+                    .animate(interval: 500.ms)
+                    .slideX(delay: NumDurationExtensions(1).seconds)
+                    .fade(),
+              );
       },
     );
   }

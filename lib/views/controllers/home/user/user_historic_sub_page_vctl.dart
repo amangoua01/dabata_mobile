@@ -9,14 +9,17 @@ class UserHistoricSubPageVctl extends GetxController {
   final User user;
   UserHistoricSubPageVctl({required this.user});
 
-  bool loading = false;
+  bool isLoading = false;
 
   List<Paiement> paiements = [];
 
   Future<void> getPaiements() async {
+    isLoading = true;
+    update();
     print("user ${user.toJson()}  user id ${user.id}");
     var res = await PaiementApiCtl.getAllUserpayment(user.id.toString());
     if (res.status) {
+      isLoading = false;
       paiements = res.data!;
       print("paiements ${paiements.map((p) => p.toJson())}");
       update();

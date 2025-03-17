@@ -11,12 +11,10 @@ class UserCardSubscribedVctl extends GetxController {
   UserCardSubscribedVctl({required this.user});
 
   bool isLoading = false;
-
   List<Paiement> paiements = [];
   List<Souscription> souscriptions = [];
 
   List<Souscription> get getAllCard => souscriptions;
-
   List<Carte> get allcardGetted => getAllCard.map((s) => s.carte!).toList();
 
   Future<void> userCardSubscribed() async {
@@ -33,8 +31,12 @@ class UserCardSubscribedVctl extends GetxController {
   }
 
   Future<void> getPaiements() async {
+    isLoading = true;
+    update();
+
     var res = await PaiementApiCtl.getAllUserpayment(user.id.toString());
     if (res.status) {
+      isLoading = false;
       paiements = res.data!;
       print("paiements ${paiements.map((p) => p.toJson())}");
       update();

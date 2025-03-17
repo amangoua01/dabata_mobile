@@ -123,14 +123,13 @@ class DashboardSubPage extends StatelessWidget {
                           sectionsSpace: 2,
                           centerSpaceRadius: 40,
                           sections: ctl.pieChartDataByCategory.map((data) {
-                            // Générer une couleur basée sur l'index pour différencier les catégories
                             Color color = AppColors.primary;
                             if (data['category'] == 'Marché') {
                               color = AppColors.primary;
                             } else if (data['category'] == 'Mixte') {
-                              color = AppColors.primary.shade300;
-                            } else {
-                              color = AppColors.primary.shade100;
+                              color = Colors.blue.shade500;
+                            } else if (data['category'] == 'Gadget') {
+                              color = Colors.greenAccent.shade400;
                             }
 
                             return PieChartSectionData(
@@ -163,9 +162,9 @@ class DashboardSubPage extends StatelessWidget {
                             if (data['category'] == 'Marché') {
                               color = AppColors.primary;
                             } else if (data['category'] == 'Mixte') {
-                              color = AppColors.primary.shade300;
-                            } else {
-                              color = AppColors.primary.shade100;
+                              color = Colors.blue.shade500;
+                            } else if (data['category'] == 'Gadget') {
+                              color = Colors.greenAccent.shade400;
                             }
 
                             return Padding(

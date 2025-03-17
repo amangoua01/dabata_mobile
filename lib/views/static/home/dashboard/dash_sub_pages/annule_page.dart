@@ -58,11 +58,11 @@ class AnnulePage extends StatelessWidget {
                                 trailing: Container(
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Colors.green,
+                                    color: Colors.red,
                                   ),
                                   child: const Icon(
-                                    Icons.done,
-                                    color: Colors.greenAccent,
+                                    Icons.cancel,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),

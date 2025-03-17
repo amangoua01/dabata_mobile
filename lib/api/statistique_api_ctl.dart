@@ -107,4 +107,29 @@ abstract class StatistiqueApiCtl {
       return DataResponse.error(systemError: e, systemtraceError: st);
     }
   }
+
+  static Future<DataResponse<List<MontantSouscritStats>>>
+      getAllSubcriptionByAmountTypeForUser() async {
+    try {
+      var res = await WebConst.client.get(
+        '${Const.baseUrl}/api/statistiques/user/souscriptions-by-montant',
+        options: Options(
+          headers: WebConst.authHeaders,
+        ),
+      );
+      if (res.statusCode == 200) {
+        //print("amount stats ${res.data}");
+        return DataResponse.success(
+            data: (res.data as List)
+                .map((e) => MontantSouscritStats.fromJson(e))
+                .toList());
+      } else {
+        return DataResponse.error(systemError: res.data);
+      }
+    } on DioException catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    } catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
 }

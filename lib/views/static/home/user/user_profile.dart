@@ -12,9 +12,9 @@ class UserProfile extends StatelessWidget {
   final bool isUserView;
   final User user;
   const UserProfile({
-    this.isUserView = true,
     super.key,
     required this.user,
+    this.isUserView = true,
   });
 
   @override

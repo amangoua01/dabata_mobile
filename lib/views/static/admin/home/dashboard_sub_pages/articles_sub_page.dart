@@ -12,50 +12,54 @@ class ArticlesSubPage extends StatelessWidget {
       init: ArticlesSubPageVctl(),
       builder: (ctl) {
         return Scaffold(
-          appBar: AppBar(title: const Text("Cumule des articles")),
-          body: Center(
-              child: Column(children: [
-            ...ctl.articlesCumules.map(
-              (e) => ListTile(
-                leading: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.primary.shade100,
+          appBar: AppBar(title: const Text("Cumule des gains")),
+          body: ctl.isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(
+                  color: AppColors.primary,
+                ))
+              : ListView(children: [
+                  ...ctl.articlesCumules.map(
+                    (e) => ListTile(
+                      leading: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: AppColors.primary.shade100,
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          backgroundColor: AppColors.primary.shade100,
+                          child: Image.asset(
+                            "assets/images/marche-removebg.png",
+                            height: 35,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      title: Text(
+                        e.libelle.toString(),
+                        style: const TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                      trailing: Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.green.shade200,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Text(
+                          e.quantiteCumul!.toInt().toString(),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.primary.shade100,
-                    child: Image.asset(
-                      "assets/images/marche-removebg.png",
-                      height: 35,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                title: Text(
-                  e.libelle.toString(),
-                  style: const TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-                trailing: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.green.shade200,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Text(
-                    e.quantiteCumul!.toInt().toString(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ),
-            )
-          ])),
+                  )
+                ]),
         );
       },
     );

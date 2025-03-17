@@ -1,4 +1,6 @@
+import 'package:dabata_mobile/api/statistique_api_ctl.dart';
 import 'package:dabata_mobile/models/carte.dart';
+import 'package:dabata_mobile/models/montant_souscrit_stats.dart';
 import 'package:dabata_mobile/models/souscription.dart';
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/cache/cache.dart';
@@ -11,6 +13,8 @@ class DashboardVctl extends GetxController
     with GetSingleTickerProviderStateMixin {
   var user = Get.find<User>();
   var userToken = '';
+
+  MontantSouscritStats? amountStatData;
 
   List<Carte> cartes = [];
   List<Souscription> souscriptions = [];
@@ -58,6 +62,19 @@ class DashboardVctl extends GetxController
     }
   }
 
+  Future<void> getAllAmountTypeStats() async {
+    var res = await StatistiqueApiCtl.getAllSubcriptionByAmountTypeForUser();
+    if (res.status && res.data != null && res.data!.isNotEmpty) {
+      amountStatData = res.data!.first;
+      print("amount stats ${amountStatData?.toJson()}");
+      update();
+    }
+  }
+
+  double get totalAmount => amountStatData?.montantTotal ?? 0;
+  double get totalAmountBuyed => amountStatData?.montantPaye ?? 0;
+  double get totalAmountRest => amountStatData?.montantRestant ?? 0;
+
   late final TabController controller;
 
   @override
@@ -75,8 +92,8 @@ class DashboardVctl extends GetxController
   @override
   void onReady() {
     super.onReady();
-    getUserAllSubscriptionCard();
     fetchUserToken();
-    //print('User ${user.toJson()}');
+    getUserAllSubscriptionCard();
+    getAllAmountTypeStats();
   }
 }
