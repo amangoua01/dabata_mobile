@@ -1,11 +1,11 @@
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:dabata_mobile/tools/widgets/card_item.dart';
+import 'package:dabata_mobile/views/static/auth/auth_page.dart';
 import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
 import 'package:dabata_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:dabata_mobile/views/controllers/home/card_liste_page_vctl.dart';
-import 'package:dabata_mobile/views/static/auth/auth_page.dart';
 import 'package:dabata_mobile/views/static/home/card_pages/card_list_page_shimmer.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CardListePage extends StatelessWidget {
   const CardListePage({

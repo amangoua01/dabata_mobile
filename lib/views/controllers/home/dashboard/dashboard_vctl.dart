@@ -40,11 +40,27 @@ class DashboardVctl extends GetxController
   List<Carte> get cartesAnnuler =>
       souscriptionsAnnuler.map((s) => s.carte!).toList();
 
+/*   Future<void> getUserAllSubscriptionCard() async {
+    var res = await SouscriptionApiCtl.getUserSubscrition(user.id.toString());
+    if (res.status) {
+      cartes = res.data!.map((s) => Carte.fromJson(s.carte!.toJson())).toList();
+      souscriptions = res.data!;
+    }
+    update();
+  } */
   Future<void> getUserAllSubscriptionCard() async {
     var res = await SouscriptionApiCtl.getUserSubscrition(user.id.toString());
     if (res.status) {
-      //cartes = res.data!.map((s) => Carte.fromJson(s.carte!.toJson())).toList();
       souscriptions = res.data!;
+
+      // Créer les cartes avec les montants cotisés
+      cartes = res.data!.map((s) {
+        var carte = Carte.fromJson(s.carte!.toJson());
+        // Ajouter le montant cotisé à la carte
+        carte.montantCotise = s.montantCotise;
+        print('cotisation ${s.montantCotise}');
+        return carte;
+      }).toList();
     }
     update();
   }

@@ -30,7 +30,7 @@ class AdminDashboard extends StatelessWidget {
                   label: '',
                 ),
                 const BottomNavigationBarItem(
-                  icon: Icon(Icons.card_giftcard),
+                  icon: Icon(Icons.list),
                   label: '',
                 ),
                 BottomNavigationBarItem(

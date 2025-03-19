@@ -7,10 +7,6 @@ import 'package:dabata_mobile/tools/constants/web_const.dart';
 abstract class SouscriptionApiCtl {
   static Future<DataResponse<List<Souscription>>> getAll() async {
     try {
-      /* print("En-têtes HTTP: ${WebConst.headers}");
-      print("En-têtes HTTP: ${WebConst.authHeaders}");
-      print("Token utilisé pour la requête: ${WebConst.jwt}"); */
-
       var res = await WebConst.client.get(
         '${Const.baseUrl}/api/souscriptions',
         options: Options(
@@ -49,6 +45,7 @@ abstract class SouscriptionApiCtl {
         ),
       );
       if (res.statusCode == 200) {
+        //print("souscriptions ${res.data!.map((e) => e.toString())}");
         return DataResponse.success(
             data: (res.data as List)
                 .map((e) => Souscription.fromJson(e))
@@ -75,7 +72,7 @@ abstract class SouscriptionApiCtl {
       var res = await WebConst.client.post(
         '${Const.baseUrl}/api/souscriptions',
         data: {
-          "etat": 1,
+          "etat": 2,
           "carte": "/api/cartes/$id",
           "dateLivraison": DateTime.now().toString(),
         },

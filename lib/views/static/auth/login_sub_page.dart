@@ -35,28 +35,23 @@ class LoginSubPage extends StatelessWidget {
                   labelText: "Mot de passe",
                 ),
                 const Gap(20),
-                ctl.isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                        color: AppColors.primary,
-                      ))
-                    : CButton(
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.login),
-                            Gap(5),
-                            Text("Connexion"),
-                          ],
-                        ),
-                        onPressed: () {
-                          var user = User(
-                            email: ctl.emailController.text,
-                            password: ctl.passwordController.text,
-                          );
+                CButton(
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.login),
+                        Gap(5),
+                        Text("Connexion"),
+                      ],
+                    ),
+                    onPressed: () {
+                      var user = User(
+                        email: ctl.emailController.text,
+                        password: ctl.passwordController.text,
+                      );
 
-                          ctl.submit(user);
-                        }),
+                      ctl.submit(user);
+                    }),
 
                 const Gap(10),
                 // Row(

@@ -26,4 +26,25 @@ abstract class PaiementApiCtl {
       return DataResponse.error(systemError: e, systemtraceError: st);
     }
   }
+
+  static Future<DataResponse<List<Paiement>>> getAllUserpaymentList() async {
+    try {
+      var res = await WebConst.client.get(
+        '${Const.baseUrl}/api/paiements',
+        options: Options(
+          headers: WebConst.authHeaders,
+        ),
+      );
+      if (res.statusCode == 200) {
+        return DataResponse.success(
+            data: (res.data as List).map((e) => Paiement.fromJson(e)).toList());
+      } else {
+        return DataResponse.error(systemError: res.data);
+      }
+    } on DioException catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    } catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
 }
