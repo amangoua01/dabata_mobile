@@ -1,11 +1,10 @@
+import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
+import 'package:dabata_mobile/views/controllers/auth/register_vctl.dart';
+import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:flutter/material.dart';
-import 'package:dabata_mobile/views/controllers/auth/register_vctl.dart';
-import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
-import 'package:dabata_mobile/views/static/home/dashboard/dashboard.dart';
-import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
 
 class RegisterSubPage extends StatelessWidget {
   const RegisterSubPage({super.key});

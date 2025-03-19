@@ -43,8 +43,10 @@ class PaiementSubPage extends StatelessWidget {
                           ),
                           subtitle: Row(
                             children: [
-                              Text(
-                                  'paiement : ${e.modePaiement!.libelle.value}'),
+                              Expanded(
+                                child: Text(
+                                    'paiement: ${e.modePaiement!.libelle.value}'),
+                              ),
                               Gap(10.w),
                               Text(e.datePaiement.toFrenchDateTime),
                             ],

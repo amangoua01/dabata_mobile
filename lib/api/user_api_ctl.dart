@@ -1,9 +1,9 @@
-import 'package:dabata_mobile/tools/cache/cache.dart';
-import 'package:dio/dio.dart';
 import 'package:dabata_mobile/models/users.dart';
+import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:dabata_mobile/tools/constants/const.dart';
-import 'package:dabata_mobile/tools/web/data_response.dart';
 import 'package:dabata_mobile/tools/constants/web_const.dart';
+import 'package:dabata_mobile/tools/web/data_response.dart';
+import 'package:dio/dio.dart';
 
 abstract class UserApiCtl {
   static Future<DataResponse<User>> register(User user) async {
@@ -46,6 +46,16 @@ abstract class UserApiCtl {
       } else {
         return DataResponse.error(
             message: res.data["message"] ?? "Une erreur s'est produite");
+      }
+    } on DioException catch (e, st) {
+      if (e.response?.statusCode == 401) {
+        return DataResponse.error(
+          message: "Email ou mot de passe incorrect",
+          systemError: e,
+          systemtraceError: st,
+        );
+      } else {
+        return DataResponse.error(systemError: e, systemtraceError: st);
       }
     } catch (e, st) {
       return DataResponse.error(systemError: e, systemtraceError: st);

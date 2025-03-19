@@ -1,12 +1,11 @@
+import 'package:dabata_mobile/models/users.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
+import 'package:dabata_mobile/views/controllers/auth/login_vctl.dart';
+import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:flutter/material.dart';
-import 'package:dabata_mobile/models/users.dart';
-import 'package:dabata_mobile/tools/constants/app_colors.dart';
-import 'package:dabata_mobile/views/controllers/auth/login_vctl.dart';
-import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
-import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
 
 class LoginSubPage extends StatelessWidget {
   const LoginSubPage({super.key});
@@ -26,7 +25,7 @@ class LoginSubPage extends StatelessWidget {
                 CTextFormField(
                   controller: ctl.emailController,
                   prefixIcon: const Icon(Icons.person),
-                  labelText: "email",
+                  labelText: "Email",
                 ),
                 CTextFormField(
                   controller: ctl.passwordController,
