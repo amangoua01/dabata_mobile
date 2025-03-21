@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/models/auth_user.dart';
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:dabata_mobile/tools/constants/const.dart';
@@ -8,9 +9,6 @@ import 'package:dio/dio.dart';
 abstract class UserApiCtl {
   static Future<DataResponse<User>> register(User user) async {
     try {
-      print("user ${user.toJson()}");
-      print('URL: ${Const.baseUrl}/api/users');
-
       var res = await WebConst.client.post(
         '${Const.baseUrl}/api/users',
         data: user.toJson(),
@@ -27,14 +25,14 @@ abstract class UserApiCtl {
     }
   }
 
-  static Future<DataResponse<User>> login(User user) async {
+  static Future<DataResponse<AuthUser>> login(
+      {required String email, required String password}) async {
     try {
-      //print("user ${user.toJson()}");
       var res = await WebConst.client.post(
         '${Const.baseUrl}/auth',
         data: {
-          "email": user.email,
-          "password": user.password,
+          "email": email,
+          "password": password,
         },
         options: Options(headers: WebConst.headers),
       );
@@ -42,7 +40,7 @@ abstract class UserApiCtl {
         //print("user logged ${res.data['data']}");
         WebConst.jwt = res.data['token'];
         Cache.setString("jwt", res.data['token']);
-        return DataResponse.success(data: User.fromJson(res.data['data']));
+        return DataResponse.success(data: AuthUser.fromJson(res.data));
       } else {
         return DataResponse.error(
             message: res.data["message"] ?? "Une erreur s'est produite");

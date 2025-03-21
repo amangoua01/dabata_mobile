@@ -1,4 +1,5 @@
 import 'package:dabata_mobile/models/role.dart';
+import 'package:dabata_mobile/tools/extensions/types/map.dart';
 
 class User {
   int? id;
@@ -11,7 +12,9 @@ class User {
   String? telephone;
   String? lieuResidence;
   List<Roles> roles = [];
-  //String? sexe;
+  String? fcmToken;
+  String? sexe;
+  String? createdAt;
 
   User({
     this.id,
@@ -24,7 +27,9 @@ class User {
     this.telephone,
     this.lieuResidence,
     this.roles = const [],
-    //this.sexe,
+    this.fcmToken,
+    this.sexe,
+    this.createdAt,
   });
 
   User.fromJson(Map<String, dynamic> json) {
@@ -38,6 +43,9 @@ class User {
     password = json['password'];
     telephone = json['telephone'];
     lieuResidence = json['lieuResidence'];
+    sexe = json['sexe'];
+    createdAt = json['createdAt'];
+    fcmToken = json['fcmToken'];
     if (json['roles'] != null) {
       if (json['roles'] is List) {
         for (var role in json['roles']) {
@@ -66,4 +74,22 @@ class User {
     data['roles'] = roles.map((item) => item.toJson()).toList();
     return data;
   }
+
+  Json toCache() => {
+        'id': id,
+        'uuId': uuId,
+        'nom': nom,
+        'email': email,
+        'prenom': prenom,
+        'password': password,
+        'fullName': fullname,
+        'telephone': telephone,
+        'lieuResidence': lieuResidence,
+        'roles': roles.map((item) => item.toJson()).toList(),
+        'fcmToken': fcmToken,
+        'sexe': sexe,
+        'createdAt': createdAt,
+      };
+
+  bool get isAdmin => roles.any((e) => e.libelle == "ROLE_ADMIN");
 }

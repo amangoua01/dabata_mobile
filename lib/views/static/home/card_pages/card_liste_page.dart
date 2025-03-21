@@ -1,11 +1,11 @@
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:dabata_mobile/tools/widgets/card_item.dart';
-import 'package:dabata_mobile/views/static/auth/auth_page.dart';
 import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
 import 'package:dabata_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:dabata_mobile/views/controllers/home/card_liste_page_vctl.dart';
+import 'package:dabata_mobile/views/static/auth/auth_page.dart';
 import 'package:dabata_mobile/views/static/home/card_pages/card_list_page_shimmer.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CardListePage extends StatelessWidget {
   const CardListePage({
@@ -22,15 +22,20 @@ class CardListePage extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Cartes disponibles"),
             actions: [
-              if (ctl.userToken == '')
-                IconButton(
-                  onPressed: () => Get.to(() => const AuthPage()),
-                  icon: const CircleAvatar(
-                    radius: 14,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage("assets/icons/user2.png"),
-                  ),
+              IconButton(
+                onPressed: () {
+                  if (ctl.jwt.isEmpty) {
+                    Get.to(() => const AuthPage());
+                  } else {
+                    Get.to(() => const AuthPage());
+                  }
+                },
+                icon: const CircleAvatar(
+                  radius: 14,
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage("assets/icons/user2.png"),
                 ),
+              ),
             ],
           ),
           body: ctl.isLoading

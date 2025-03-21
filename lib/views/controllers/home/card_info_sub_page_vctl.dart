@@ -1,9 +1,7 @@
 import 'package:dabata_mobile/api/souscription_api_ctl.dart';
-import 'package:dabata_mobile/models/souscription.dart';
 import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:dabata_mobile/views/static/home/dashboard/dashboard.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class CardInfoSubPageVctl extends GetxController {
   var userToken = '';

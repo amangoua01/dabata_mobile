@@ -1,30 +1,29 @@
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
-import 'package:dabata_mobile/models/categorie.dart';
-import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:dabata_mobile/api/carte_api_ctl.dart';
 import 'package:dabata_mobile/api/categorie_api_clt.dart';
+import 'package:dabata_mobile/models/carte.dart';
+import 'package:dabata_mobile/models/categorie.dart';
+import 'package:dabata_mobile/tools/cache/cache.dart';
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
+import 'package:dabata_mobile/views/controllers/abstract/auth_view_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CardListePageVctl extends GetxController
+class CardListePageVctl extends AuthViewController
     with GetSingleTickerProviderStateMixin {
   late TabController controller;
-  List card = [];
-  List categories = [];
-  var userToken = "";
+  List<Carte> card = [];
+  List<Categorie> categories = [];
   bool isLoading = true;
 
   Future<void> fetchUserToken() async {
-    try {
-      var jwt = await Cache.getString('jwt');
-      userToken = jwt!;
+    var data = await Cache.getString('autUser');
+    if (data.isJson) {
+      userFromCache(data.value);
       update();
-      print("userToken $userToken");
-    } catch (e) {
-      print('Erreur lors de la récupération du token: $e');
     }
   }
 
-  void _initTabController() {
+  void initTabController() {
     final categoriesCount = uniqueCategories.length;
     if (categoriesCount == 0) {
       debugPrint("Aucune catégorie trouvée");
@@ -76,7 +75,7 @@ class CardListePageVctl extends GetxController
     super.onReady();
 
     Future.wait([getAllCard(), getAllCategorie()]).then((_) {
-      _initTabController();
+      initTabController();
       update();
     });
 

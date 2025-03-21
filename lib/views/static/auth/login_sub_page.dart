@@ -1,4 +1,3 @@
-import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
 import 'package:dabata_mobile/views/controllers/auth/login_vctl.dart';
@@ -44,12 +43,7 @@ class LoginSubPage extends StatelessWidget {
                       ],
                     ),
                     onPressed: () {
-                      var user = User(
-                        email: ctl.emailController.text,
-                        password: ctl.passwordController.text,
-                      );
-
-                      ctl.submit(user);
+                      ctl.submit();
                     }),
 
                 const Gap(10),
