@@ -5,7 +5,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class UserListSubPageVctl extends GetxController {
   List<User> users = [];
-  // ignore: prefer_final_fields
+
   List<User> _allUsers = [];
 
   bool isLoading = false;
@@ -17,8 +17,6 @@ class UserListSubPageVctl extends GetxController {
     if (res.status) {
       isLoading = false;
       _allUsers = res.data!;
-      print("_allUsers List ${_allUsers.map((e) => e.toJson())}");
-
       users = _allUsers;
     }
     update();

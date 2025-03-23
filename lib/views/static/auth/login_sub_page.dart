@@ -7,12 +7,13 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginSubPage extends StatelessWidget {
-  const LoginSubPage({super.key});
+  final bool withReturn;
+  const LoginSubPage(this.withReturn, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginVctl>(
-      init: LoginVctl(),
+      init: LoginVctl(withReturn: withReturn),
       builder: (ctl) {
         return Scaffold(
           body: Container(
@@ -28,9 +29,18 @@ class LoginSubPage extends StatelessWidget {
                 ),
                 CTextFormField(
                   controller: ctl.passwordController,
-                  obscureText: true,
+                  obscureText: ctl.hidePass,
                   prefixIcon: const Icon(Icons.lock),
                   labelText: "Mot de passe",
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      ctl.hidePass = !ctl.hidePass;
+                      ctl.update();
+                    },
+                    icon: ctl.hidePass
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
+                  ),
                 ),
                 const Gap(20),
                 CButton(

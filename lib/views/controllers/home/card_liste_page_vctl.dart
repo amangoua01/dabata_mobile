@@ -2,8 +2,6 @@ import 'package:dabata_mobile/api/carte_api_ctl.dart';
 import 'package:dabata_mobile/api/categorie_api_clt.dart';
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/models/categorie.dart';
-import 'package:dabata_mobile/tools/cache/cache.dart';
-import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/controllers/abstract/auth_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,14 +12,6 @@ class CardListePageVctl extends AuthViewController
   List<Carte> card = [];
   List<Categorie> categories = [];
   bool isLoading = true;
-
-  Future<void> fetchUserToken() async {
-    var data = await Cache.getString('autUser');
-    if (data.isJson) {
-      userFromCache(data.value);
-      update();
-    }
-  }
 
   void initTabController() {
     final categoriesCount = uniqueCategories.length;
@@ -49,10 +39,9 @@ class CardListePageVctl extends AuthViewController
 
   Future<void> getAllCategorie() async {
     var res = await CategorieApiClt.getAllCategories();
+    isLoading = false;
     if (res.status) {
-      print("categories ${res.data!.map((e) => e.toJson())}");
       categories = res.data!;
-      isLoading = false;
     }
   }
 
@@ -78,7 +67,5 @@ class CardListePageVctl extends AuthViewController
       initTabController();
       update();
     });
-
-    fetchUserToken();
   }
 }

@@ -1,14 +1,14 @@
+import 'package:dabata_mobile/models/souscription.dart';
 import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
 import 'package:dabata_mobile/views/controllers/home/user/user_card_detail_page_vctl.dart';
+import 'package:dabata_mobile/views/static/home/card_pages/card_gains_sub_page.dart';
 import 'package:dabata_mobile/views/static/home/user/user_card_info_sub_page.dart';
 import 'package:flutter/material.dart';
-import 'package:dabata_mobile/models/carte.dart';
-import 'package:dabata_mobile/views/static/home/card_pages/card_gains_sub_page.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class UserCardDetailPage extends StatelessWidget {
-  final Carte carte;
-  const UserCardDetailPage(this.carte, {super.key});
+  final Souscription souscription;
+  const UserCardDetailPage(this.souscription, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,8 @@ class UserCardDetailPage extends StatelessWidget {
               Tab(text: "Gains/Articles"),
             ],
             children: [
-              UserCardInfoSubPage(carte),
-              CardGainsSubPage(carte),
+              UserCardInfoSubPage(souscription),
+              CardGainsSubPage(souscription.carte!),
             ],
           ),
         );

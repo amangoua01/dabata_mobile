@@ -1,9 +1,9 @@
 import 'package:dabata_mobile/api/paiement_api_ctl.dart';
 import 'package:dabata_mobile/api/souscription_api_ctl.dart';
-import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/models/paiement.dart';
 import 'package:dabata_mobile/models/souscription.dart';
 import 'package:dabata_mobile/models/users.dart';
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:get/get.dart';
 
 class UserCardSubscribedVctl extends GetxController {
@@ -15,16 +15,15 @@ class UserCardSubscribedVctl extends GetxController {
   List<Souscription> souscriptions = [];
 
   List<Souscription> get getAllCard => souscriptions;
-  List<Carte> get allcardGetted => getAllCard.map((s) => s.carte!).toList();
+  List<Souscription> get allcardGetted => getAllCard;
 
   Future<void> userCardSubscribed() async {
     isLoading = true;
     update();
 
-    var res = await SouscriptionApiCtl.getUserSubscrition(user.id.toString());
+    var res = await SouscriptionApiCtl.getUserSubscrition(user.id.value);
     if (res.status) {
       isLoading = false;
-      print("cartes ${res.data!.map((e) => e.toJson())}");
       souscriptions = res.data!;
       update();
     }

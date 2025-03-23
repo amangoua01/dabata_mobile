@@ -1,10 +1,10 @@
-import 'package:gap/gap.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:dabata_mobile/tools/components/c_card.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:dabata_mobile/tools/components/card_suscribe.dart';
 import 'package:dabata_mobile/views/controllers/home/dashboard/dashboard_vctl.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class EnCoursPage extends StatelessWidget {
   const EnCoursPage({super.key});
@@ -52,7 +52,7 @@ class EnCoursPage extends StatelessWidget {
               const Gap(5),
               Column(
                 children: [
-                  ...ctl.cartesEnCours.map(
+                  ...ctl.souscriptionsEnCours.map(
                     (e) => CardSuscribe(
                       e,
                       value: e.tauxCotisation,

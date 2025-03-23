@@ -46,15 +46,17 @@ class User {
     sexe = json['sexe'];
     createdAt = json['createdAt'];
     fcmToken = json['fcmToken'];
-    if (json['roles'] != null) {
-      if (json['roles'] is List) {
-        for (var role in json['roles']) {
+    if (json['roles'] is List) {
+      for (var role in json['roles']) {
+        if (role is Map && role.containsKey("libelle")) {
+          roles.add(Roles.fromJson(role["libelle"]));
+        } else {
           roles.add(Roles.fromJson(role));
         }
-      } else if (json['roles'] is Map) {
-        for (var role in (json['roles'] as Map).entries) {
-          roles.add(Roles.fromJson(role.value));
-        }
+      }
+    } else if (json['roles'] is Map) {
+      for (var role in (json['roles'] as Map).entries) {
+        roles.add(Roles.fromJson(role.value));
       }
     }
   }

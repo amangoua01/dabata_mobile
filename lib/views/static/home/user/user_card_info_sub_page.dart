@@ -1,18 +1,18 @@
-import 'package:get/get.dart';
-import 'package:gap/gap.dart';
-import 'package:flutter/material.dart';
-import 'package:dabata_mobile/models/carte.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/models/souscription.dart';
 import 'package:dabata_mobile/tools/components/progress_bar.dart';
+import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/views/static/home/user/voir_mes_cotisations.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class UserCardInfoSubPage extends StatelessWidget {
-  final Carte carte;
-  const UserCardInfoSubPage(this.carte, {super.key});
+  final Souscription souscription;
+  const UserCardInfoSubPage(this.souscription, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +23,22 @@ class UserCardInfoSubPage extends StatelessWidget {
             color: Colors.white,
             padding: const EdgeInsets.all(10),
             child: Image.asset(
-              carte.image,
+              souscription.carte!.image,
               height: 200,
             ),
           ),
           ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 10),
             title: Text(
-              carte.libelle ?? "n/a",
+              souscription.carte!.libelle.defaultValue("n/a"),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 17.sp,
               ),
             ),
-            subtitle: Text(carte.categorie?.libelle ?? ""),
+            subtitle: Text(souscription.carte!.categorie?.libelle ?? ""),
             trailing: Text(
-              carte.montantTotal != null
-                  ? carte.montantTotal!.toAmount(devise: "F")
-                  : "0 F",
+              souscription.carte!.montantTotal.toAmount(devise: "F"),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14.sp,
@@ -53,17 +51,17 @@ class UserCardInfoSubPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Payé : ${carte.tauxCotisation.toAmount(devise: "F")}",
+                  "Payé : ${souscription.tauxCotisation.toAmount(devise: "F")}",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const Gap(8),
-                ProgressBar(value: carte.tauxCotisation),
+                ProgressBar(value: souscription.tauxCotisation),
                 const Gap(10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "Reste : ${carte.montantRestant.toAmount(devise: "F")}",
+                      "Reste : ${souscription.montantRestant.toAmount(devise: "F")}",
                       textAlign: TextAlign.end,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -90,7 +88,7 @@ class UserCardInfoSubPage extends StatelessWidget {
                           width: 30,
                         ),
                         const Gap(10),
-                        const Text("Voir mes paiements"),
+                        const Text("Voir les paiements"),
                       ],
                     ),
                   ),
@@ -112,8 +110,8 @@ class UserCardInfoSubPage extends StatelessWidget {
               ),
             ),
             trailing: Text(
-              carte.montantJournalier != null
-                  ? carte.montantJournalier!.toAmount(devise: "F")
+              souscription.carte!.montantJournalier != null
+                  ? souscription.carte!.montantJournalier!.toAmount(devise: "F")
                   : "0 F",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
@@ -136,7 +134,9 @@ class UserCardInfoSubPage extends StatelessWidget {
               ),
             ),
             trailing: Text(
-              carte.debut != null ? carte.debut!.toFrenchDate : "",
+              souscription.carte!.debut != null
+                  ? souscription.carte!.debut!.toFrenchDate
+                  : "",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,
@@ -157,7 +157,9 @@ class UserCardInfoSubPage extends StatelessWidget {
             ),
             horizontalTitleGap: 0,
             trailing: Text(
-              carte.fin != null ? carte.fin!.toFrenchDate : "",
+              souscription.carte!.fin != null
+                  ? souscription.carte!.fin!.toFrenchDate
+                  : "",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,
@@ -201,7 +203,7 @@ class UserCardInfoSubPage extends StatelessWidget {
             ),
             //subtitle: const Text("Cliquer pour modifier le lieu"),
             trailing: const Text(
-              "Angré pétro ivoire",
+              "DRCFA",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,
@@ -219,9 +221,7 @@ class UserCardInfoSubPage extends StatelessWidget {
               ),
             ),
             trailing: Text(
-              carte.montantJournalier != null
-                  ? carte.montantJournalier!.toAmount(devise: "F")
-                  : "0 F",
+              souscription.carte!.montantTotal!.toAmount(devise: "F"),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,

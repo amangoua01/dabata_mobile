@@ -5,7 +5,6 @@ import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/views/controllers/home/card_info_sub_page_vctl.dart';
-import 'package:dabata_mobile/views/static/auth/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -83,19 +82,12 @@ class CardInfoSubPage extends StatelessWidget {
                     ),
                   ),
                   const Gap(10),
-                  SizedBox(
-                    width: double.infinity,
+                  Visibility(
+                    visible: ctl.user == null || ctl.user?.isAdmin == false,
                     child: CButton(
+                      minWidth: double.infinity,
                       color: AppColors.primary,
-                      onPressed: () async {
-                        if (ctl.userToken != '') {
-                          await ctl.cardSuscribing(carte.id);
-                        } else {
-                          Get.to(() => const AuthPage());
-                        }
-
-                        print('carteId ${carte.id}');
-                      },
+                      onPressed: () => ctl.cardSuscribing(carte.id),
                       child: const Text("Souscrire"),
                     ),
                   ),

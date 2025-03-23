@@ -1,10 +1,12 @@
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
+import 'package:dabata_mobile/tools/widgets/empty_list_content.dart';
+import 'package:dabata_mobile/tools/widgets/placeholder_widget.dart';
+import 'package:dabata_mobile/views/controllers/home/dashboard/dashboard_vctl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:dabata_mobile/views/controllers/home/dashboard/dashboard_vctl.dart';
 
 class SoldePage extends StatelessWidget {
   const SoldePage({super.key});
@@ -15,7 +17,12 @@ class SoldePage extends StatelessWidget {
       init: DashboardVctl(),
       builder: (ctl) {
         return Container(
-            decoration: const BoxDecoration(),
+          decoration: const BoxDecoration(),
+          child: PlaceHolderWidget(
+            condition: ctl.cartesSoldees.isNotEmpty,
+            placeholder: const EmptyListContent(
+              mainAxisAlignment: MainAxisAlignment.center,
+            ),
             child: ListView(
               children: ctl.cartesSoldees
                   .map((e) => Padding(
@@ -61,7 +68,9 @@ class SoldePage extends StatelessWidget {
                         ),
                       ))
                   .toList(),
-            ));
+            ),
+          ),
+        );
       },
     );
   }

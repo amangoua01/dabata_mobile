@@ -1,19 +1,18 @@
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
+import 'package:dabata_mobile/views/controllers/home/user/user_profile_vctl.dart';
+import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
+import 'package:dabata_mobile/views/static/home/user/update_user_password.dart';
+import 'package:dabata_mobile/views/static/home/user/update_user_profile.dart';
+import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
-import 'package:dabata_mobile/models/users.dart';
-import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
-import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
-import 'package:dabata_mobile/views/static/home/user/update_user_profile.dart';
-import 'package:dabata_mobile/views/static/home/user/update_user_password.dart';
-import 'package:dabata_mobile/views/controllers/home/user/user_profile_vctl.dart';
 
 class UserProfile extends StatelessWidget {
   final bool isUserView;
-  final User user;
+
   const UserProfile({
     super.key,
-    required this.user,
     this.isUserView = true,
   });
 
@@ -43,7 +42,9 @@ class UserProfile extends StatelessWidget {
                         "assets/icons/user2.png",
                         height: 30,
                       ),
-                      title: Text("Nom: ${user.nom}"),
+                      title: Text(
+                        "Nom: ${ctl.user!.nom.defaultValue("Aucun nom")}",
+                      ),
                     ),
                   ),
                 ),
@@ -57,7 +58,9 @@ class UserProfile extends StatelessWidget {
                     child: ListTile(
                       leading:
                           Image.asset("assets/icons/user2.png", height: 30),
-                      title: Text("Prénom: ${user.prenom}"),
+                      title: Text(
+                        "Prénom: ${ctl.user!.prenom.defaultValue("Aucun prénom")}",
+                      ),
                     ),
                   ),
                 ),
@@ -70,7 +73,9 @@ class UserProfile extends StatelessWidget {
                     ),
                     child: ListTile(
                       leading: Image.asset("assets/icons/tel.png", height: 30),
-                      title: Text("Telephone: ${user.telephone}"),
+                      title: Text(
+                        "Telephone: ${ctl.user!.telephone.defaultValue("Aucun numéro de tel")}",
+                      ),
                     ),
                   ),
                 ),
@@ -80,7 +85,8 @@ class UserProfile extends StatelessWidget {
                     CButton(
                       height: 50,
                       minWidth: double.infinity,
-                      onPressed: () => Get.to(() => UpdateUserProfile(user)),
+                      onPressed: () =>
+                          Get.to(() => UpdateUserProfile(ctl.user!)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

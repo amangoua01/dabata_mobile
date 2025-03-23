@@ -1,6 +1,7 @@
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/constants/etat_souscription.dart';
+import 'package:dabata_mobile/tools/extensions/types/double.dart';
 
 class Souscription {
   int? id;
@@ -54,4 +55,19 @@ class Souscription {
 
   EtatSouscription get etatType =>
       EtatSouscription.values.firstWhere((e) => e.code == etat);
+
+  // Méthode pour obtenir le montant restant à cotiser
+  double get montantRestant => carte!.montantTotal.value - montantCotise.value;
+
+  double get tauxCotisation {
+    if (carte != null) {
+      if (carte!.montantTotal.value >= 0 && montantCotise != null) {
+        return montantCotise! / carte!.montantTotal.value;
+      } else {
+        return 0;
+      }
+    } else {
+      return 0.0;
+    }
+  }
 }

@@ -8,9 +8,11 @@ class EmptyListContent extends StatelessWidget {
   final String image;
   final double? width;
   final double? height;
+  final MainAxisAlignment mainAxisAlignment;
   const EmptyListContent({
     this.emptyText = "Aucune donnée disponible",
     this.image = "assets/icons/empty.png",
+    this.mainAxisAlignment = MainAxisAlignment.start,
     this.width,
     this.height,
     super.key,
@@ -20,6 +22,7 @@ class EmptyListContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: mainAxisAlignment,
         children: [
           PlaceHolderWidget(
             condition: image.contains(".json"),

@@ -5,10 +5,11 @@ import 'package:dabata_mobile/views/static/auth/register_sub_page.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
-  const AuthPage({super.key});
+  final bool withReturn;
+  const AuthPage({this.withReturn = false, super.key});
 
   @override
-  _AuthPageState createState() => _AuthPageState();
+  State<AuthPage> createState() => _AuthPageState();
 }
 
 class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
@@ -34,9 +35,9 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
           Tab(text: "Connexion"),
           Tab(text: "Inscription"),
         ],
-        children: const [
-          LoginSubPage(),
-          RegisterSubPage(),
+        children: [
+          LoginSubPage(widget.withReturn),
+          RegisterSubPage(widget.withReturn),
         ],
       ),
     );

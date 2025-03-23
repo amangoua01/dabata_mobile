@@ -93,7 +93,6 @@ abstract class StatistiqueApiCtl {
         ),
       );
       if (res.statusCode == 200) {
-        print("amount stats ${res.data}");
         return DataResponse.success(
             data: (res.data as List)
                 .map((e) => MontantSouscritStats.fromJson(e))

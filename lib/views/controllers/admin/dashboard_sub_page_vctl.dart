@@ -3,74 +3,16 @@ import 'package:dabata_mobile/models/carte_stats.dart';
 import 'package:dabata_mobile/models/categorie_stats.dart';
 import 'package:dabata_mobile/models/montant_souscrit_stats.dart';
 import 'package:dabata_mobile/models/users_and_subscription_stat.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
+import 'package:dabata_mobile/views/controllers/abstract/auth_view_controller.dart';
 
-/* class DashboardSubPageVctl extends GetxController {
+class DashboardSubPageVctl extends AuthViewController {
   UsersAndSubscriptionStat? statData;
   MontantSouscritStats? amountStatData;
 
   List<CarteStats> carteStatData = [];
   List<CategorieStats> catStatData = [];
-
-  Future<void> getStatistique() async {
-    var res = await StatistiqueApiCtl.getStatistique();
-    if (res.status && res.data != null && res.data!.isNotEmpty) {
-      statData = res.data!.first;
-      print("user stats ${statData?.toJson()}");
-      update();
-    }
-  }
-
-  // Si nécessaire, ajoute d'autres getters pour faciliter l'accès aux données
-  int get usersCount => statData?.usersAll ?? 0;
-  int get usersYearCount => statData?.usersYear ?? 0;
-  int get souscriptionsCount => statData?.souscriptionsAll ?? 0;
-  int get souscriptionsYearCount => statData?.souscriptionsYear ?? 0;
-
-  Future<void> getAllCategoryStats() async {
-    var res = await StatistiqueApiCtl.getAllSubcriptionByCategory();
-    if (res.status && res.data != null && res.data!.isNotEmpty) {
-      catStatData = res.data!;
-      print("cat stats ${catStatData.map((e) => e.toJson())}");
-      update();
-    }
-  }
-
-  Future<void> getAllCardStats() async {
-    var res = await StatistiqueApiCtl.getAllSubcriptionByCard();
-    if (res.status && res.data != null && res.data!.isNotEmpty) {
-      carteStatData = res.data!;
-      print("carte stats ${carteStatData.map((e) => e.toJson())}");
-      update();
-    }
-  }
-
-  Future<void> getAllAmountTypeStats() async {
-    var res = await StatistiqueApiCtl.getAllSubcriptionByAmountType();
-    if (res.status && res.data != null && res.data!.isNotEmpty) {
-      amountStatData = res.data!.first;
-      print("amount stats ${amountStatData?.toJson()}");
-      update();
-    }
-  }
-
-  //Future<void> refresh() async {}
-
-  @override
-  void onReady() {
-    super.onReady();
-    getStatistique();
-    getAllCardStats();
-    getAllCategoryStats();
-    getAllAmountTypeStats();
-  }
-} */
-class DashboardSubPageVctl extends GetxController {
-  UsersAndSubscriptionStat? statData;
-  MontantSouscritStats? amountStatData;
-
-  List<CarteStats> carteStatData = [];
-  List<CategorieStats> catStatData = [];
+  bool loading = true;
 
   // Méthode pour regrouper les cartes par catégorie
   Map<String, List<CarteStats>> get cartesByCategory {
@@ -90,7 +32,7 @@ class DashboardSubPageVctl extends GetxController {
   int getCategorySouscriptionsTotal(String categorie) {
     return carteStatData
         .where((carte) => carte.categorieLibelle == categorie)
-        .fold(0, (sum, carte) => sum + (carte.nombreSouscriptions ?? 0));
+        .fold(0, (sum, carte) => sum + carte.nombreSouscriptions.value);
   }
 
   // Calcul du pourcentage de souscriptions pour une catégorie
@@ -127,8 +69,11 @@ class DashboardSubPageVctl extends GetxController {
       double percentage =
           totalSouscriptions > 0 ? (total / totalSouscriptions * 100) : 0;
 
-      result.add(
-          {'category': category, 'total': total, 'percentage': percentage});
+      result.add({
+        'category': category,
+        'total': total,
+        'percentage': percentage,
+      });
     });
 
     return result;
@@ -138,7 +83,6 @@ class DashboardSubPageVctl extends GetxController {
     var res = await StatistiqueApiCtl.getStatistique();
     if (res.status && res.data != null && res.data!.isNotEmpty) {
       statData = res.data!.first;
-      print("user stats ${statData?.toJson()}");
       update();
     }
   }
@@ -152,7 +96,6 @@ class DashboardSubPageVctl extends GetxController {
     var res = await StatistiqueApiCtl.getAllSubcriptionByCategory();
     if (res.status && res.data != null && res.data!.isNotEmpty) {
       catStatData = res.data!;
-      print("cat stats ${catStatData.map((e) => e.toJson())}");
       update();
     }
   }
@@ -161,7 +104,6 @@ class DashboardSubPageVctl extends GetxController {
     var res = await StatistiqueApiCtl.getAllSubcriptionByCard();
     if (res.status && res.data != null && res.data!.isNotEmpty) {
       carteStatData = res.data!;
-      print("carte stats ${carteStatData.map((e) => e.toJson())}");
       update();
     }
   }
@@ -170,7 +112,6 @@ class DashboardSubPageVctl extends GetxController {
     var res = await StatistiqueApiCtl.getAllSubcriptionByAmountType();
     if (res.status && res.data != null && res.data!.isNotEmpty) {
       amountStatData = res.data!.first;
-      print("amount stats ${amountStatData?.toJson()}");
       update();
     }
   }
@@ -182,9 +123,17 @@ class DashboardSubPageVctl extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    getStatistique();
-    getAllCardStats();
-    getAllCategoryStats();
-    getAllAmountTypeStats();
+    getData();
+  }
+
+  Future<void> getData() async {
+    loading = true;
+    update();
+    await getStatistique();
+    await getAllCardStats();
+    await getAllCategoryStats();
+    await getAllAmountTypeStats();
+    loading = false;
+    update();
   }
 }

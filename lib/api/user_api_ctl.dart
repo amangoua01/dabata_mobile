@@ -37,7 +37,6 @@ abstract class UserApiCtl {
         options: Options(headers: WebConst.headers),
       );
       if (res.statusCode == 200) {
-        //print("user logged ${res.data['data']}");
         WebConst.jwt = res.data['token'];
         Cache.setString("jwt", res.data['token']);
         return DataResponse.success(data: AuthUser.fromJson(res.data));

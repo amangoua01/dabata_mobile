@@ -1,8 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:dabata_mobile/models/souscription.dart';
 import 'package:dabata_mobile/tools/constants/const.dart';
-import 'package:dabata_mobile/tools/web/data_response.dart';
+import 'package:dabata_mobile/tools/constants/etat_souscription.dart';
 import 'package:dabata_mobile/tools/constants/web_const.dart';
+import 'package:dabata_mobile/tools/web/data_response.dart';
+import 'package:dio/dio.dart';
 
 abstract class SouscriptionApiCtl {
   static Future<DataResponse<List<Souscription>>> getAll() async {
@@ -14,7 +15,6 @@ abstract class SouscriptionApiCtl {
         ),
       );
       if (res.statusCode == 200) {
-        print("souscriptions ${res.data!.map((e) => e.toString())}");
         return DataResponse.success(
             data: (res.data as List)
                 .map((e) => Souscription.fromJson(e))
@@ -36,16 +36,13 @@ abstract class SouscriptionApiCtl {
   }
 
   static Future<DataResponse<List<Souscription>>> getUserSubscrition(
-      String userId) async {
+      int userId) async {
     try {
       var res = await WebConst.client.get(
         '${Const.baseUrl}/api/souscriptions?user=$userId',
-        options: Options(
-          headers: WebConst.authHeaders,
-        ),
+        options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {
-        //print("souscriptions ${res.data!.map((e) => e.toString())}");
         return DataResponse.success(
             data: (res.data as List)
                 .map((e) => Souscription.fromJson(e))
@@ -67,20 +64,19 @@ abstract class SouscriptionApiCtl {
     }
   }
 
-  static Future<DataResponse> cardSuscribe(int id) async {
+  static Future<DataResponse<Souscription>> cardSuscribe(
+      int cardId, int userId) async {
     try {
       var res = await WebConst.client.post(
         '${Const.baseUrl}/api/souscriptions',
         data: {
-          "etat": 2,
-          "carte": "/api/cartes/$id",
-          "dateLivraison": DateTime.now().toString(),
+          "dateLivraison": DateTime.now().toIso8601String(),
+          "carte": "/api/cartes/$cardId",
+          "etat": EtatSouscription.enCours.code
         },
-        options: Options(
-          headers: WebConst.authHeaders,
-        ),
+        options: Options(headers: WebConst.authHeaders),
       );
-      if (res.statusCode == 200) {
+      if (res.statusCode == 201) {
         return DataResponse.success(data: Souscription.fromJson(res.data));
       } else {
         return DataResponse.error(systemError: res.data);

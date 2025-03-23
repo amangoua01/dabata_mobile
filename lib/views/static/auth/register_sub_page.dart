@@ -7,7 +7,8 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class RegisterSubPage extends StatelessWidget {
-  const RegisterSubPage({super.key});
+  final bool withReturn;
+  const RegisterSubPage(this.withReturn, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +21,20 @@ class RegisterSubPage extends StatelessWidget {
             Lottie.asset("assets/lotties/register.json", height: 200),
             //const Gap(20),
             CTextFormField(
-              labelText: "Nom",
+              labelText: "Nom*",
+              require: true,
               controller: ctl.nom,
               prefixIcon: const Icon(Icons.person),
             ),
             CTextFormField(
-              labelText: "Prénom(s)",
+              labelText: "Prénom(s)*",
               controller: ctl.prenom,
+              require: true,
               prefixIcon: const Icon(Icons.person),
             ),
             CTextFormField(
-              labelText: "Téléphone",
+              labelText: "Téléphone*",
+              require: true,
               controller: ctl.telephone,
               keyboardType: TextInputType.phone,
               prefixIcon: const Icon(Icons.phone_android),
@@ -41,18 +45,24 @@ class RegisterSubPage extends StatelessWidget {
               prefixIcon: const Icon(Icons.email),
             ),
             CTextFormField(
-              labelText: "Lieu de résidence",
+              labelText: "Lieu de résidence*",
+              require: true,
               controller: ctl.lieuResidence,
               prefixIcon: const Icon(Icons.map),
             ),
             CTextFormField(
-              labelText: "Mot de passe",
+              labelText: "Mot de passe*",
+              require: true,
               controller: ctl.password,
               obscureText: ctl.isObscureText,
-              prefixIcon: ctl.isObscureText
-                  ? const Icon(Icons.visibility_off_outlined)
-                  : const Icon(Icons.visibility),
-              onTap: () => ctl.toggleObscureText(),
+              prefixIcon: const Icon(Icons.lock),
+              suffixIcon: IconButton(
+                onPressed: () {},
+                icon: ctl.isObscureText
+                    ? const Icon(Icons.visibility_off_outlined)
+                    : const Icon(Icons.visibility),
+              ),
+              onTap: ctl.toggleObscureText,
             ),
             const Gap(20),
             CButton(

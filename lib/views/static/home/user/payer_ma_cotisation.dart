@@ -1,60 +1,111 @@
+import 'package:dabata_mobile/models/mode_paiement.dart';
+import 'package:dabata_mobile/models/souscription.dart';
+import 'package:dabata_mobile/models/users.dart';
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/c_date_form_field.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_drop_down_form_field.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
+import 'package:dabata_mobile/views/controllers/home/user/payer_ma_cotisation_vctl.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class PayerMaCotisation extends StatelessWidget {
   const PayerMaCotisation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Faire un paiement"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: ListView(children: [
-          const Gap(30),
-          /* const Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0),
-            child: UserDescriptionCard(
-              image: "assets/icons/user.png",
-              fullName: 'Hassan Dabata',
-              phoneNumber: '07 00 00 00 00',
+    return GetBuilder<PayerMaCotisationVctl>(
+      init: PayerMaCotisationVctl(),
+      builder: (ctl) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text("Faire un paiement"),
+          ),
+          body: Form(
+            key: ctl.formKey,
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              children: [
+                const Gap(30),
+                CDropDownFormField<User>(
+                  labelText: "Utilisateur",
+                  require: true,
+                  items: (e, props) => ctl.getUser(),
+                  compareFn: (a, b) => true,
+                  selectedItem: ctl.selectedUser,
+                  popupProps: const PopupProps.menu(
+                    showSearchBox: true,
+                  ),
+                  itemAsString: (e) =>
+                      "${e.fullname.value}(${e.telephone.value})",
+                  onChanged: (e) {
+                    ctl.selectedUser = e;
+                    ctl.selectedSubscription = null;
+                    ctl.update();
+                  },
+                ),
+                CDropDownFormField<Souscription>(
+                  labelText: "Carte",
+                  require: true,
+                  items: (e, props) => ctl.getUserSubscription(),
+                  compareFn: (a, b) => true,
+                  enabled: ctl.selectedUser != null,
+                  selectedItem: ctl.selectedSubscription,
+                  popupProps: const PopupProps.menu(
+                    showSearchBox: true,
+                  ),
+                  itemAsString: (e) => e.carte!.libelle.value,
+                  onChanged: (e) {
+                    ctl.selectedSubscription = e;
+                    ctl.update();
+                  },
+                ),
+                CDropDownFormField<ModePaiement>(
+                  labelText: "Mode de paiement",
+                  require: true,
+                  items: (e, props) => ctl.getModePaiement(),
+                  compareFn: (a, b) => true,
+                  enabled: ctl.selectedUser != null,
+                  selectedItem: ctl.selectedModePaiement,
+                  popupProps: const PopupProps.menu(
+                    showSearchBox: true,
+                  ),
+                  itemAsString: (e) => e.libelle.value,
+                  onChanged: (e) {
+                    ctl.selectedModePaiement = e;
+                    ctl.update();
+                  },
+                ),
+                CTextFormField(
+                  labelText: "Montant*",
+                  require: true,
+                  controller: ctl.montantCtl,
+                  keyboardType: TextInputType.number,
+                ),
+                const Gap(10),
+                CDateFormField(
+                  labelText: "Date de paiement*",
+                  require: true,
+                  controller: ctl.dateCtl,
+                  onChange: (e) {
+                    ctl.dateCtl.date = e;
+                    ctl.update();
+                  },
+                ),
+                const Gap(10),
+                CButton(
+                  height: 50,
+                  onPressed: ctl.submit,
+                  child: const Text("Valider"),
+                )
+              ],
             ),
-          ), */
-          CDropDownFormField<String>(
-            labelText: "Carte",
-            items: (p0, p1) => [""],
-            compareFn: (a, b) => true,
           ),
-          const CTextFormField(
-            labelText: "Montant",
-          ),
-          const Gap(10),
-          CTextFormField(
-            readOnly: true,
-            labelText: "Date de paiement",
-            onTap: () {
-              showDatePicker(
-                context: context,
-                currentDate: DateTime.now(),
-                initialDate: DateTime.now(),
-                firstDate: DateTime(1950),
-                lastDate: DateTime(3000),
-              );
-            },
-          ),
-          const Gap(10),
-          CButton(
-            height: 50,
-            child: const Text("Valider"),
-            onPressed: () {},
-          )
-        ]),
-      ),
+        );
+      },
     );
   }
 }

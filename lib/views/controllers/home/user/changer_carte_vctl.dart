@@ -10,7 +10,6 @@ class ChangerCarteVctl extends GetxController {
       //image:"https://img.freepik.com/psd-gratuit/conception-boite-cadeau-coloree-anniversaire_23-2150318126.jpg",
       debut: "2025-01-01",
       fin: "2023-12-31",
-      montantJournalier: 200,
       categorie: Categorie(id: 1, libelle: "Categorie 1"),
     ),
     Carte(
@@ -19,7 +18,6 @@ class ChangerCarteVctl extends GetxController {
       //image:"https://img.freepik.com/vecteurs-premium/collection-cadeaux-noel-comprenant-sac-cadeau-rouge-motif-flocon-neige-plusieurs-cadeaux-emballes-tous-fond-blanc_444390-25259.jpg",
       debut: "2023-01-01",
       fin: "2023-12-31",
-      montantJournalier: 50,
       categorie: Categorie(id: 2, libelle: "Categorie 2"),
     ),
     Carte(
@@ -28,7 +26,6 @@ class ChangerCarteVctl extends GetxController {
       //image:"https://media.istockphoto.com/id/93236487/fr/photo/pile-de-cadeaux.jpg?s=612x612&w=0&k=20&c=SRePc-NG_QIjO2NN94qpynpdaZLDfL_9TjoF_u43gkQ=",
       debut: "2023-01-01",
       fin: "2023-12-31",
-      montantJournalier: 150,
       categorie: Categorie(id: 3, libelle: "Categorie 3"),
     ),
     Carte(
@@ -37,7 +34,6 @@ class ChangerCarteVctl extends GetxController {
       //image: "https://bloguelesnackbar.com/wp-content/uploads/2021/01/idee-cadeau-St-Valentin-Le-Snack-Bar.jpg",
       debut: "2023-01-01",
       fin: "2023-12-31",
-      montantJournalier: 100,
       categorie: Categorie(id: 4, libelle: "Categorie 4"),
     ),
   ];

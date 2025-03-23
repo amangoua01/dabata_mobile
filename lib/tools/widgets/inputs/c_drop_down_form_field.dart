@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dabata_mobile/tools/components/field_border.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
@@ -59,26 +60,26 @@ class CDropDownFormField<T> extends StatelessWidget {
         selectedItem: selectedItem,
         popupProps: popupProps,
         compareFn: compareFn,
+        decoratorProps: DropDownDecoratorProps(
+          decoration: InputDecoration(
+            suffixIcon: suffixIcon,
+            labelText:
+                (require && labelText != null) ? "$labelText*" : labelText,
+            hintText: (require && hintText != null) ? "$hintText" : hintText,
+            prefixIcon: prefixIcon,
+            filled: true,
+            errorBorder: border ?? FieldBorder.error,
+            focusedBorder: border ?? FieldBorder.enabled,
+            enabledBorder: border ?? FieldBorder.enabled,
+            border: border ?? FieldBorder.enabled,
+          ),
+        ),
         validator: (value) {
           if (require && value == null) {
             return "Ce champ est obligatoire";
           }
           return null;
         },
-        // dropdownDecoratorProps: DropDownDecoratorProps(
-        //   dropdownSearchDecoration: InputDecoration(
-        //     suffixIcon: suffixIcon,
-        //     labelText:
-        //         (require && labelText != null) ? "$labelText*" : labelText,
-        //     hintText: (require && hintText != null) ? "$hintText" : hintText,
-        //     prefixIcon: prefixIcon,
-        //     filled: true,
-        //     errorBorder: border ?? FieldBorder.error,
-        //     focusedBorder: border ?? FieldBorder.enabled,
-        //     enabledBorder: border ?? FieldBorder.enabled,
-        //     border: border ?? FieldBorder.enabled,
-        //   ),
-        // ),
       ),
     );
   }

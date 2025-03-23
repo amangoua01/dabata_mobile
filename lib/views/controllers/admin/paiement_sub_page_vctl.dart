@@ -9,13 +9,11 @@ class PaiementSubPageVctl extends GetxController {
   Future<void> getPaiements() async {
     isLoading = true;
     update();
-
     var res = await PaiementApiCtl.getAllUserpaymentList();
+    isLoading = false;
+    update();
     if (res.status) {
-      isLoading = false;
-
       paiements = res.data!;
-      print("paiements ${paiements.map((p) => p.toJson())}");
       update();
     }
   }

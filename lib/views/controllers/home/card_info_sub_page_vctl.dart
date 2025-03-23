@@ -1,35 +1,37 @@
 import 'package:dabata_mobile/api/souscription_api_ctl.dart';
-import 'package:dabata_mobile/tools/cache/cache.dart';
-import 'package:dabata_mobile/views/static/home/dashboard/dashboard.dart';
+import 'package:dabata_mobile/tools/alert_widgets/c_alert_dialog.dart';
+import 'package:dabata_mobile/tools/alert_widgets/c_choice_message_dialog.dart';
+import 'package:dabata_mobile/tools/alert_widgets/c_snackbar.dart';
+import 'package:dabata_mobile/tools/extensions/types/future.dart';
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
+import 'package:dabata_mobile/views/controllers/abstract/auth_view_controller.dart';
+import 'package:dabata_mobile/views/static/auth/auth_page.dart';
 import 'package:get/get.dart';
 
-class CardInfoSubPageVctl extends GetxController {
-  var userToken = '';
-  Future<void> fetchUserToken() async {
-    try {
-      var jwt = await Cache.getString('jwt');
-      //print('User token: $jwt');
-      userToken = jwt!;
-      update();
-      print("userToken $userToken");
-      // Vous pouvez maintenant utiliser userToken ici
-    } catch (e) {
-      print('Erreur lors de la récupération du token: $e');
-    }
-  }
-
+class CardInfoSubPageVctl extends AuthViewController {
   Future<void> cardSuscribing(cardId) async {
-    var res = await SouscriptionApiCtl.cardSuscribe(cardId);
-    if (res.status) {
-      print("souscription ${res.data!.toJson()}");
-      Get.to(() => const Dashboard());
-      update();
+    if (authUser != null) {
+      var rep = await CChoiceMessageDialog.show(
+          message: "Voulez-vous vraiment souscrire à cette carte ?");
+      if (rep == true) {
+        var res = await SouscriptionApiCtl.cardSuscribe(
+          cardId,
+          authUser!.user!.id.value,
+        ).load();
+        if (res.status) {
+          Get.back(result: res.data!);
+        } else {
+          CAlertDialog.show(message: res.message);
+        }
+      }
+    } else {
+      var res = await Get.to(() => const AuthPage(withReturn: true));
+      if (res != null) {
+        CSnackbar.show(
+          message: "Vous venez de souscrire à la carte avec succès.",
+        );
+        update();
+      }
     }
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-    fetchUserToken();
   }
 }

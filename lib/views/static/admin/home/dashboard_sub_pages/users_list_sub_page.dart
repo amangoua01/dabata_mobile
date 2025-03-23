@@ -6,7 +6,6 @@ import 'package:dabata_mobile/views/controllers/admin/user_list_sub_page_vctl.da
 import 'package:dabata_mobile/views/static/admin/home/edtion_user_page.dart';
 import 'package:dabata_mobile/views/static/home/user/details_user/user_detail_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -32,12 +31,13 @@ class UsersListSubPage extends StatelessWidget {
                     onChanged: (value) => ctl.onSearchUser(value)),
                 const Gap(10),
                 Expanded(
-                    child: ctl.isLoading
-                        ? const Center(
-                            child: CircularProgressIndicator(
-                            color: AppColors.primary,
-                          ))
-                        : ListView(children: [
+                  child: ctl.isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                          color: AppColors.primary,
+                        ))
+                      : ListView(
+                          children: [
                             ...ctl.users.map((e) => UserDescriptionCard(
                                   leading: CircleAvatar(
                                     radius: 25,
@@ -57,7 +57,9 @@ class UsersListSubPage extends StatelessWidget {
                                     () => UserDetailPage(e),
                                   ),
                                 ))
-                          ])),
+                          ],
+                        ),
+                ),
               ],
             ),
           ),

@@ -6,14 +6,14 @@ class CustomTabBar extends StatelessWidget {
   final List<Widget> tabs;
   final List<Color>? colors;
   final List<Widget>? children;
-  final TabController controller;
+  final TabController? controller;
 
   const CustomTabBar({
     super.key,
     this.colors,
     this.children,
     required this.tabs,
-    required this.controller,
+    this.controller,
     this.color,
   });
 

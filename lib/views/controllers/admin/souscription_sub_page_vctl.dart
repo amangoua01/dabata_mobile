@@ -14,7 +14,6 @@ class SouscriptionSubPageVctl extends GetxController {
     if (res.status) {
       isLoading = false;
       souscriptions = res.data!;
-      print("souscriptions ${souscriptions.map((e) => e.toJson())}");
       update();
     }
   }

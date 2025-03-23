@@ -10,44 +10,45 @@ class AdminDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AdminDashboardVctl>(
-        init: AdminDashboardVctl(),
-        builder: (ctl) {
-          return Scaffold(
-            body: ctl.pages[ctl.selectedIndex],
-            bottomNavigationBar: NavigationBottomBar(
-              currentIndex: ctl.selectedIndex,
-              onTap: (index) {
-                ctl.selectedIndex = index;
-                ctl.update();
-              },
-              items: [
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.dashboard),
-                  label: '',
-                ),
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.people),
-                  label: '',
-                ),
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.list),
-                  label: '',
-                ),
-                BottomNavigationBarItem(
-                  icon: Image.asset("assets/icons/payer.png",
-                      height: 30,
-                      color: ctl.selectedIndex == 3
-                          ? AppColors.primary
-                          : Colors.grey.shade500),
-                  label: '',
-                ),
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: '',
-                ),
-              ],
-            ),
-          );
-        });
+      init: AdminDashboardVctl(),
+      builder: (ctl) {
+        return Scaffold(
+          body: ctl.pages[ctl.selectedIndex],
+          bottomNavigationBar: NavigationBottomBar(
+            currentIndex: ctl.selectedIndex,
+            onTap: (index) {
+              ctl.selectedIndex = index;
+              ctl.update();
+            },
+            items: [
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.dashboard),
+                label: '',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.people),
+                label: '',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.list),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset("assets/icons/payer.png",
+                    height: 30,
+                    color: ctl.selectedIndex == 3
+                        ? AppColors.primary
+                        : Colors.grey.shade500),
+                label: '',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: '',
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

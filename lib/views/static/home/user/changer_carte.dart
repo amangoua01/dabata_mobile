@@ -1,7 +1,6 @@
 import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/tools/components/change_card_widget.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
-import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/views/controllers/home/user/changer_carte_vctl.dart';

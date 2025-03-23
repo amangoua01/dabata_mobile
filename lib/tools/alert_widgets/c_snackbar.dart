@@ -1,10 +1,16 @@
+import 'package:dabata_mobile/tools/constants/env.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CSnackbar extends StatelessWidget {
-  const CSnackbar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
+abstract class CSnackbar {
+  static SnackbarController show({
+    String title = Env.appName,
+    required String message,
+  }) {
+    return Get.snackbar(
+      title,
+      message,
+      backgroundColor: Colors.white,
+    );
   }
 }
