@@ -27,7 +27,7 @@ class LoginVctl extends AuthViewController {
         Get.offAll(() => const AdminDashboard());
       } else {
         if (withReturn) {
-          Get.back(result: authUser);
+          Get.back(result: authUser!);
         } else {
           Get.offAll(() => const Dashboard());
         }
@@ -35,12 +35,5 @@ class LoginVctl extends AuthViewController {
     } else {
       CAlertDialog.show(message: res.message);
     }
-  }
-
-  @override
-  void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.onClose();
   }
 }

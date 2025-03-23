@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "926883909454",
+    "project_id": "dabata-f8e26",
+    "storage_bucket": "dabata-f8e26.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:926883909454:android:bc7e9d5d9961d438fad81f",
+        "android_client_info": {
+          "package_name": "com.dabata"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWvN5wDG2GdZi54YT2Y9qDZ11Cjzmv5Uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:926883909454:android:199f6652c9f04631fad81f",
+        "android_client_info": {
+          "package_name": "com.example.dabata_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWvN5wDG2GdZi54YT2Y9qDZ11Cjzmv5Uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

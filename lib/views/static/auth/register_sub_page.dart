@@ -40,13 +40,12 @@ class RegisterSubPage extends StatelessWidget {
               prefixIcon: const Icon(Icons.phone_android),
             ),
             CTextFormField(
-              labelText: "Email",
+              labelText: "Email*",
               controller: ctl.email,
               prefixIcon: const Icon(Icons.email),
             ),
             CTextFormField(
-              labelText: "Lieu de résidence*",
-              require: true,
+              labelText: "Lieu de résidence",
               controller: ctl.lieuResidence,
               prefixIcon: const Icon(Icons.map),
             ),

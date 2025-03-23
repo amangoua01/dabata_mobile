@@ -6,7 +6,7 @@ import 'package:dabata_mobile/models/users_and_subscription_stat.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/views/controllers/abstract/auth_view_controller.dart';
 
-class DashboardSubPageVctl extends AuthViewController {
+class DashboardSubAdminPageVctl extends AuthViewController {
   UsersAndSubscriptionStat? statData;
   MontantSouscritStats? amountStatData;
 

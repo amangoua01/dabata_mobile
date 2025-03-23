@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 
 abstract class PaiementApiCtl {
   static Future<DataResponse<List<Paiement>>> getAllUserpayment(
-      String userId) async {
+      int userId) async {
     try {
       var res = await WebConst.client.get(
         '${Const.baseUrl}/api/paiements?user=$userId',
@@ -64,6 +64,27 @@ abstract class PaiementApiCtl {
       );
       if (res.statusCode == 201) {
         return DataResponse.success(data: Paiement.fromJson(res.data));
+      } else {
+        return DataResponse.error(systemError: res.data);
+      }
+    } on DioException catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    } catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
+  static Future<DataResponse<List<Paiement>>> getPaiementsFromSouscription(
+      int souscriptionId) async {
+    try {
+      var res = await WebConst.client.get(
+        '${Const.baseUrl}/api/paiements/souscription/$souscriptionId',
+        options: Options(headers: WebConst.authHeaders),
+      );
+      if (res.statusCode == 200) {
+        return DataResponse.success(
+          data: (res.data as List).map((e) => Paiement.fromJson(e)).toList(),
+        );
       } else {
         return DataResponse.error(systemError: res.data);
       }

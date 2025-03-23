@@ -3,7 +3,7 @@ import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/indicator.dart';
 import 'package:dabata_mobile/tools/widgets/placeholder_widget.dart';
-import 'package:dabata_mobile/views/controllers/admin/dashboard_sub_page_vctl.dart';
+import 'package:dabata_mobile/views/controllers/admin/dashboard_sub_admin_page_vctl.dart';
 import 'package:dabata_mobile/views/static/admin/home/edtion_user_page.dart';
 import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
 import 'package:dabata_mobile/views/static/home/user/user_profile.dart';
@@ -14,13 +14,13 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-class DashboardSubPage extends StatelessWidget {
-  const DashboardSubPage({super.key});
+class DashboardSubAdminPage extends StatelessWidget {
+  const DashboardSubAdminPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DashboardSubPageVctl>(
-      init: DashboardSubPageVctl(),
+    return GetBuilder<DashboardSubAdminPageVctl>(
+      init: DashboardSubAdminPageVctl(),
       builder: (ctl) {
         return Scaffold(
           appBar: AppBar(

@@ -4,24 +4,11 @@ import 'package:dabata_mobile/models/auth_user.dart';
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:dabata_mobile/tools/constants/cache_key.dart';
+import 'package:dabata_mobile/tools/constants/web_const.dart';
 import 'package:get/get.dart';
 
 abstract class AuthViewController extends GetxController {
-  String get jwt {
-    if (Get.isRegistered<String>(tag: CacheKey.jwt.name)) {
-      return Get.find<String>(tag: CacheKey.jwt.name);
-    } else {
-      return "";
-    }
-  }
-
-  set jwt(String value) {
-    if (Get.isRegistered<String>(tag: CacheKey.jwt.name)) {
-      Get.replace<String>(value, tag: CacheKey.jwt.name);
-    } else {
-      Get.put<String>(value, tag: CacheKey.jwt.name);
-    }
-  }
+ 
 
   AuthUser? get authUser {
     if (Get.isRegistered<AuthUser>(tag: CacheKey.authUser.name)) {
@@ -48,6 +35,7 @@ abstract class AuthViewController extends GetxController {
     final value = await Cache.getString(CacheKey.authUser.name);
     if (value != null) {
       authUser = AuthUser.fromJson(jsonDecode(value));
+      WebConst.jwt = authUser?.jwt ?? "";
       return authUser!;
     } else {
       return null;

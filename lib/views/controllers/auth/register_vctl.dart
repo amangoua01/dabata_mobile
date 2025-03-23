@@ -2,11 +2,13 @@ import 'package:dabata_mobile/api/user_api_ctl.dart';
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/alert_widgets/c_alert_dialog.dart';
 import 'package:dabata_mobile/tools/extensions/types/future.dart';
-import 'package:dabata_mobile/views/static/auth/register_sub_page.dart';
+import 'package:dabata_mobile/views/controllers/abstract/auth_view_controller.dart';
+import 'package:dabata_mobile/views/static/admin/home/dashboard/admin_dashboard.dart';
+import 'package:dabata_mobile/views/static/home/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RegisterVctl extends GetxController {
+class RegisterVctl extends AuthViewController {
   var nom = TextEditingController();
   var email = TextEditingController();
   var prenom = TextEditingController();
@@ -34,18 +36,26 @@ class RegisterVctl extends GetxController {
         password: password.text,
         telephone: telephone.text,
         lieuResidence: lieuResidence.text,
-        fullname: '${nom.text.trim()} ${prenom.text.trim()}',
       )).load();
 
       if (res.status) {
-        if (withReturn) {
-          Get.back();
-          CAlertDialog.show(
-            message: "Vous venez d'inscrire l'utilisateur"
-                " ${res.data!.fullname} avec succès.",
-          );
+        var resLogin = await UserApiCtl.login(
+          email: email.text,
+          password: password.text,
+        ).load();
+        if (resLogin.status) {
+          authUser = resLogin.data;
+          if (withReturn) {
+            Get.back(result: authUser!);
+          } else {
+            if (authUser?.user?.isAdmin == true) {
+              Get.offAll(() => const AdminDashboard());
+            } else {
+              Get.offAll(() => const Dashboard());
+            }
+          }
         } else {
-          Get.to(() => const RegisterSubPage(false));
+          CAlertDialog.show(message: resLogin.message);
         }
       }
     }

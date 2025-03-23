@@ -35,10 +35,10 @@ class User {
   User.fromJson(Map<String, dynamic> json) {
     //sexe = json['sexe'];
     id = json['id'];
-    nom = json['nom'];
     uuId = json['uuId'];
-    email = json['email'];
+    nom = json['nom'];
     prenom = json['prenom'];
+    email = json['email'];
     fullname = json['fullName'];
     password = json['password'];
     telephone = json['telephone'];
@@ -62,18 +62,13 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    //data['uuId'] = uuId;
-    //data['sexe'] = sexe;
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
+    final data = <String, dynamic>{};
     data['nom'] = nom;
-    data['email'] = email;
     data['prenom'] = prenom;
+    data['email'] = email;
     data['password'] = password;
-    data['fullName'] = fullname;
     data['telephone'] = telephone;
     data['lieuResidence'] = lieuResidence;
-    data['roles'] = roles.map((item) => item.toJson()).toList();
     return data;
   }
 
@@ -81,8 +76,8 @@ class User {
         'id': id,
         'uuId': uuId,
         'nom': nom,
-        'email': email,
         'prenom': prenom,
+        'email': email,
         'password': password,
         'fullName': fullname,
         'telephone': telephone,

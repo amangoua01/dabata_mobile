@@ -44,9 +44,8 @@ class CardSuscribe extends StatelessWidget {
                     ),
                     height: 60.h,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(
-                        souscription.carte!.image,
-                      ),
+                      backgroundColor: Colors.transparent,
+                      child: Image.asset(souscription.carte!.image),
                     ),
                   ),
                 ),

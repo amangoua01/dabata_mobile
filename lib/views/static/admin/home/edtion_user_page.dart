@@ -43,7 +43,8 @@ class EdtionUserPage extends StatelessWidget {
                 ),
                 CTextFormField(
                   controller: ctl.email,
-                  labelText: "Email",
+                  labelText: "Email*",
+                  require: true,
                   prefixIcon: const Icon(Icons.phone),
                 ),
                 CTextFormField(

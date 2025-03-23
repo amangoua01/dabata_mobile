@@ -3,6 +3,7 @@ import 'package:dabata_mobile/api/souscription_api_ctl.dart';
 import 'package:dabata_mobile/models/paiement.dart';
 import 'package:dabata_mobile/models/souscription.dart';
 import 'package:dabata_mobile/models/users.dart';
+import 'package:dabata_mobile/tools/alert_widgets/c_alert_dialog.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:get/get.dart';
 
@@ -33,12 +34,14 @@ class UserCardSubscribedVctl extends GetxController {
     isLoading = true;
     update();
 
-    var res = await PaiementApiCtl.getAllUserpayment(user.id.toString());
+    var res = await PaiementApiCtl.getAllUserpayment(user.id.value);
+    isLoading = false;
+    update();
     if (res.status) {
-      isLoading = false;
       paiements = res.data!;
-      print("paiements ${paiements.map((p) => p.toJson())}");
       update();
+    } else {
+      CAlertDialog.show(message: res.message);
     }
   }
 

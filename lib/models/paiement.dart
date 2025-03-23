@@ -1,5 +1,7 @@
 import 'package:dabata_mobile/models/mode_paiement.dart';
 import 'package:dabata_mobile/models/users.dart';
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class Paiement {
   int? id;
@@ -34,5 +36,14 @@ class Paiement {
       'user': user!.toJson(),
       'modePaiement': modePaiement!.toJson(),
     };
+  }
+
+  bool isSameDatePaiement(DateTime date2) {
+    var date1 = datePaiement.toDateTime();
+    if (date1 != null) {
+      return isSameDay(date1, date2);
+    } else {
+      return false;
+    }
   }
 }

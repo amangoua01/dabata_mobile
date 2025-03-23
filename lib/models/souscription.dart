@@ -2,6 +2,7 @@ import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/constants/etat_souscription.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
 
 class Souscription {
   int? id;
@@ -24,14 +25,7 @@ class Souscription {
     id = json['id'];
     etat = json['etat'];
 
-    // Conversion du montantCotise avec gestion des types
-    montantCotise = json['montantCotise'] != null
-        ? json['montantCotise'] is int
-            ? (json['montantCotise'] as int).toDouble()
-            : json['montantCotise'] is double
-                ? json['montantCotise']
-                : double.tryParse(json['montantCotise'].toString()) ?? 0.0
-        : 0.0;
+    montantCotise = json['montantCotise'].toString().toDouble();
 
     dateLivraison = json['dateLivraison'];
     user = json['user'] != null

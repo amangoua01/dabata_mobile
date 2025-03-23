@@ -10,22 +10,23 @@ class SplashScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-        init: SplashScreenPageVctl(),
-        builder: (ctl) {
-          return Scaffold(
-            backgroundColor: AppColors.primary,
-            bottomNavigationBar: const BottomVersionBar(),
-            body: SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Center(
-                child: Image.asset(
-                  'assets/images/Logo_Dabata.png',
-                  width: 200,
-                ),
+      init: SplashScreenPageVctl(),
+      builder: (ctl) {
+        return Scaffold(
+          backgroundColor: AppColors.primary,
+          bottomNavigationBar: const BottomVersionBar(),
+          body: SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: Center(
+              child: Image.asset(
+                'assets/images/Logo_Dabata.png',
+                width: 200,
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

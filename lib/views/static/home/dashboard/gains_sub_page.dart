@@ -1,4 +1,5 @@
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:dabata_mobile/views/controllers/home/dashboard/gains_sub_page_vct.dart';
 import 'package:flutter/material.dart';
@@ -20,17 +21,6 @@ class GainsSubPage extends StatelessWidget {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /*  Padding(
-                padding: const EdgeInsets.only(top: 15, left: 10, bottom: 20),
-                child: Text(
-                  "Mes articles",
-                  style: TextStyle(
-                    fontSize: 15.sp,
-                    color: Colors.grey.shade600,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ), */
               Expanded(
                 child: WrapperBodyListView(
                   loading: ctl.isLoading,
@@ -45,7 +35,8 @@ class GainsSubPage extends StatelessWidget {
                           trailing: CircleAvatar(
                             radius: 17,
                             backgroundColor: AppColors.primary,
-                            child: Text("${e.quantiteCumul}"),
+                            child:
+                                Text(e.quantiteCumul.value.toStringAsFixed(0)),
                           ),
                         ),
                       )

@@ -1,45 +1,22 @@
+import 'package:dabata_mobile/tools/constants/cache_key.dart';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 
-/* abstract class WebConst {
-  static String get jwt => Get.find(tag: "jwt");
-  static set jwt(String value) {
-    try {
-      Get.find<String>(tag: "jwt");
-      Get.replace<String>(value, tag: "jwt");
-    } catch (e) {
-      Get.put<String>(value, tag: "jwt");
+abstract class WebConst {
+  static String get jwt {
+    if (Get.isRegistered<String>(tag: CacheKey.jwt.name)) {
+      return Get.find<String>(tag: CacheKey.jwt.name);
+    } else {
+      return "";
     }
   }
 
-  static final client = Dio();
-
-  static Map<String, String> get headers => {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      };
-
-  static Map<String, String> get authHeaders => headers
-    ..addAll({
-      "Authorization": "Bearer $jwt",
-    });
-
-  static Map<String, String> get multipartHeaders => {
-        "Accept": "application/json",
-        "Content-Type": "multipart/form-data",
-      };
-
-  static Map<String, String> get authMultipartHeaders => multipartHeaders
-    ..addAll({
-      "Authorization": "Bearer $jwt",
-    });
-} */
-abstract class WebConst {
-  static String _jwt = "";
-
-  static String get jwt => _jwt;
-
   static set jwt(String value) {
-    _jwt = value;
+    if (Get.isRegistered<String>(tag: CacheKey.jwt.name)) {
+      Get.replace<String>(value, tag: CacheKey.jwt.name);
+    } else {
+      Get.put<String>(value, tag: CacheKey.jwt.name);
+    }
   }
 
   // Le reste du code reste identique
@@ -52,6 +29,6 @@ abstract class WebConst {
 
   static Map<String, String> get authHeaders => headers
     ..addAll({
-      "Authorization": "Bearer $_jwt",
+      "Authorization": "Bearer $jwt",
     });
 }

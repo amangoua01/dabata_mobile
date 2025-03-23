@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dabata_mobile/models/auth_user.dart';
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/cache/cache.dart';
@@ -9,6 +11,8 @@ import 'package:dio/dio.dart';
 abstract class UserApiCtl {
   static Future<DataResponse<User>> register(User user) async {
     try {
+      print('${Const.baseUrl}/api/users');
+      print(jsonEncode(user.toJson()));
       var res = await WebConst.client.post(
         '${Const.baseUrl}/api/users',
         data: user.toJson(),
@@ -18,7 +22,8 @@ abstract class UserApiCtl {
         return DataResponse.success(data: User.fromJson(res.data['data']));
       } else {
         return DataResponse.error(
-            message: res.data["message"] ?? "Une erreur s'est produite");
+          message: res.data["message"] ?? "Une erreur s'est produite",
+        );
       }
     } catch (e, st) {
       return DataResponse.error(systemError: e, systemtraceError: st);

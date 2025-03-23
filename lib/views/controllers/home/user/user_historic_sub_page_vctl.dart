@@ -1,4 +1,6 @@
 import 'package:dabata_mobile/api/paiement_api_ctl.dart';
+import 'package:dabata_mobile/tools/alert_widgets/c_alert_dialog.dart';
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:get/get.dart';
 
 import '../../../../models/paiement.dart';
@@ -15,13 +17,15 @@ class UserHistoricSubPageVctl extends GetxController {
   Future<void> getPaiements() async {
     isLoading = true;
     update();
-    print("user ${user.toJson()}  user id ${user.id}");
-    var res = await PaiementApiCtl.getAllUserpayment(user.id.toString());
+
+    var res = await PaiementApiCtl.getAllUserpayment(user.id.value);
+    isLoading = false;
+    update();
     if (res.status) {
-      isLoading = false;
       paiements = res.data!;
-      print("paiements ${paiements.map((p) => p.toJson())}");
       update();
+    } else {
+      CAlertDialog.show(message: res.message);
     }
   }
 

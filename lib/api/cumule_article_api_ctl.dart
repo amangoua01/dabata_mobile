@@ -37,7 +37,6 @@ abstract class CumuleArticleApiCtl {
         ),
       );
       if (res.statusCode == 200) {
-        print("cumules for user ${res.data}");
         return DataResponse.success(
             data: (res.data as List)
                 .map((e) => CumuleArticles.fromJson(e))

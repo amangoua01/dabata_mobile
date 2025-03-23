@@ -14,7 +14,6 @@ class GainsSubPageVctl extends GetxController {
     if (res.status) {
       isLoading = false;
       gainsCumules = res.data!;
-      print("cumules gains du user ${gainsCumules.map((e) => e.toJson())}");
       update();
     }
   }

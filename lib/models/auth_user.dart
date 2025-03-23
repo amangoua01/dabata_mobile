@@ -16,7 +16,7 @@ class AuthUser {
   String toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['token'] = jwt;
-    data['data'] = user?.toJson();
+    data['data'] = user?.toCache();
     return jsonEncode(data);
   }
 }

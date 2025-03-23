@@ -87,7 +87,7 @@ class CardInfoSubPage extends StatelessWidget {
                     child: CButton(
                       minWidth: double.infinity,
                       color: AppColors.primary,
-                      onPressed: () => ctl.cardSuscribing(carte.id),
+                      onPressed: () => ctl.cardSuscribing(carte),
                       child: const Text("Souscrire"),
                     ),
                   ),

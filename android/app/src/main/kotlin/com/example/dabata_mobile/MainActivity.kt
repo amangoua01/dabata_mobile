@@ -1,4 +1,4 @@
-package com.example.dabata_mobile
+package com.dabata
 
 import io.flutter.embedding.android.FlutterActivity
 
