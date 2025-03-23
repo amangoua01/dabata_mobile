@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 
 class LoginVctl extends AuthViewController {
   final formKey = GlobalKey<FormState>();
-  var emailController = TextEditingController(text: "demo@gmail.com");
-  var passwordController = TextEditingController(text: "12345678");
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
   bool hidePass = true;
   final bool withReturn;
 
