@@ -1,5 +1,6 @@
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/components/historic_payment_card.dart';
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/controllers/home/user/user_historic_sub_page_vctl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,14 +37,14 @@ class UserHistoricSubPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  ...ctl.paiements.map((p) => HistoricPaymentCard(
-                        amount: p.montant ?? 0,
-                        title:
-                            'Mode de paiement : ${p.modePaiement?.libelle ?? 'n/a'}',
-                        //categorie: p.categorie.libelle,
-                        dateTime: p.datePaiement?.toString() ??
-                            DateTime.now().toString(),
-                      )),
+                  ...ctl.paiements.map(
+                    (p) => HistoricPaymentCard(
+                      amount: p.montant ?? 0,
+                      title:
+                          'Mode de paiement : ${p.modePaiement?.libelle.defaultValue('n/a')}',
+                      dateTime: p.datePaiement,
+                    ),
+                  ),
                 ],
               );
       },

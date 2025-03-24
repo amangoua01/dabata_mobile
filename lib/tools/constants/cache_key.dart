@@ -1,1 +1,1 @@
-enum CacheKey { jwt, authUser, souscriptions }
+enum CacheKey { jwt, authUser, souscriptions, refreshJwt }

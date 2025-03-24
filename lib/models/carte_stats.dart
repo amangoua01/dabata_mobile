@@ -1,3 +1,6 @@
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
+
 class CarteStats {
   int? carteId;
   double? montant;
@@ -29,5 +32,15 @@ class CarteStats {
     data['montant'] = montant;
     data['nombre_souscriptions'] = nombreSouscriptions;
     return data;
+  }
+
+  String get amount => carteLibelle.value.split("-").first;
+
+  String getPercent(double total) {
+    if (total > 0) {
+      return ((nombreSouscriptions.value / total) * 100).toStringAsFixed(1);
+    } else {
+      return "0";
+    }
   }
 }

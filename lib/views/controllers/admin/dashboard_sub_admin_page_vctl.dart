@@ -1,18 +1,19 @@
 import 'package:dabata_mobile/api/statistique_api_ctl.dart';
 import 'package:dabata_mobile/models/carte_stats.dart';
-import 'package:dabata_mobile/models/categorie_stats.dart';
 import 'package:dabata_mobile/models/montant_souscrit_stats.dart';
 import 'package:dabata_mobile/models/users_and_subscription_stat.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/views/controllers/abstract/auth_view_controller.dart';
 
 class DashboardSubAdminPageVctl extends AuthViewController {
-  UsersAndSubscriptionStat? statData;
+  var statData = UsersAndSubscriptionStat();
   MontantSouscritStats? amountStatData;
 
   List<CarteStats> carteStatData = [];
-  List<CategorieStats> catStatData = [];
+
   bool loading = true;
+
+  String? carteLibelle;
 
   // Méthode pour regrouper les cartes par catégorie
   Map<String, List<CarteStats>> get cartesByCategory {
@@ -33,6 +34,14 @@ class DashboardSubAdminPageVctl extends AuthViewController {
     return carteStatData
         .where((carte) => carte.categorieLibelle == categorie)
         .fold(0, (sum, carte) => sum + carte.nombreSouscriptions.value);
+  }
+
+  List<String> getCategories() {
+    return carteStatData
+        .where((e) => e.categorieLibelle != null)
+        .map((carte) => carte.categorieLibelle!)
+        .toSet()
+        .toList();
   }
 
   // Calcul du pourcentage de souscriptions pour une catégorie
@@ -87,23 +96,19 @@ class DashboardSubAdminPageVctl extends AuthViewController {
     }
   }
 
-  int get usersCount => statData?.usersAll ?? 0;
-  int get usersYearCount => statData?.usersYear ?? 0;
-  int get souscriptionsCount => statData?.souscriptionsAll ?? 0;
-  int get souscriptionsYearCount => statData?.souscriptionsYear ?? 0;
-
-  Future<void> getAllCategoryStats() async {
-    var res = await StatistiqueApiCtl.getAllSubcriptionByCategory();
-    if (res.status && res.data != null && res.data!.isNotEmpty) {
-      catStatData = res.data!;
-      update();
-    }
-  }
+  int get usersCount => statData.usersAll;
+  int get usersYearCount => statData.usersYear;
+  int get souscriptionsCount => statData.souscriptionsAll;
+  int get souscriptionsYearCount => statData.souscriptionsYear;
 
   Future<void> getAllCardStats() async {
     var res = await StatistiqueApiCtl.getAllSubcriptionByCard();
     if (res.status && res.data != null && res.data!.isNotEmpty) {
       carteStatData = res.data!;
+
+      if (carteStatData.isNotEmpty) {
+        carteLibelle = getCategories().first;
+      }
       update();
     }
   }
@@ -131,9 +136,14 @@ class DashboardSubAdminPageVctl extends AuthViewController {
     update();
     await getStatistique();
     await getAllCardStats();
-    await getAllCategoryStats();
     await getAllAmountTypeStats();
     loading = false;
     update();
+  }
+
+  List<CarteStats> getCarteStatDataByCategory(String category) {
+    return carteStatData
+        .where((carte) => carte.categorieLibelle == category)
+        .toList();
   }
 }

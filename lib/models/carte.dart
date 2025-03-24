@@ -76,7 +76,7 @@ class Carte {
       case 'Mixte':
         return "assets/images/mixte-removebg.png";
       default:
-        return "assets/images/gadget.jpeg";
+        return "assets/images/gadget-removebg.png";
     }
   }
 }

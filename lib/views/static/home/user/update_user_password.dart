@@ -28,6 +28,7 @@ class UpdateUserPassword extends StatelessWidget {
                 CTextFormField(
                   controller: ctl.oldPassword,
                   require: true,
+                  obscureText: ctl.obscureText,
                   prefixIcon: const Icon(Icons.lock),
                   labelText: "Ancien mot de passe",
                 ),
@@ -35,12 +36,14 @@ class UpdateUserPassword extends StatelessWidget {
                 CTextFormField(
                   controller: ctl.newPassword,
                   require: true,
+                  obscureText: ctl.obscureText,
                   prefixIcon: const Icon(Icons.lock),
                   labelText: "Nouveau mot de passe",
                 ),
                 const Gap(10),
                 CTextFormField(
                   controller: ctl.confirmPassword,
+                  obscureText: ctl.obscureText,
                   prefixIcon: const Icon(Icons.lock),
                   labelText: "Confirmer le nouveau mot de passe",
                   validator: (e) {
@@ -51,6 +54,14 @@ class UpdateUserPassword extends StatelessWidget {
                       return "Les mots de passe ne sont pas identiques";
                     }
                     return null;
+                  },
+                ),
+                SwitchListTile(
+                  title: const Text("Afficher le mot de passe"),
+                  value: !ctl.obscureText,
+                  onChanged: (e) {
+                    ctl.obscureText = !e;
+                    ctl.update();
                   },
                 ),
                 const Gap(10),

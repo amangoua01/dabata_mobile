@@ -1,5 +1,8 @@
 import 'package:dabata_mobile/tools/components/c_card.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/constants/pie_colors.dart';
+import 'package:dabata_mobile/tools/extensions/types/double.dart';
+import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/indicator.dart';
 import 'package:dabata_mobile/tools/widgets/placeholder_widget.dart';
@@ -53,6 +56,7 @@ class DashboardSubAdminPage extends StatelessWidget {
             child: RefreshIndicator(
               onRefresh: ctl.getData,
               child: ListView(
+                padding: const EdgeInsets.only(bottom: 100),
                 children: [
                   GridView(
                     shrinkWrap: true,
@@ -69,12 +73,23 @@ class DashboardSubAdminPage extends StatelessWidget {
                       CCard(
                         image: "assets/icons/user2.png",
                         amount: ctl.usersCount,
-                        title: "Inscrit(e)",
+                        title: "Total Inscrits",
                         unite: "Pers.",
                       ),
                       CCard(
+                        image: "assets/icons/user2.png",
+                        amount: ctl.statData.usersYear,
+                        title: "Nb. user année",
+                        unite: "Pers.",
+                      ),
+                      CCard(
+                        unite: "",
+                        title: "Nb. souscriptions",
+                        amount: ctl.statData.souscriptionsAll.toInt(),
+                      ),
+                      CCard(
                         unite: "F",
-                        title: "Montant totale",
+                        title: "Montant global",
                         amount: ctl.totalAmount.toInt(),
                       ),
                       CCard(
@@ -87,20 +102,6 @@ class DashboardSubAdminPage extends StatelessWidget {
                         title: "Montant restant",
                         amount: ctl.totalAmountRest.toInt(),
                       ),
-                      const CCard(
-                        amount: 50000,
-                        color: null,
-                        image: "assets/icons/carte2.gif",
-                        title: "Nb. cartes",
-                        unite: "",
-                      ),
-                      ...ctl.catStatData.map((e) => CCard(
-                            amount: e.nombreSouscriptions ?? 0,
-                            image: "assets/icons/souscription.png",
-                            title:
-                                'Nb. souscriptions ${e.categorieLibelle.value}',
-                            unite: " ",
-                          )),
                     ],
                   ),
                   const Gap(10),
@@ -117,76 +118,257 @@ class DashboardSubAdminPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     height: 250,
-                    child: Row(
+                    child: Column(
                       children: [
-                        Expanded(
-                          flex: 4,
-                          child: PieChart(
-                            PieChartData(
-                              sectionsSpace: 2,
-                              centerSpaceRadius: 40,
-                              sections: ctl.pieChartDataByCategory.map((data) {
-                                Color color = AppColors.primary;
-                                if (data['category'] == 'Marché') {
-                                  color = AppColors.primary;
-                                } else if (data['category'] == 'Mixte') {
-                                  color = Colors.blue.shade500;
-                                } else if (data['category'] == 'Gadget') {
-                                  color = Colors.greenAccent.shade400;
-                                }
-
-                                return PieChartSectionData(
-                                  color: color,
-                                  value: data['total'].toDouble(),
-                                  title:
-                                      "${data['percentage'].toStringAsFixed(1)}%",
-                                  radius: 50,
-                                  titleStyle: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                            duration: const Duration(milliseconds: 150),
-                            curve: Curves.linear,
+                        const Text(
+                          "Souscriptions par catégorie",
+                          style: TextStyle(
+                            color: AppColors.primary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const Gap(20),
                         Expanded(
-                          flex: 3,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Row(
                             children: [
-                              ...ctl.pieChartDataByCategory.map((data) {
-                                Color color = AppColors.primary;
-                                if (data['category'] == 'Marché') {
-                                  color = AppColors.primary;
-                                } else if (data['category'] == 'Mixte') {
-                                  color = Colors.blue.shade500;
-                                } else if (data['category'] == 'Gadget') {
-                                  color = Colors.greenAccent.shade400;
-                                }
+                              Expanded(
+                                flex: 4,
+                                child: PieChart(
+                                  PieChartData(
+                                    sectionsSpace: 2,
+                                    centerSpaceRadius: 40,
+                                    sections:
+                                        ctl.pieChartDataByCategory.map((data) {
+                                      Color color = AppColors.primary;
+                                      if (data['category'] == 'Marché') {
+                                        color = AppColors.primary;
+                                      } else if (data['category'] == 'Mixte') {
+                                        color = Colors.blue.shade500;
+                                      } else if (data['category'] == 'Gadget') {
+                                        color = Colors.greenAccent.shade400;
+                                      }
 
-                                return Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 4.0),
-                                  child: Indicator(
-                                    color: color,
-                                    text:
-                                        "${data['category']} (${data['total']})",
-                                    isSquare: true,
+                                      return PieChartSectionData(
+                                        color: color,
+                                        value: data['total'].toDouble(),
+                                        title:
+                                            "${data['percentage'].toStringAsFixed(1)}%",
+                                        radius: 50,
+                                        titleStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      );
+                                    }).toList(),
                                   ),
-                                );
-                              }),
+                                  duration: const Duration(milliseconds: 150),
+                                  curve: Curves.linear,
+                                ),
+                              ),
+                              const Gap(20),
+                              Expanded(
+                                flex: 3,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ...ctl.pieChartDataByCategory.map((data) {
+                                      Color color = AppColors.primary;
+                                      if (data['category'] == 'Marché') {
+                                        color = AppColors.primary;
+                                      } else if (data['category'] == 'Mixte') {
+                                        color = Colors.blue.shade500;
+                                      } else if (data['category'] == 'Gadget') {
+                                        color = Colors.greenAccent.shade400;
+                                      }
+
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 4.0),
+                                        child: Indicator(
+                                          color: color,
+                                          text:
+                                              "${data['category']} (${data['total']})",
+                                          isSquare: true,
+                                        ),
+                                      );
+                                    }),
+                                  ],
+                                ),
+                              )
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
-                  )
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(
+                      right: 20,
+                      left: 20,
+                      bottom: 10,
+                      top: 10,
+                    ),
+                    margin: const EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    height: 350,
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Souscriptions par carte",
+                          style: TextStyle(
+                            color: AppColors.primary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        PopupMenuButton(
+                          onSelected: (value) {
+                            ctl.carteLibelle = value;
+                            ctl.update();
+                          },
+                          position: PopupMenuPosition.under,
+                          itemBuilder: (context) => ctl
+                              .getCategories()
+                              .map(
+                                (e) => PopupMenuItem(
+                                  value: e,
+                                  child: Text(e),
+                                ),
+                              )
+                              .toList(),
+                          child: Container(
+                            margin: const EdgeInsets.all(10),
+                            padding: EdgeInsets.zero,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.blue,
+                            ),
+                            child: ListTile(
+                              title: Text(
+                                ctl.carteLibelle.defaultValue(
+                                  "Sélectionner une catégorie",
+                                ),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              trailing: const Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Divider(),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: PieChart(
+                                  PieChartData(
+                                      sectionsSpace: 2,
+                                      centerSpaceRadius: 40,
+                                      sections: List.generate(
+                                        ctl
+                                            .getCarteStatDataByCategory(
+                                                ctl.carteLibelle.value)
+                                            .length,
+                                        (index) {
+                                          var data = ctl
+                                              .getCarteStatDataByCategory(
+                                                  ctl.carteLibelle.value)
+                                              .elementAt(index);
+                                          final total = ctl
+                                              .getCarteStatDataByCategory(
+                                                  ctl.carteLibelle.value)
+                                              .fold(
+                                                0.0,
+                                                (sum, carte) =>
+                                                    sum +
+                                                    (carte.nombreSouscriptions
+                                                        .value),
+                                              );
+                                          final color =
+                                              pieColors.elementAt(index);
+                                          return PieChartSectionData(
+                                            color: color,
+                                            value: data.montant.value,
+                                            title: "${data.getPercent(total)}%",
+                                            radius: 50,
+                                            titleStyle: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          );
+                                        },
+                                      )
+                                      // sections: ctl
+                                      //     .getCarteStatDataByCategory(
+                                      //         ctl.carteLibelle.value)
+                                      //     .map((data) {
+                                      //   return PieChartSectionData(
+                                      //     color: AppColors.primary,
+                                      //     value: data.montant.value,
+                                      //     title: data.carteLibelle,
+                                      //     radius: 50,
+                                      //     titleStyle: const TextStyle(
+                                      //       fontSize: 14,
+                                      //       fontWeight: FontWeight.bold,
+                                      //       color: Colors.red,
+                                      //     ),
+                                      //   );
+                                      // }).toList(),
+                                      ),
+                                  duration: const Duration(milliseconds: 150),
+                                  curve: Curves.linear,
+                                ),
+                              ),
+                              const Gap(20),
+                              Expanded(
+                                flex: 3,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: List.generate(
+                                      ctl
+                                          .getCarteStatDataByCategory(
+                                              ctl.carteLibelle.value)
+                                          .length, (index) {
+                                    final color = pieColors.elementAt(index);
+                                    final data = ctl.getCarteStatDataByCategory(
+                                        ctl.carteLibelle.value)[index];
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 4.0),
+                                      child: Indicator(
+                                        color: color,
+                                        text:
+                                            "${data.amount.toAmount(devise: "F")} (${data.nombreSouscriptions})",
+                                        isSquare: true,
+                                      ),
+                                    );
+                                  }),
+                                  // [
+                                  //   // ...ctl.pieChartDataByCategory.map((data) {
+                                  //   //   Color color = ;
+
+                                  //   //   return ;
+                                  //   // }),
+                                  // ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

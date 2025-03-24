@@ -1,20 +1,20 @@
 class UsersAndSubscriptionStat {
-  int? usersAll;
-  int? usersYear;
-  int? souscriptionsAll;
-  int? souscriptionsYear;
+  int usersAll = 0;
+  int usersYear = 0;
+  int souscriptionsAll = 0;
+  int souscriptionsYear = 0;
 
   UsersAndSubscriptionStat(
-      {this.usersAll,
-      this.usersYear,
-      this.souscriptionsAll,
-      this.souscriptionsYear});
+      {this.usersAll = 0,
+      this.usersYear = 0,
+      this.souscriptionsAll = 0,
+      this.souscriptionsYear = 0});
 
   UsersAndSubscriptionStat.fromJson(Map<String, dynamic> json) {
-    usersAll = json['users_all'];
-    usersYear = json['users_year'];
-    souscriptionsAll = json['souscriptions_all'];
-    souscriptionsYear = json['souscriptions_year'];
+    usersAll = json['users_all'] ?? 0;
+    usersYear = json['users_year'] ?? 0;
+    souscriptionsAll = json['souscriptions_all'] ?? 0;
+    souscriptionsYear = json['souscriptions_year'] ?? 0;
   }
 
   Map<String, dynamic> toJson() {

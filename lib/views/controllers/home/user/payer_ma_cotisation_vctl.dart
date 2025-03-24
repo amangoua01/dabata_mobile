@@ -24,6 +24,8 @@ class PayerMaCotisationVctl extends AuthViewController {
   var dateCtl = DateTimeEditingController();
   var formKey = GlobalKey<FormState>();
 
+  PayerMaCotisationVctl(this.selectedUser);
+
   Future<List<User>> getUser() async {
     var res = await UserApiCtl.getAllUser();
     if (res.status) {

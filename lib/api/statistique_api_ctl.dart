@@ -1,5 +1,4 @@
 import 'package:dabata_mobile/models/carte_stats.dart';
-import 'package:dabata_mobile/models/categorie_stats.dart';
 import 'package:dabata_mobile/models/montant_souscrit_stats.dart';
 import 'package:dabata_mobile/models/users_and_subscription_stat.dart';
 import 'package:dabata_mobile/tools/constants/const.dart';
@@ -34,31 +33,6 @@ abstract class StatistiqueApiCtl {
     }
   }
 
-  static Future<DataResponse<List<CategorieStats>>>
-      getAllSubcriptionByCategory() async {
-    try {
-      var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/statistiques/admin/souscriptions-by-categorie',
-        options: Options(
-          headers: WebConst.authHeaders,
-        ),
-      );
-      if (res.statusCode == 200) {
-        //print("cat stats ${res.data}");
-        return DataResponse.success(
-            data: (res.data as List)
-                .map((e) => CategorieStats.fromJson(e))
-                .toList());
-      } else {
-        return DataResponse.error(systemError: res.data);
-      }
-    } on DioException catch (e, st) {
-      return DataResponse.error(systemError: e, systemtraceError: st);
-    } catch (e, st) {
-      return DataResponse.error(systemError: e, systemtraceError: st);
-    }
-  }
-
   static Future<DataResponse<List<CarteStats>>>
       getAllSubcriptionByCard() async {
     try {
@@ -69,10 +43,9 @@ abstract class StatistiqueApiCtl {
         ),
       );
       if (res.statusCode == 200) {
-        //print("card stats ${res.data}");
         return DataResponse.success(
-            data:
-                (res.data as List).map((e) => CarteStats.fromJson(e)).toList());
+          data: (res.data as List).map((e) => CarteStats.fromJson(e)).toList(),
+        );
       } else {
         return DataResponse.error(systemError: res.data);
       }

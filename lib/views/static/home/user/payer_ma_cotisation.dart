@@ -13,12 +13,13 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 class PayerMaCotisation extends StatelessWidget {
-  const PayerMaCotisation({super.key});
+  final User? user;
+  const PayerMaCotisation({this.user, super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PayerMaCotisationVctl>(
-      init: PayerMaCotisationVctl(),
+      init: PayerMaCotisationVctl(user),
       builder: (ctl) {
         return Scaffold(
           appBar: AppBar(
@@ -33,6 +34,7 @@ class PayerMaCotisation extends StatelessWidget {
                 CDropDownFormField<User>(
                   labelText: "Utilisateur",
                   require: true,
+                  enabled: user == null,
                   items: (e, props) => ctl.getUser(),
                   compareFn: (a, b) => true,
                   selectedItem: ctl.selectedUser,
@@ -57,7 +59,8 @@ class PayerMaCotisation extends StatelessWidget {
                   popupProps: const PopupProps.menu(
                     showSearchBox: true,
                   ),
-                  itemAsString: (e) => e.carte!.libelle.value,
+                  itemAsString: (e) =>
+                      "${e.carte!.libelle.value} - ${e.carte!.categorie!.libelle.value}",
                   onChanged: (e) {
                     ctl.selectedSubscription = e;
                     ctl.update();

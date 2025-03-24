@@ -1,12 +1,12 @@
-import 'package:gap/gap.dart';
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:dabata_mobile/models/carte.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/static/home/card_pages/card_detail_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class CardItem extends StatelessWidget {
   final Carte carte;
@@ -39,7 +39,7 @@ class CardItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         carte.image.value,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),

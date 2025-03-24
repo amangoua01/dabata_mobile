@@ -1,10 +1,9 @@
 import 'package:dabata_mobile/api/paiement_api_ctl.dart';
+import 'package:dabata_mobile/models/paiement.dart';
+import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/alert_widgets/c_alert_dialog.dart';
 import 'package:dabata_mobile/tools/extensions/types/int.dart';
 import 'package:get/get.dart';
-
-import '../../../../models/paiement.dart';
-import '../../../../models/users.dart';
 
 class UserHistoricSubPageVctl extends GetxController {
   final User user;

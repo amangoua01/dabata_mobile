@@ -1,6 +1,8 @@
 import 'package:dabata_mobile/api/user_api_ctl.dart';
 import 'package:dabata_mobile/tools/alert_widgets/c_alert_dialog.dart';
+import 'package:dabata_mobile/tools/constants/web_const.dart';
 import 'package:dabata_mobile/tools/extensions/types/future.dart';
+import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/views/controllers/abstract/auth_view_controller.dart';
 import 'package:dabata_mobile/views/static/admin/home/dashboard/admin_dashboard.dart';
 import 'package:dabata_mobile/views/static/home/dashboard/dashboard.dart';
@@ -23,6 +25,7 @@ class LoginVctl extends AuthViewController {
     ).load();
     if (res.status) {
       authUser = res.data;
+      WebConst.jwt = authUser!.jwt.value;
       if (authUser?.user?.isAdmin == true) {
         Get.offAll(() => const AdminDashboard());
       } else {

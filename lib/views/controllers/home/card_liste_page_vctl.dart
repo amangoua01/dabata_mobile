@@ -4,11 +4,8 @@ import 'package:dabata_mobile/models/carte.dart';
 import 'package:dabata_mobile/models/categorie.dart';
 import 'package:dabata_mobile/views/controllers/abstract/auth_view_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class CardListePageVctl extends AuthViewController
-    with GetSingleTickerProviderStateMixin {
-  late TabController controller;
+class CardListePageVctl extends AuthViewController {
   List<Carte> card = [];
   List<Categorie> categories = [];
   bool isLoading = true;
@@ -19,10 +16,6 @@ class CardListePageVctl extends AuthViewController
       debugPrint("Aucune catégorie trouvée");
       return;
     }
-    controller = TabController(
-      length: categoriesCount,
-      vsync: this,
-    );
   }
 
   Future<void> getAllCard() async {

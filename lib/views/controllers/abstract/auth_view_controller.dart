@@ -8,8 +8,6 @@ import 'package:dabata_mobile/tools/constants/web_const.dart';
 import 'package:get/get.dart';
 
 abstract class AuthViewController extends GetxController {
- 
-
   AuthUser? get authUser {
     if (Get.isRegistered<AuthUser>(tag: CacheKey.authUser.name)) {
       return Get.find<AuthUser>(tag: CacheKey.authUser.name);
@@ -40,6 +38,18 @@ abstract class AuthViewController extends GetxController {
     } else {
       return null;
     }
+  }
+
+  refreshAuthUser(AuthUser? authUser) {
+    this.authUser = authUser;
+    update();
+  }
+
+  Future<void> logout() async {
+    await Cache.remove(CacheKey.authUser.name);
+    authUser = null;
+    WebConst.jwt = "";
+    update();
   }
 
   User? get user => authUser?.user;

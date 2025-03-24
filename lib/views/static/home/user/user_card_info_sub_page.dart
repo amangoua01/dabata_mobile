@@ -52,7 +52,7 @@ class UserCardInfoSubPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Payé : ${souscription.tauxCotisation.toAmount(devise: "F")}",
+                  "Payé : ${souscription.montantCotise.toAmount(devise: "F")}",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const Gap(8),

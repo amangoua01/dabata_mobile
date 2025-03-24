@@ -69,7 +69,7 @@ class HistoricPaymentCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              dateTime.toFrenchDateTime,
+              dateTime.toFrenchDate,
               style: const TextStyle(fontSize: 12),
             ),
             Container(

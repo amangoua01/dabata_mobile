@@ -1,8 +1,10 @@
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
+import 'package:dabata_mobile/views/static/home/user/payer_ma_cotisation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class UserInfo extends StatelessWidget {
   final User user;
@@ -80,7 +82,7 @@ class UserInfo extends StatelessWidget {
             ),
             Gap(10.h),
             CButton(
-                onPressed: () {},
+                onPressed: () => Get.to(() => PayerMaCotisation(user: user)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

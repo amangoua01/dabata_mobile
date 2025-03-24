@@ -50,7 +50,6 @@ class CardListePage extends StatelessWidget {
               ? const Center(child: CardListePageShimmer())
               : CustomTabBar(
                   color: Colors.white,
-                  controller: ctl.controller,
                   tabs: ctl.uniqueCategories
                       .map((cat) => Tab(text: cat.libelle))
                       .toList(),

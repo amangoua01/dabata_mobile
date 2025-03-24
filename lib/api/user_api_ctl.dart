@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dabata_mobile/models/auth_user.dart';
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/cache/cache.dart';
@@ -11,8 +9,6 @@ import 'package:dio/dio.dart';
 abstract class UserApiCtl {
   static Future<DataResponse<User>> register(User user) async {
     try {
-      print('${Const.baseUrl}/api/users');
-      print(jsonEncode(user.toJson()));
       var res = await WebConst.client.post(
         '${Const.baseUrl}/api/users',
         data: user.toJson(),
@@ -107,12 +103,10 @@ abstract class UserApiCtl {
 
   static Future<DataResponse<User>> updateUser(User user) async {
     try {
-      var res = await WebConst.client.put(
-        '${Const.baseUrl}/api/users/${user.id}',
+      var res = await WebConst.client.post(
+        '${Const.baseUrl}/api/users',
         data: user.toJson(),
-        options: Options(
-          headers: WebConst.authHeaders,
-        ),
+        options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {
         return DataResponse.success(data: User.fromJson(res.data['data']));
@@ -121,6 +115,31 @@ abstract class UserApiCtl {
       }
     } on DioException catch (e, st) {
       return DataResponse.error(systemError: e, systemtraceError: st);
+    } catch (e, st) {
+      return DataResponse.error(systemError: e, systemtraceError: st);
+    }
+  }
+
+  static Future<DataResponse<bool>> updatePassword({
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    try {
+      var res = await WebConst.client.put(
+        '${Const.baseUrl}/api/users/change-password',
+        data: {
+          "currentPassword": oldPassword,
+          "newPassword": newPassword,
+        },
+        options: Options(
+          headers: WebConst.authHeaders,
+        ),
+      );
+      if (res.statusCode == 200) {
+        return DataResponse.success(data: true);
+      } else {
+        return DataResponse.error(systemError: res.data);
+      }
     } catch (e, st) {
       return DataResponse.error(systemError: e, systemtraceError: st);
     }
