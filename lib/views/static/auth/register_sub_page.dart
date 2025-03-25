@@ -19,7 +19,6 @@ class RegisterSubPage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           children: [
             Lottie.asset("assets/lotties/register.json", height: 200),
-            //const Gap(20),
             CTextFormField(
               labelText: "Nom*",
               require: true,
