@@ -16,7 +16,6 @@ class UserHistoricSubPageVctl extends GetxController {
   Future<void> getPaiements() async {
     isLoading = true;
     update();
-
     var res = await PaiementApiCtl.getAllUserpayment(user.id.value);
     isLoading = false;
     update();

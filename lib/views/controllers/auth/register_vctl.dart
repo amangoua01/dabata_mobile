@@ -29,14 +29,16 @@ class RegisterVctl extends AuthViewController {
 
   Future<void> submit({bool withReturn = false}) async {
     if (formKey.currentState!.validate()) {
-      var res = await UserApiCtl.register(User(
-        nom: nom.text,
-        email: email.text,
-        prenom: prenom.text,
-        password: password.text,
-        telephone: telephone.text,
-        lieuResidence: lieuResidence.text,
-      )).load();
+      var res = await UserApiCtl.register(
+        User(
+          nom: nom.text,
+          email: email.text,
+          prenom: prenom.text,
+          password: password.text,
+          telephone: telephone.text,
+          lieuResidence: lieuResidence.text,
+        ),
+      ).load();
 
       if (res.status) {
         var resLogin = await UserApiCtl.login(
@@ -57,6 +59,8 @@ class RegisterVctl extends AuthViewController {
         } else {
           CAlertDialog.show(message: resLogin.message);
         }
+      } else {
+        CAlertDialog.show(message: res.message);
       }
     }
   }

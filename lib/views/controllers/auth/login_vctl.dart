@@ -19,24 +19,26 @@ class LoginVctl extends AuthViewController {
   LoginVctl({required this.withReturn});
 
   void submit() async {
-    var res = await UserApiCtl.login(
-      email: emailController.text,
-      password: passwordController.text,
-    ).load();
-    if (res.status) {
-      authUser = res.data;
-      WebConst.jwt = authUser!.jwt.value;
-      if (authUser?.user?.isAdmin == true) {
-        Get.offAll(() => const AdminDashboard());
-      } else {
-        if (withReturn) {
-          Get.back(result: authUser!);
+    if (formKey.currentState!.validate()) {
+      var res = await UserApiCtl.login(
+        email: emailController.text,
+        password: passwordController.text,
+      ).load();
+      if (res.status) {
+        authUser = res.data;
+        WebConst.jwt = authUser!.jwt.value;
+        if (authUser?.user?.isAdmin == true) {
+          Get.offAll(() => const AdminDashboard());
         } else {
-          Get.offAll(() => const Dashboard());
+          if (withReturn) {
+            Get.back(result: authUser!);
+          } else {
+            Get.offAll(() => const Dashboard());
+          }
         }
+      } else {
+        CAlertDialog.show(message: res.message);
       }
-    } else {
-      CAlertDialog.show(message: res.message);
     }
   }
 }

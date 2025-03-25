@@ -1,6 +1,8 @@
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/components/historic_payment_card.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
+import 'package:dabata_mobile/tools/widgets/empty_list_content.dart';
+import 'package:dabata_mobile/tools/widgets/placeholder_widget.dart';
 import 'package:dabata_mobile/views/controllers/home/user/user_historic_sub_page_vctl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,29 +25,35 @@ class UserHistoricSubPage extends StatelessWidget {
                 child: CircularProgressIndicator(
                 color: AppColors.primary,
               ))
-            : ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15, left: 10),
-                    child: Text(
-                      "Mes dernières opérations",
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                        color: Colors.grey.shade600,
-                        fontWeight: FontWeight.bold,
+            : PlaceHolderWidget(
+                condition: ctl.paiements.isNotEmpty,
+                placeholder: const EmptyListContent(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15, left: 10),
+                      child: Text(
+                        "Mes dernières opérations",
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          color: Colors.grey.shade600,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     ),
-                  ),
-                  ...ctl.paiements.map(
-                    (p) => HistoricPaymentCard(
-                      amount: p.montant ?? 0,
-                      title:
-                          'Mode de paiement : ${p.modePaiement?.libelle.defaultValue('n/a')}',
-                      dateTime: p.datePaiement,
+                    ...ctl.paiements.map(
+                      (p) => HistoricPaymentCard(
+                        amount: p.montant ?? 0,
+                        title:
+                            'Mode de paiement : ${p.modePaiement?.libelle.defaultValue('n/a')}',
+                        dateTime: p.datePaiement,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
       },
     );

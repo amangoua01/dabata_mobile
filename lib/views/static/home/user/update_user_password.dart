@@ -29,22 +29,28 @@ class UpdateUserPassword extends StatelessWidget {
                   controller: ctl.oldPassword,
                   require: true,
                   obscureText: ctl.obscureText,
+                  keyboardType: TextInputType.number,
                   prefixIcon: const Icon(Icons.lock),
                   labelText: "Ancien mot de passe",
+                  maxLength: 8,
                 ),
                 const Gap(10),
                 CTextFormField(
                   controller: ctl.newPassword,
                   require: true,
                   obscureText: ctl.obscureText,
+                  keyboardType: TextInputType.number,
                   prefixIcon: const Icon(Icons.lock),
                   labelText: "Nouveau mot de passe",
+                  maxLength: 8,
                 ),
                 const Gap(10),
                 CTextFormField(
                   controller: ctl.confirmPassword,
                   obscureText: ctl.obscureText,
                   prefixIcon: const Icon(Icons.lock),
+                  keyboardType: TextInputType.number,
+                  maxLength: 8,
                   labelText: "Confirmer le nouveau mot de passe",
                   validator: (e) {
                     if (e!.isEmpty) {

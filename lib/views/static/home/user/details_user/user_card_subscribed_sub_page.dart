@@ -1,5 +1,7 @@
 import 'package:dabata_mobile/tools/components/card_suscribe.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
+import 'package:dabata_mobile/tools/widgets/empty_list_content.dart';
+import 'package:dabata_mobile/tools/widgets/placeholder_widget.dart';
 import 'package:dabata_mobile/views/controllers/home/user/user_card_subscribed_vctl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -21,21 +23,28 @@ class UserCardSubscribedSubPage extends StatelessWidget {
         return ctl.isLoading
             ? const Center(
                 child: CircularProgressIndicator(
-                color: AppColors.primary,
-              ))
-            : ListView(
-                children: [
-                  Gap(20.h),
-                  ...ctl.allcardGetted.map(
-                    (e) => CardSuscribe(
-                      e,
-                      value: e.tauxCotisation,
+                  color: AppColors.primary,
+                ),
+              )
+            : PlaceHolderWidget(
+                condition: ctl.allcardGetted.isNotEmpty,
+                placeholder: const EmptyListContent(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+                child: ListView(
+                  children: [
+                    Gap(20.h),
+                    ...ctl.allcardGetted.map(
+                      (e) => CardSuscribe(
+                        e,
+                        value: e.tauxCotisation,
+                      ),
                     ),
-                  ),
-                ]
-                    .animate(interval: 500.ms)
-                    .slideX(delay: NumDurationExtensions(1).seconds)
-                    .fade(),
+                  ]
+                      .animate(interval: 500.ms)
+                      .slideX(delay: NumDurationExtensions(1).seconds)
+                      .fade(),
+                ),
               );
       },
     );

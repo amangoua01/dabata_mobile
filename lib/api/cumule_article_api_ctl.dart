@@ -5,7 +5,8 @@ import 'package:dabata_mobile/tools/web/data_response.dart';
 import 'package:dio/dio.dart';
 
 abstract class CumuleArticleApiCtl {
-  static Future<DataResponse<List<CumuleArticles>>> cumuleArticle() async {
+  static Future<DataResponse<List<CumuleArticles>>>
+      cumuleArticleForAdmin() async {
     try {
       var res = await WebConst.client.get(
         '${Const.baseUrl}/api/gains/admin/articles-cumules',

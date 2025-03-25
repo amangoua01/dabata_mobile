@@ -42,6 +42,7 @@ class UpdateUserProfile extends StatelessWidget {
                     ),
                     const Gap(10),
                     CTextFormField(
+                      maxLength: 10,
                       labelText: user.telephone ?? "Téléphone",
                     ),
                     const Gap(10),

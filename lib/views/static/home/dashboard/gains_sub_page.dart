@@ -16,7 +16,7 @@ class GainsSubPage extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: const Text("Gain total"),
-            automaticallyImplyLeading: false,
+            automaticallyImplyLeading: ctl.user?.isAdmin == true,
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

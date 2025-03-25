@@ -14,13 +14,21 @@ abstract class UserApiCtl {
         data: user.toJson(),
         options: Options(headers: WebConst.headers),
       );
-      if (res.statusCode == 200) {
-        return DataResponse.success(data: User.fromJson(res.data['data']));
+      if (res.statusCode == 201) {
+        return DataResponse.success(data: User.fromJson(res.data));
       } else {
         return DataResponse.error(
           message: res.data["message"] ?? "Une erreur s'est produite",
         );
       }
+    } on DioException catch (e, st) {
+      if (e.response?.statusCode == 422) {
+        return DataResponse.error(
+            message: e.response?.data["detail"],
+            systemError: e,
+            systemtraceError: st);
+      }
+      return DataResponse.error(systemError: e, systemtraceError: st);
     } catch (e, st) {
       return DataResponse.error(systemError: e, systemtraceError: st);
     }
@@ -125,15 +133,13 @@ abstract class UserApiCtl {
     required String newPassword,
   }) async {
     try {
-      var res = await WebConst.client.put(
+      var res = await WebConst.client.post(
         '${Const.baseUrl}/api/users/change-password',
         data: {
           "currentPassword": oldPassword,
           "newPassword": newPassword,
         },
-        options: Options(
-          headers: WebConst.authHeaders,
-        ),
+        options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {
         return DataResponse.success(data: true);

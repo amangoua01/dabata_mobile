@@ -10,7 +10,7 @@ class ArticlesSubPageVctl extends GetxController {
     isLoading = true;
     update();
 
-    var res = await CumuleArticleApiCtl.cumuleArticle();
+    var res = await CumuleArticleApiCtl.cumuleArticleForAdmin();
     if (res.status) {
       isLoading = false;
       articlesCumules = res.data!;

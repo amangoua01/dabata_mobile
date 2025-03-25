@@ -1,6 +1,6 @@
 import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_form_field.dart';
-import 'package:dabata_mobile/views/controllers/auth/register_vctl.dart';
+import 'package:dabata_mobile/views/controllers/home/edtion_user_page_vctl.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -11,8 +11,8 @@ class EdtionUserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RegisterVctl>(
-      init: RegisterVctl(),
+    return GetBuilder<EdtionUserPageVctl>(
+      init: EdtionUserPageVctl(),
       builder: (ctl) {
         return Scaffold(
           appBar: AppBar(title: const Text("Edition utilisateur")),
@@ -39,6 +39,8 @@ class EdtionUserPage extends StatelessWidget {
                   controller: ctl.telephone,
                   labelText: "Téléphone*",
                   require: true,
+                  keyboardType: TextInputType.number,
+                  maxLength: 10,
                   prefixIcon: const Icon(Icons.phone),
                 ),
                 CTextFormField(
@@ -57,6 +59,7 @@ class EdtionUserPage extends StatelessWidget {
                   labelText: "Mot de passe*",
                   obscureText: ctl.isObscureText,
                   require: true,
+                  maxLength: 8,
                   prefixIcon: const Icon(Icons.phone),
                   suffixIcon: IconButton(
                     onPressed: ctl.toggleObscureText,

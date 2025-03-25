@@ -65,12 +65,15 @@ abstract class SouscriptionApiCtl {
   }
 
   static Future<DataResponse<Souscription>> cardSuscribe(
-      int cardId, int userId) async {
+    int cardId,
+    int userId,
+    DateTime dateLivraison,
+  ) async {
     try {
       var res = await WebConst.client.post(
         '${Const.baseUrl}/api/souscriptions',
         data: {
-          "dateLivraison": DateTime.now().toIso8601String(),
+          "dateLivraison": dateLivraison.toIso8601String(),
           "carte": "/api/cartes/$cardId",
           "etat": EtatSouscription.enCours.code
         },
