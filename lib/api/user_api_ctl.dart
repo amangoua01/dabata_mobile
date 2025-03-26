@@ -1,10 +1,10 @@
-import 'package:dabata_mobile/models/auth_user.dart';
+import 'package:dio/dio.dart';
 import 'package:dabata_mobile/models/users.dart';
+import 'package:dabata_mobile/models/auth_user.dart';
 import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:dabata_mobile/tools/constants/const.dart';
-import 'package:dabata_mobile/tools/constants/web_const.dart';
 import 'package:dabata_mobile/tools/web/data_response.dart';
-import 'package:dio/dio.dart';
+import 'package:dabata_mobile/tools/constants/web_const.dart';
 
 abstract class UserApiCtl {
   static Future<DataResponse<User>> register(User user) async {
@@ -89,16 +89,17 @@ abstract class UserApiCtl {
       return DataResponse.error(systemError: e, systemtraceError: st);
     }
   }
-  /* static Future<DataResponse<User>> getUser() async {
+
+  static Future<DataResponse<User>> getUser(String uuid) async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/users/me',
+        '${Const.baseUrl}/api/users/$uuid',
         options: Options(
           headers: WebConst.authHeaders,
         ),
       );
       if (res.statusCode == 200) {
-        return DataResponse.success(data: User.fromJson(res.data['data']));
+        return DataResponse.success(data: User.fromJson(res.data));
       } else {
         return DataResponse.error(systemError: res.data);
       }
@@ -107,21 +108,41 @@ abstract class UserApiCtl {
     } catch (e, st) {
       return DataResponse.error(systemError: e, systemtraceError: st);
     }
-  } */
+  }
 
   static Future<DataResponse<User>> updateUser(User user) async {
     try {
-      var res = await WebConst.client.post(
-        '${Const.baseUrl}/api/users',
-        data: user.toJson(),
-        options: Options(headers: WebConst.authHeaders),
+      print("user ${user.toJson()}");
+      var res = await WebConst.client.patch(
+        '${Const.baseUrl}/api/users/${user.uuId}',
+        data: {
+          'nom': user.nom,
+          'email': user.email,
+          'prenom': user.prenom,
+          'telephone': user.telephone,
+          'lieuResidence': user.lieuResidence,
+        },
+        options: Options(
+          headers: WebConst.authHeaders
+            ..update(
+              "Content-Type",
+              (e) => "application/merge-patch+json",
+            ),
+        ),
       );
+      print("Response data: ${res.data}");
       if (res.statusCode == 200) {
-        return DataResponse.success(data: User.fromJson(res.data['data']));
+        return DataResponse.success(data: User.fromJson(res.data));
       } else {
         return DataResponse.error(systemError: res.data);
       }
     } on DioException catch (e, st) {
+      if (e.response?.statusCode == 422) {
+        return DataResponse.error(
+            message: e.response?.data["detail"],
+            systemError: e,
+            systemtraceError: st);
+      }
       return DataResponse.error(systemError: e, systemtraceError: st);
     } catch (e, st) {
       return DataResponse.error(systemError: e, systemtraceError: st);

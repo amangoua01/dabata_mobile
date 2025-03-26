@@ -85,8 +85,16 @@ class UserProfile extends StatelessWidget {
                     CButton(
                       height: 50,
                       minWidth: double.infinity,
-                      onPressed: () =>
-                          Get.to(() => UpdateUserProfile(ctl.user!)),
+                      onPressed: () async {
+                        var result = await Get.to(
+                          () => UpdateUserProfile(ctl.user!),
+                        );
+
+                        if (result != null) {
+                          ctl.getUser();
+                          ctl.update();
+                        }
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
