@@ -1,11 +1,10 @@
-import 'package:dabata_mobile/models/auth_user.dart';
+import 'package:dabata_mobile/api/user_api_ctl.dart';
+import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/alert_widgets/c_alert_dialog.dart';
 import 'package:dabata_mobile/tools/extensions/types/future.dart';
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
-import 'package:dabata_mobile/models/users.dart';
-import 'package:dabata_mobile/api/user_api_ctl.dart';
 import 'package:dabata_mobile/views/controllers/abstract/auth_view_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UpdateUserVctl extends AuthViewController {
   late TextEditingController nom;
@@ -45,8 +44,6 @@ class UpdateUserVctl extends AuthViewController {
   Future<void> updateUser() async {
     final user = authUser!.user!;
 
-    print("user ${user.toJson()}");
-
     Map<String, dynamic> updatedFields = {};
 
     if (nom.text.isNotEmpty && nom.text != user.nom) {
@@ -70,8 +67,6 @@ class UpdateUserVctl extends AuthViewController {
       CAlertDialog.show(message: "Aucune modification détectée.");
       return;
     }
-
-    print(updatedFields);
 
     var res = await UserApiCtl.updateUser(
       User(

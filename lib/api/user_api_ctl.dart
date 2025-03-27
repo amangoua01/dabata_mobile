@@ -1,10 +1,10 @@
-import 'package:dio/dio.dart';
-import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/models/auth_user.dart';
+import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/cache/cache.dart';
 import 'package:dabata_mobile/tools/constants/const.dart';
-import 'package:dabata_mobile/tools/web/data_response.dart';
 import 'package:dabata_mobile/tools/constants/web_const.dart';
+import 'package:dabata_mobile/tools/web/data_response.dart';
+import 'package:dio/dio.dart';
 
 abstract class UserApiCtl {
   static Future<DataResponse<User>> register(User user) async {
@@ -112,7 +112,6 @@ abstract class UserApiCtl {
 
   static Future<DataResponse<User>> updateUser(User user) async {
     try {
-      print("user ${user.toJson()}");
       var res = await WebConst.client.patch(
         '${Const.baseUrl}/api/users/${user.uuId}',
         data: {
@@ -130,7 +129,7 @@ abstract class UserApiCtl {
             ),
         ),
       );
-      print("Response data: ${res.data}");
+
       if (res.statusCode == 200) {
         return DataResponse.success(data: User.fromJson(res.data));
       } else {
