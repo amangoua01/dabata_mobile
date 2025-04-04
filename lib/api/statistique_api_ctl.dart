@@ -12,10 +12,8 @@ abstract class StatistiqueApiCtl {
       getStatistique() async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/statistiques/admin/by-user-stat',
-        options: Options(
-          headers: WebConst.authHeaders,
-        ),
+        Const.buildUrl(path: "statistiques/admin/by-user-stat"),
+        options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {
         //print("stats ${res.data['hydra:member']}");
@@ -37,7 +35,7 @@ abstract class StatistiqueApiCtl {
       getAllSubcriptionByCard() async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/statistiques/admin/souscriptions-by-carte',
+        Const.buildUrl(path: "statistiques/admin/souscriptions-by-carte"),
         options: Options(
           headers: WebConst.authHeaders,
         ),
@@ -60,7 +58,7 @@ abstract class StatistiqueApiCtl {
       getAllSubcriptionByAmountType() async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/statistiques/admin/souscriptions-by-montant',
+        Const.buildUrl(path: "statistiques/admin/souscriptions-by-montant"),
         options: Options(
           headers: WebConst.authHeaders,
         ),
@@ -84,7 +82,7 @@ abstract class StatistiqueApiCtl {
       getAllSubcriptionByAmountTypeForUser() async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/statistiques/user/souscriptions-by-montant',
+        Const.buildUrl(path: "statistiques/user/souscriptions-by-montant"),
         options: Options(
           headers: WebConst.authHeaders,
         ),

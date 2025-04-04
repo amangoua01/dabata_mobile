@@ -10,7 +10,7 @@ abstract class UserApiCtl {
   static Future<DataResponse<User>> register(User user) async {
     try {
       var res = await WebConst.client.post(
-        '${Const.baseUrl}/api/users',
+        Const.buildUrl(path: "users"),
         data: user.toJson(),
         options: Options(headers: WebConst.headers),
       );
@@ -38,7 +38,7 @@ abstract class UserApiCtl {
       {required String email, required String password}) async {
     try {
       var res = await WebConst.client.post(
-        '${Const.baseUrl}/auth',
+        Const.buildUrl(withSuffixApi: false, path: "auth"),
         data: {
           "email": email,
           "password": password,
@@ -71,7 +71,7 @@ abstract class UserApiCtl {
   static Future<DataResponse<List<User>>> getAllUser() async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/users',
+        Const.buildUrl(path: "users"),
         options: Options(
           headers: WebConst.authHeaders,
         ),
@@ -93,7 +93,7 @@ abstract class UserApiCtl {
   static Future<DataResponse<User>> getUser(String uuid) async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/users/$uuid',
+        Const.buildUrl(path: "users/$uuid"),
         options: Options(
           headers: WebConst.authHeaders,
         ),
@@ -113,14 +113,8 @@ abstract class UserApiCtl {
   static Future<DataResponse<User>> updateUser(User user) async {
     try {
       var res = await WebConst.client.patch(
-        '${Const.baseUrl}/api/users/${user.uuId}',
-        data: {
-          'nom': user.nom,
-          'email': user.email,
-          'prenom': user.prenom,
-          'telephone': user.telephone,
-          'lieuResidence': user.lieuResidence,
-        },
+        Const.buildUrl(path: "users/${user.uuId}"),
+        data: user.toJson().remove("password"),
         options: Options(
           headers: WebConst.authHeaders
             ..update(
@@ -154,7 +148,7 @@ abstract class UserApiCtl {
   }) async {
     try {
       var res = await WebConst.client.post(
-        '${Const.baseUrl}/api/users/change-password',
+        Const.buildUrl(path: "users/change-password"),
         data: {
           "currentPassword": oldPassword,
           "newPassword": newPassword,

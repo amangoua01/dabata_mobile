@@ -12,10 +12,9 @@ import 'package:get/get.dart';
 class CardSuscribe extends StatelessWidget {
   final Souscription souscription;
   final bool withUser;
-  final double value;
+
   const CardSuscribe(
     this.souscription, {
-    this.value = 0,
     this.withUser = false,
     super.key,
   });
@@ -99,13 +98,13 @@ class CardSuscribe extends StatelessWidget {
                             height: 7,
                             width: double.infinity,
                             child: LinearProgressIndicator(
-                              value: value,
+                              value: souscription.tauxCotisation,
                               borderRadius: BorderRadius.circular(10),
                               backgroundColor: Colors.grey.shade200,
-                              valueColor: value <= 0.33
+                              valueColor: souscription.tauxCotisation <= 0.33
                                   ? const AlwaysStoppedAnimation<Color>(
                                       Colors.red)
-                                  : value <= 0.66
+                                  : souscription.tauxCotisation <= 0.66
                                       ? const AlwaysStoppedAnimation<Color>(
                                           Colors.orange)
                                       : const AlwaysStoppedAnimation<Color>(
@@ -132,9 +131,9 @@ class CardSuscribe extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontSize: 12.sp,
-                                    color: value <= 0.33
+                                    color: souscription.tauxCotisation <= 0.33
                                         ? Colors.red
-                                        : value <= 0.66
+                                        : souscription.tauxCotisation <= 0.66
                                             ? Colors.orange
                                             : Colors.green,
                                     fontWeight: FontWeight.bold,

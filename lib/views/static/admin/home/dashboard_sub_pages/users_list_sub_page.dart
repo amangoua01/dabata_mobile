@@ -2,6 +2,7 @@ import 'package:dabata_mobile/tools/components/user_description_card.dart';
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/string.dart';
 import 'package:dabata_mobile/tools/widgets/inputs/c_text_field.dart';
+import 'package:dabata_mobile/tools/widgets/wrapper_body_listview.dart';
 import 'package:dabata_mobile/views/controllers/admin/user_list_sub_page_vctl.dart';
 import 'package:dabata_mobile/views/static/admin/home/edtion_user_page.dart';
 import 'package:dabata_mobile/views/static/home/user/details_user/user_detail_page.dart';
@@ -31,34 +32,61 @@ class UsersListSubPage extends StatelessWidget {
                     onChanged: (value) => ctl.onSearchUser(value)),
                 const Gap(10),
                 Expanded(
-                  child: ctl.isLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(
-                          color: AppColors.primary,
-                        ))
-                      : ListView(
-                          children: [
-                            ...ctl.users.map((e) => UserDescriptionCard(
-                                  leading: CircleAvatar(
-                                    radius: 25,
-                                    backgroundColor: AppColors.primary.shade100,
-                                    backgroundImage: const AssetImage(
-                                        "assets/icons/user2.png"),
-                                  ), //Image.asset("assets/icons/user2.png"),
-                                  title: Text(
-                                    '${e.fullname.value} ',
-                                  ),
-                                  subtitle: Text(e.telephone ?? '',
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                      )),
-                                  trailing: const Icon(Icons.arrow_forward_ios),
-                                  onTap: () => Get.to(
-                                    () => UserDetailPage(e),
-                                  ),
-                                ))
-                          ],
-                        ),
+                  child: WrapperBodyListView(
+                    onRefresh: ctl.fetchAllUsers,
+                    loading: ctl.isLoading,
+                    children: ctl.users
+                        .map(
+                          (e) => UserDescriptionCard(
+                            leading: CircleAvatar(
+                              radius: 25,
+                              backgroundColor: AppColors.primary.shade100,
+                              backgroundImage:
+                                  const AssetImage("assets/icons/user2.png"),
+                            ),
+                            title: Text(
+                              '${e.fullname.value} ',
+                            ),
+                            subtitle: Text(e.telephone ?? '',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                )),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                            onTap: () => Get.to(
+                              () => UserDetailPage(e),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  //  ctl.isLoading
+                  //     ? const Center(
+                  //         child: CircularProgressIndicator(
+                  //         color: AppColors.primary,
+                  //       ))
+                  //     : ListView(
+                  //         children: [
+                  //           ...ctl.users.map((e) => UserDescriptionCard(
+                  //                 leading: CircleAvatar(
+                  //                   radius: 25,
+                  //                   backgroundColor: AppColors.primary.shade100,
+                  //                   backgroundImage: const AssetImage(
+                  //                       "assets/icons/user2.png"),
+                  //                 ), //Image.asset("assets/icons/user2.png"),
+                  //                 title: Text(
+                  //                   '${e.fullname.value} ',
+                  //                 ),
+                  //                 subtitle: Text(e.telephone ?? '',
+                  //                     style: const TextStyle(
+                  //                       fontSize: 12,
+                  //                     )),
+                  //                 trailing: const Icon(Icons.arrow_forward_ios),
+                  //                 onTap: () => Get.to(
+                  //                   () => UserDetailPage(e),
+                  //                 ),
+                  //               ))
+                  //         ],
+                  //       ),
                 ),
               ],
             ),

@@ -9,7 +9,7 @@ abstract class CategorieApiClt {
     //print("getAllCategories");
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/categories',
+        Const.buildUrl(path: "categories"),
         options: Options(headers: WebConst.headers),
       );
       if (res.statusCode == 200) {

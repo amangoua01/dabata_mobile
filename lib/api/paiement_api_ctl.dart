@@ -9,7 +9,7 @@ abstract class PaiementApiCtl {
       int userId) async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/paiements?user=$userId',
+        Const.buildUrl(path: "paiements?user=$userId"),
         options: Options(
           headers: WebConst.authHeaders,
         ),
@@ -30,7 +30,7 @@ abstract class PaiementApiCtl {
   static Future<DataResponse<List<Paiement>>> getAllUserpaymentList() async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/paiements',
+        Const.buildUrl(path: "paiements"),
         options: Options(
           headers: WebConst.authHeaders,
         ),
@@ -52,7 +52,7 @@ abstract class PaiementApiCtl {
       Paiement paiement, int souscriptionId) async {
     try {
       var res = await WebConst.client.post(
-        '${Const.baseUrl}/api/paiements',
+        Const.buildUrl(path: "paiements"),
         data: {
           "montant": paiement.montant,
           "datePaiement": paiement.datePaiement,
@@ -78,7 +78,7 @@ abstract class PaiementApiCtl {
       int souscriptionId) async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/paiements/souscription/$souscriptionId',
+        Const.buildUrl(path: "paiements/souscription/$souscriptionId"),
         options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {

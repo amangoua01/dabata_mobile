@@ -67,12 +67,7 @@ class EnCoursPage extends StatelessWidget {
                 child: Column(
                   children: [
                     const Gap(5),
-                    ...ctl.souscriptionsEnCours.map(
-                      (e) => CardSuscribe(
-                        e,
-                        value: e.tauxCotisation,
-                      ),
-                    ),
+                    ...ctl.souscriptionsEnCours.map((e) => CardSuscribe(e)),
                   ]
                       .animate(interval: 50.ms)
                       .slideX(delay: NumDurationExtensions(1).seconds)

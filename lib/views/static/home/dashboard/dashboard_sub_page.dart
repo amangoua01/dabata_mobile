@@ -1,7 +1,7 @@
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/widgets/custom_tab_bar.dart';
 import 'package:dabata_mobile/views/controllers/home/dashboard/dashboard_sub_page_vctl.dart';
-import 'package:dabata_mobile/views/static/home/User/user_profile.dart';
+import 'package:dabata_mobile/views/static/home/user/user_profile.dart';
 import 'package:dabata_mobile/views/static/home/dashboard/dash_sub_pages/annule_page.dart';
 import 'package:dabata_mobile/views/static/home/dashboard/dash_sub_pages/en_cours_page.dart';
 import 'package:dabata_mobile/views/static/home/dashboard/dash_sub_pages/solde_page.dart';

@@ -106,7 +106,7 @@ class SettingsSubPage extends StatelessWidget {
                 height: 30,
               ),
             ),
-            title: const Text("Logout"),
+            title: const Text("Déconnexion"),
             trailing: const Icon(Icons.arrow_forward_ios, size: 20),
             onTap: () {
               CChoiceMessageDialog.show(

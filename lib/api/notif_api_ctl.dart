@@ -9,7 +9,7 @@ abstract class NotifApiCtl {
   static Future<DataResponse<List<AppNotif>>> getAllNotifs(int userId) async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/notifications?user=$userId',
+        Const.buildUrl(path: "notifications?user=$userId"),
         options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {
@@ -28,7 +28,7 @@ abstract class NotifApiCtl {
       var newToken = await NotificationService.getFcmToken();
       if (newToken != null && newToken != oldToken) {
         var res = await WebConst.client.patch(
-          '${Const.baseUrl}/api/notifications',
+          Const.buildUrl(path: "notifications"),
           data: {"fcmToken": newToken},
           options: Options(
             headers: WebConst.authHeaders

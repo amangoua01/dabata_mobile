@@ -61,15 +61,14 @@ class RegisterSubPage extends StatelessWidget {
                 maxLength: 8,
                 controller: ctl.password,
                 obscureText: ctl.isObscureText,
-              keyboardType: TextInputType.number,
+                keyboardType: TextInputType.number,
                 prefixIcon: const Icon(Icons.lock),
                 suffixIcon: IconButton(
                   onPressed: ctl.toggleObscureText,
                   icon: ctl.isObscureText
-                      ? const Icon(Icons.visibility_off_outlined)
-                      : const Icon(Icons.visibility),
+                      ? const Icon(Icons.visibility)
+                      : const Icon(Icons.visibility_off_outlined),
                 ),
-                onTap: ctl.toggleObscureText,
               ),
               const Gap(20),
               CButton(

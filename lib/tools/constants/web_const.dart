@@ -54,7 +54,7 @@ abstract class WebConst {
         var refreshToken = await getRefreshJwt();
         if (refreshToken != null) {
           var res = await WebConst.client.post(
-            '${Const.baseUrl}/token/refresh',
+            '${Const.buildUrl}/token/refresh',
             data: {"refresh_token": refreshToken},
             options: Options(headers: WebConst.authHeaders),
           );

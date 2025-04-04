@@ -34,12 +34,7 @@ class UserCardSubscribedSubPage extends StatelessWidget {
                 child: ListView(
                   children: [
                     Gap(20.h),
-                    ...ctl.allcardGetted.map(
-                      (e) => CardSuscribe(
-                        e,
-                        value: e.tauxCotisation,
-                      ),
-                    ),
+                    ...ctl.allcardGetted.map((e) => CardSuscribe(e)),
                   ]
                       .animate(interval: 500.ms)
                       .slideX(delay: NumDurationExtensions(1).seconds)

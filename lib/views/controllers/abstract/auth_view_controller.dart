@@ -40,7 +40,7 @@ abstract class AuthViewController extends GetxController {
     }
   }
 
-  refreshAuthUser(AuthUser? authUser) {
+  void refreshAuthUser(AuthUser? authUser) {
     this.authUser = authUser;
     update();
   }

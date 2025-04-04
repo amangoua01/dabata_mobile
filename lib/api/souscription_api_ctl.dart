@@ -9,7 +9,7 @@ abstract class SouscriptionApiCtl {
   static Future<DataResponse<List<Souscription>>> getAll() async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/souscriptions',
+        Const.buildUrl(path: "souscriptions"),
         options: Options(
           headers: WebConst.authHeaders,
         ),
@@ -39,7 +39,7 @@ abstract class SouscriptionApiCtl {
       int userId) async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/souscriptions?user=$userId',
+        Const.buildUrl(path: "souscriptions?user=$userId"),
         options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {
@@ -71,7 +71,7 @@ abstract class SouscriptionApiCtl {
   ) async {
     try {
       var res = await WebConst.client.post(
-        '${Const.baseUrl}/api/souscriptions',
+        Const.buildUrl(path: "souscriptions"),
         data: {
           "dateLivraison": dateLivraison.toIso8601String(),
           "carte": "/api/cartes/$cardId",

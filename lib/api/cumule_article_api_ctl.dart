@@ -9,17 +9,15 @@ abstract class CumuleArticleApiCtl {
       cumuleArticleForAdmin() async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/gains/admin/articles-cumules',
-        options: Options(
-          headers: WebConst.authHeaders,
-        ),
+        Const.buildUrl(path: "gains/admin/articles-cumules"),
+        options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {
-        //print("cumules ${res.data}");
         return DataResponse.success(
-            data: (res.data as List)
-                .map((e) => CumuleArticles.fromJson(e))
-                .toList());
+          data: (res.data as List)
+              .map((e) => CumuleArticles.fromJson(e))
+              .toList(),
+        );
       } else {
         return DataResponse.error(systemError: res.data);
       }
@@ -32,10 +30,8 @@ abstract class CumuleArticleApiCtl {
       cumuleArticleForUser() async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/gains/user/articles-cumules',
-        options: Options(
-          headers: WebConst.authHeaders,
-        ),
+        Const.buildUrl(path: "gains/user/articles-cumules"),
+        options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {
         return DataResponse.success(

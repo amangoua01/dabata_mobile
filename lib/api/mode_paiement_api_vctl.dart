@@ -8,7 +8,7 @@ abstract class ModePaiementApiVctl {
   static Future<DataResponse<List<ModePaiement>>> getAll() async {
     try {
       var res = await WebConst.client.get(
-        '${Const.baseUrl}/api/mode_paiements',
+        Const.buildUrl(path: "mode_paiements"),
         options: Options(headers: WebConst.authHeaders),
       );
       if (res.statusCode == 200) {

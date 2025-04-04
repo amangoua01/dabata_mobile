@@ -42,44 +42,20 @@ class UpdateUserVctl extends AuthViewController {
   //   }
   // }
   Future<void> updateUser() async {
-    final user = authUser!.user!;
+    var updatedUser = User(
+      uuId: user?.uuId,
+      nom: nom.text,
+      email: email.text,
+      prenom: prenom.text,
+      telephone: telephone.text,
+      lieuResidence: lieuResidence.text,
+    );
 
-    Map<String, dynamic> updatedFields = {};
-
-    if (nom.text.isNotEmpty && nom.text != user.nom) {
-      updatedFields['nom'] = nom.text;
-    }
-    if (email.text.isNotEmpty && email.text != user.email) {
-      updatedFields['email'] = email.text;
-    }
-    if (prenom.text.isNotEmpty && prenom.text != user.prenom) {
-      updatedFields['prenom'] = prenom.text;
-    }
-    if (telephone.text.isNotEmpty && telephone.text != user.telephone) {
-      updatedFields['telephone'] = telephone.text;
-    }
-    if (lieuResidence.text.isNotEmpty &&
-        lieuResidence.text != user.lieuResidence) {
-      updatedFields['lieuResidence'] = lieuResidence.text;
-    }
-
-    if (updatedFields.isEmpty) {
-      CAlertDialog.show(message: "Aucune modification détectée.");
-      return;
-    }
-
-    var res = await UserApiCtl.updateUser(
-      User(
-        uuId: user.uuId,
-        nom: updatedFields['nom'] ?? user.nom,
-        email: updatedFields['email'] ?? user.email,
-        prenom: updatedFields['prenom'] ?? user.prenom,
-        telephone: updatedFields['telephone'] ?? user.telephone,
-        lieuResidence: updatedFields['lieuResidence'] ?? user.lieuResidence,
-      ),
-    ).load();
+    var res = await UserApiCtl.updateUser(updatedUser).load();
 
     if (res.status) {
+      authUser!.user = res.data!;
+      refreshAuthUser(authUser);
       Get.back(result: res.data);
     } else {
       CAlertDialog.show(message: res.message);
