@@ -1,6 +1,7 @@
 import 'package:dabata_mobile/tools/components/c_card.dart';
 import 'package:dabata_mobile/tools/components/card_suscribe.dart';
 import 'package:dabata_mobile/tools/widgets/empty_list_content.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/tools/widgets/placeholder_widget.dart';
 import 'package:dabata_mobile/views/controllers/home/dashboard/dashboard_sub_page_vctl.dart';
 import 'package:flutter/material.dart';
@@ -16,65 +17,72 @@ class EnCoursPage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: RefreshIndicator(
-        onRefresh: ctl.getUserAllSubscriptionCard,
+        onRefresh: ctl.getAllData,
         child: PlaceHolderWidget(
           condition: !ctl.isLoading,
           placeholder: const Center(child: CircularProgressIndicator()),
-          child: ListView(
-            children: [
-              const Gap(20),
-              GridView(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 1.9,
-                ),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  CCard(
-                    title: "Montant restant",
-                    amount: ctl.totalAmountRest.toInt(),
-                    unite: "F",
-                  ).animate().flipH(
-                        delay: 10.ms,
-                        duration: 250.ms,
-                        curve: Curves.easeInOut,
-                      ),
-                  CCard(
-                    title: "Montant total",
-                    amount: ctl.totalAmount.toInt(),
-                    unite: "F",
-                  ).animate().flip(
-                        delay: 10.ms,
-                        duration: 100.ms,
-                        curve: Curves.easeInOut,
-                      )
-                ],
-              ),
-              PlaceHolderWidget(
-                condition: ctl.souscriptionsEnCours.isNotEmpty,
-                placeholder: const Column(
+          child: RefreshIndicator(
+            onRefresh: ctl.getAllData,
+            child: ListView(
+              children: [
+                const Gap(20),
+                GridView(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 1.9,
+                  ),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    Gap(150),
-                    EmptyListContent(
-                      emptyText: "Aucune souscription en cours",
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    ),
+                    CCard(
+                      title: "Montant restant",
+                      amount: ctl.totalAmountRest.toInt(),
+                      unite: "F",
+                    ).animate().flipH(
+                          delay: 10.ms,
+                          duration: 250.ms,
+                          curve: Curves.easeInOut,
+                        ),
+                    CCard(
+                      title: "Montant total",
+                      amount: ctl.totalAmount.toInt(),
+                      unite: "F",
+                    ).animate().flip(
+                          delay: 10.ms,
+                          duration: 100.ms,
+                          curve: Curves.easeInOut,
+                        )
                   ],
                 ),
-                child: Column(
-                  children: [
-                    const Gap(5),
-                    ...ctl.souscriptionsEnCours.map((e) => CardSuscribe(e)),
-                  ]
-                      .animate(interval: 50.ms)
-                      .slideX(delay: NumDurationExtensions(1).seconds)
-                      .fade(),
-                ),
-              )
-            ],
+                PlaceHolderWidget(
+                  condition: ctl.souscriptionsEnCours.isNotEmpty,
+                  placeholder: Column(
+                    children: [
+                      const Gap(150),
+                      const EmptyListContent(
+                        emptyText: "Aucune souscription en cours",
+                        mainAxisAlignment: MainAxisAlignment.center,
+                      ),
+                      CButton(
+                        onPressed: ctl.getAllData,
+                        child: const Text("Actualiser"),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      const Gap(5),
+                      ...ctl.souscriptionsEnCours.map((e) => CardSuscribe(e)),
+                    ]
+                        .animate(interval: 50.ms)
+                        .slideX(delay: NumDurationExtensions(1).seconds)
+                        .fade(),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

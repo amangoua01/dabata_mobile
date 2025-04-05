@@ -5,7 +5,7 @@ import 'package:dabata_mobile/tools/web/data_response.dart';
 import 'package:dio/dio.dart';
 
 abstract class LivraisonApiCtl {
-  Future<DataResponse<List<LivraisonDate>>> getLivraisons() async {
+  static Future<DataResponse<List<LivraisonDate>>> getLivraisons() async {
     try {
       var res = await WebConst.client.get(
         Const.buildUrl(path: "livraisons"),

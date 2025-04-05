@@ -1,6 +1,8 @@
+import 'package:dabata_mobile/api/livraison_api_ctl.dart';
 import 'package:dabata_mobile/api/souscription_api_ctl.dart';
 import 'package:dabata_mobile/models/auth_user.dart';
 import 'package:dabata_mobile/models/carte.dart';
+import 'package:dabata_mobile/models/livraison_date.dart';
 import 'package:dabata_mobile/tools/alert_widgets/c_alert_dialog.dart';
 import 'package:dabata_mobile/tools/alert_widgets/c_bottom_sheet.dart';
 import 'package:dabata_mobile/tools/alert_widgets/c_choice_message_dialog.dart';
@@ -17,13 +19,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CardInfoSubPageVctl extends AuthViewController {
-  String? livraisonPeriode;
+  LivraisonDate? livraisonPeriode;
+
+  Future<List<LivraisonDate>> getLivraisonDate() async {
+    var res = await LivraisonApiCtl.getLivraisons();
+    if (res.status) {
+      return res.data!;
+    } else {
+      return [];
+    }
+  }
+
   Future<void> cardSuscribing(Carte cache) async {
     if (authUser != null) {
       var rep = await CChoiceMessageDialog.show(
           message: "Voulez-vous vraiment souscrire à cette carte ?");
       if (rep == true) {
-        var repDate = await CBottomSheet.show<DateTime?>(
+        var repDate = await CBottomSheet.show<LivraisonDate?>(
           height: 300,
           child: Container(
             padding: const EdgeInsets.all(10),
@@ -31,10 +43,9 @@ class CardInfoSubPageVctl extends AuthViewController {
               children: [
                 CDropDownFormField(
                   labelText: "Choisir une date de livraison*",
-                  items: (a, b) => [
-                    "Avant 25 décembre",
-                    "Avant 31 décembre",
-                  ],
+                  items: (a, b) => getLivraisonDate(),
+                  compareFn: (e, b) => e.id == b.id,
+                  itemAsString: (e) => e.libelle.value,
                   onChanged: (e) {
                     livraisonPeriode = e;
                     update();
@@ -44,13 +55,7 @@ class CardInfoSubPageVctl extends AuthViewController {
                   minWidth: double.infinity,
                   onPressed: () {
                     if (livraisonPeriode != null) {
-                      var date = DateTime.now();
-                      if (livraisonPeriode == "Avant 25 décembre") {
-                        date = DateTime(date.year, 12, 25);
-                      } else {
-                        date = DateTime(date.year, 12, 31);
-                      }
-                      Get.back(result: date);
+                      Get.back(result: livraisonPeriode);
                     } else {
                       CAlertDialog.show(
                         message: "Veuillez choisir une date de livraison.",

@@ -1,3 +1,4 @@
+import 'package:dabata_mobile/models/livraison_date.dart';
 import 'package:dabata_mobile/models/souscription.dart';
 import 'package:dabata_mobile/tools/constants/const.dart';
 import 'package:dabata_mobile/tools/constants/etat_souscription.dart';
@@ -67,13 +68,13 @@ abstract class SouscriptionApiCtl {
   static Future<DataResponse<Souscription>> cardSuscribe(
     int cardId,
     int userId,
-    DateTime dateLivraison,
+    LivraisonDate dateLivraison,
   ) async {
     try {
       var res = await WebConst.client.post(
         Const.buildUrl(path: "souscriptions"),
         data: {
-          "dateLivraison": dateLivraison.toIso8601String(),
+          "dateLivraison": "api/livraisons/${dateLivraison.id}",
           "carte": "/api/cartes/$cardId",
           "etat": EtatSouscription.enCours.code
         },

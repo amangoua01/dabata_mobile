@@ -1,4 +1,5 @@
 import 'package:dabata_mobile/models/carte.dart';
+import 'package:dabata_mobile/models/livraison_date.dart';
 import 'package:dabata_mobile/models/users.dart';
 import 'package:dabata_mobile/tools/constants/etat_souscription.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
@@ -10,7 +11,7 @@ class Souscription {
   User? user;
   Carte? carte;
   double? montantCotise;
-  String? dateLivraison;
+  LivraisonDate? dateLivraison;
 
   Souscription({
     this.id,
@@ -27,7 +28,9 @@ class Souscription {
 
     montantCotise = json['montantCotise'].toString().toDouble();
 
-    dateLivraison = json['dateLivraison'];
+    dateLivraison = json['dateLivraison'] != null
+        ? LivraisonDate.fromJson(json['dateLivraison'])
+        : null;
     user = json['user'] != null
         ? User.fromJson(json['user'] as Map<String, dynamic>)
         : null;

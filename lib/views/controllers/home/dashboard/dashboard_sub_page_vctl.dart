@@ -35,7 +35,7 @@ class DashboardSubPageVctl extends AuthViewController
   List<Carte> get cartesAnnuler =>
       souscriptionsAnnuler.map((s) => s.carte!).toList();
 
-  Future<void> getUserAllSubscriptionCard() async {
+  Future<void> _getUserAllSubscriptionCard() async {
     isLoading = true;
     update();
     var res = await SouscriptionApiCtl.getUserSubscrition(user!.id.value);
@@ -49,7 +49,13 @@ class DashboardSubPageVctl extends AuthViewController
     }
   }
 
-  Future<void> getAllAmountTypeStats() async {
+  Future<void> getAllData() {
+    _getUserAllSubscriptionCard();
+    _getAllAmountTypeStats();
+    return Future.value();
+  }
+
+  Future<void> _getAllAmountTypeStats() async {
     var res = await StatistiqueApiCtl.getAllSubcriptionByAmountTypeForUser();
     if (res.status && res.data != null && res.data!.isNotEmpty) {
       amountStatData = res.data!.first;
@@ -75,7 +81,6 @@ class DashboardSubPageVctl extends AuthViewController
   @override
   void onReady() {
     super.onReady();
-    getUserAllSubscriptionCard();
-    getAllAmountTypeStats();
+    getAllData();
   }
 }

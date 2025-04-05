@@ -1,6 +1,7 @@
 import 'package:dabata_mobile/tools/constants/app_colors.dart';
 import 'package:dabata_mobile/tools/extensions/types/double.dart';
 import 'package:dabata_mobile/tools/widgets/empty_list_content.dart';
+import 'package:dabata_mobile/tools/widgets/inputs/buttons/c_button.dart';
 import 'package:dabata_mobile/tools/widgets/placeholder_widget.dart';
 import 'package:dabata_mobile/views/controllers/home/dashboard/dashboard_sub_page_vctl.dart';
 import 'package:flutter/material.dart';
@@ -13,60 +14,73 @@ class SoldePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(),
+    return PlaceHolderWidget(
+      condition: !ctl.isLoading,
+      placeholder: const Center(child: CircularProgressIndicator()),
       child: PlaceHolderWidget(
         condition: ctl.cartesSoldees.isNotEmpty,
-        placeholder: const EmptyListContent(
+        placeholder: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const EmptyListContent(
+              mainAxisAlignment: MainAxisAlignment.center,
+            ),
+            CButton(
+              onPressed: ctl.getAllData,
+              child: const Text("Actualiser"),
+            ),
+          ],
         ),
-        child: ListView(
-          children: ctl.cartesSoldees
-              .map(
-                (e) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.primary.shade100,
-                    ),
-                    child: ListTile(
-                      title: Row(
-                        children: [
-                          Text(
-                            e.libelle ?? 'n/a',
-                            style: TextStyle(fontSize: 16.sp),
-                          ),
-                          Gap(10.w),
-                          Text(
-                            e.categorie?.libelle ?? 'n/a',
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.bold,
+        child: RefreshIndicator(
+          onRefresh: ctl.getAllData,
+          child: ListView(
+            children: ctl.cartesSoldees
+                .map(
+                  (e) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColors.primary.shade100,
+                      ),
+                      child: ListTile(
+                        title: Row(
+                          children: [
+                            Text(
+                              e.libelle ?? 'n/a',
+                              style: TextStyle(fontSize: 16.sp),
                             ),
-                          ),
-                        ],
-                      ),
-                      subtitle: Text(
-                        e.montantJournalier?.toAmount(devise: 'F') ??
-                            'Aucun montant',
-                        style: TextStyle(fontSize: 16.sp),
-                      ),
-                      trailing: Container(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.green,
+                            Gap(10.w),
+                            Text(
+                              e.categorie?.libelle ?? 'n/a',
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
-                        child: const Icon(
-                          Icons.done,
-                          color: Colors.greenAccent,
+                        subtitle: Text(
+                          e.montantJournalier?.toAmount(devise: 'F') ??
+                              'Aucun montant',
+                          style: TextStyle(fontSize: 16.sp),
+                        ),
+                        trailing: Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.green,
+                          ),
+                          child: const Icon(
+                            Icons.done,
+                            color: Colors.greenAccent,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              )
-              .toList(),
+                )
+                .toList(),
+          ),
         ),
       ),
     );
