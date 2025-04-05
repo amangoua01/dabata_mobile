@@ -1,8 +1,6 @@
 import 'package:dabata_mobile/tools/constants/app_env.dart';
 
 abstract class Const {
-  static const String appName = "Dabata";
-  static const String appVersion = "1.0.0";
   static const env = AppEnv.dev;
   static const String _baseUrlProd = "https://dabata-api-prod.visium.ci";
   static const String _baseUrlDev = "https://dabata-api-dev.visium.ci";
