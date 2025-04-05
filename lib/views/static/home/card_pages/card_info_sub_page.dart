@@ -56,7 +56,7 @@ class CardInfoSubPage extends StatelessWidget {
             ListTile(
               leading: Image.asset("assets/icons/facture.png", width: 25),
               title: const Text("Total"),
-              trailing: Text(carte.montantJournalier.toAmount(devise: "F")),
+              trailing: Text(carte.montantTotal.toAmount(devise: "F")),
             ),
             const Gap(10),
             const ListTile(
